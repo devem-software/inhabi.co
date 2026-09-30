@@ -138,7 +138,7 @@ useHead({
     <!-- <ComparadorSection /> -->
     <!-- <RecibeSection /> -->
     <!-- <CotizarSection /> -->
-     <AgendaSection />
+     <!-- <AgendaSection /> -->
     <AppFooter />
 
     <a :href="waHello" target="_blank" rel="noopener" aria-label="WhatsApp" class="wa-float"
