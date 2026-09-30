@@ -1,13 +1,9 @@
-
-name: Publicar dist en page
+name: Build and Deploy
 
 on:
   push:
     branches:
       - main
-    paths:
-      - 'dist/**'
-      - '.github/workflows/deploy.yml'
 
   workflow_dispatch:
 
@@ -20,28 +16,25 @@ concurrency:
 
 jobs:
   deploy:
-    name: Publicar carpeta dist
     runs-on: ubuntu-latest
 
     steps:
-      - name: Obtener repositorio
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
         with:
-          ref: main
+          node-version: 20
+          cache: npm
 
-      - name: Validar carpeta dist
-        run: |
-          if [ ! -d "./dist" ]; then
-            echo "::error::No existe la carpeta dist"
-            exit 1
-          fi
+      - name: Instalar dependencias
+        run: npm ci
 
-          if [ -z "$(ls -A ./dist)" ]; then
-            echo "::error::La carpeta dist está vacía"
-            exit 1
-          fi
+      - name: Generar build
+        run: npm run build
 
-      - name: Publicar exclusivamente dist
+      - name: Publicar dist en page
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
