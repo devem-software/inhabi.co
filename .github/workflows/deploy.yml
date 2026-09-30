@@ -1,13 +1,10 @@
 
-name: Publicar dist en page
+name: Build and Deploy Inhabi
 
 on:
   push:
     branches:
       - main
-    paths:
-      - 'dist/**'
-      - '.github/workflows/deploy.yml'
 
   workflow_dispatch:
 
@@ -20,28 +17,39 @@ concurrency:
 
 jobs:
   deploy:
-    name: Publicar carpeta dist
+    name: Build, SEO and deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Obtener repositorio
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          ref: main
+          node-version: 22
+          cache: npm
 
-      - name: Validar carpeta dist
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static website
+        run: npm run build
+
+      - name: Create SPA fallback
+        run: cp dist/index.html dist/404.html
+
+      - name: Validate generated files
         run: |
-          if [ ! -d "./dist" ]; then
-            echo "::error::No existe la carpeta dist"
-            exit 1
-          fi
+          test -s dist/index.html
+          test -s dist/system-design/index.html
+          test -s dist/sitemap.xml
+          test -s dist/robots.txt
 
-          if [ -z "$(ls -A ./dist)" ]; then
-            echo "::error::La carpeta dist está vacía"
-            exit 1
-          fi
+          echo "Build and SEO files verified."
+          find dist -maxdepth 3 -type f
 
-      - name: Publicar exclusivamente dist
+      - name: Deploy dist to page
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
