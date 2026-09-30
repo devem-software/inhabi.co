@@ -1,0 +1,204 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: #12110e;
+  color: #f3f0e9;
+  font-family: Manrope, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: #cdd2c0;
+}
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+input[type='range'] {
+  accent-color: #12110e;
+}
+
+/* ---------- Keyframes originales ---------- */
+@keyframes inLogo {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: blur(0);
+  }
+}
+@keyframes inLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes inFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes inWipe {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+@keyframes lrLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes lrRise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes lrSink {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes lrOut {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+@keyframes lrTop {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes lrBot {
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes lrV {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes lrVOut {
+  to {
+    opacity: 0;
+    transform: scaleY(1.4);
+  }
+}
+@keyframes lrSpread {
+  from {
+    clip-path: inset(0 50% 0 50%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes kb {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes heroUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Botones globales ---------- */
+.btn-light {
+  background: #f3f0e9;
+  color: #12110e;
+  padding: 16px 26px;
+  border-radius: 999px;
+  font: 600 14px/1 Manrope;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.btn-light:hover {
+  background: #cdd2c0;
+  color: #12110e;
+}
+
+.btn-outline {
+  border: 1px solid rgba(243, 240, 233, 0.5);
+  padding: 16px 26px;
+  border-radius: 999px;
+  font: 600 14px/1 Manrope;
+  transition: background 0.25s;
+}
+.btn-outline:hover {
+  background: rgba(243, 240, 233, 0.08);
+}
+
+.wa-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 40;
+  background: #cdd2c0;
+  color: #12110e;
+  padding: 15px 20px;
+  border-radius: 999px;
+  font: 600 13px/1 Manrope;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: background 0.25s;
+}
+.wa-float:hover {
+  background: #f3f0e9;
+  color: #12110e;
+}

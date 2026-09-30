@@ -1,0 +1,67 @@
+/* src/styles/design-system.css
+   Fuente de verdad de los tokens + fuentes del Design System Inhabi.
+   NO scoped: se importa desde main.js
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Marca */
+  --ink:        #12110e;
+  --ink-soft:   #1b1a16;
+  --ink-hover:  #2b2a24;
+  --cream:      #f3f0e9;
+  --cream-soft: #e6e1d6;
+  --sage:       #cdd2c0;
+  --sage-soft:  #d6dbc9;
+
+  /* Texto sobre oscuro */
+  --fg:       #f3f0e9;
+  --fg-muted: #d8d4c8;
+  --fg-soft:  #b9b5a8;
+  --fg-dim:   #a8a597;
+  --fg-ghost: #8f8c80;
+
+  /* Texto sobre claro */
+  --ink-fg:      #12110e;
+  --ink-muted:   #4d493f;
+  --ink-soft-fg: #6b675c;
+  --ink-accent:  #6f7a5f;
+
+  /* Bordes */
+  --border-dark-1:  rgba(243,240,233,.12);
+  --border-dark-2:  rgba(243,240,233,.20);
+  --border-dark-3:  rgba(243,240,233,.35);
+  --border-dark-4:  rgba(243,240,233,.50);
+  --border-light-1: rgba(18,17,14,.15);
+  --border-light-2: rgba(18,17,14,.25);
+  --border-light-3: #12110e;
+
+  /* Tipografía */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-sans:    'Manrope', system-ui, -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Radios */
+  --r-pill: 999px;
+  --r-sm:   4px;
+  --r-md:   8px;
+  --r-lg:   16px;
+
+  /* Espaciado */
+  --gutter:    clamp(20px, 4vw, 56px);
+  --section-y: clamp(72px, 10vw, 140px);
+  --max-w:     1400px;
+
+  /* Movimiento */
+  --ease:    cubic-bezier(.2, .7, .2, 1);
+  --ease-io: cubic-bezier(.76, 0, .24, 1);
+  --t-fast:  .2s;
+  --t-base:  .3s;
+  --t-slow:  .4s;
+
+  /* Sombras */
+  --shadow-sm: 0 4px 12px rgba(0,0,0,.18);
+  --shadow-md: 0 10px 30px rgba(0,0,0,.28);
+  --shadow-lg: 0 20px 50px rgba(0,0,0,.35);
+}

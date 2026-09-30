@@ -1,0 +1,114 @@
+
+{
+  "nav": {
+    "combos": "Combos",
+    "estilos": "Estilos",
+    "config": "Configurador",
+    "proyectos": "Proyectos",
+    "cotizar": "Cotizar",
+    "agendar": "Agendar"
+  },
+  "hero": {
+    "eyebrow": "Arquitectura e interiorismo · Bogotá",
+    "h1a": "Espacios que se",
+    "h1b": "habitan con emoción.",
+    "sub": "Diseñamos soluciones exclusivas, innovadoras y de alta calidad, centradas en quien las habita. Tu remodelación, completamente ejecutada en menos de 60 días.",
+    "cta1": "Diseña tu espacio",
+    "cta2": "Solicitar cotización"
+  },
+  "steps": [
+    ["Selecciona", "Tu combo"],
+    ["Escoge", "Tu estilo"],
+    ["Recibe", "En 60 días"]
+  ],
+  "estudio": {
+    "eyebrow": "Acerca de la empresa",
+    "title": "Que tu presupuesto se invierta en diseño, confort y bienestar.",
+    "p1": "Somos un equipo de profesionales especializado en el desarrollo de proyectos arquitectónicos y de interiorismo. Nos enfocamos en crear espacios que transmiten emociones, promoviendo el bienestar y el equilibrio.",
+    "p2": "Nuestra pasión se refleja en cada proyecto: soluciones exclusivas, innovadoras y de alta calidad, totalmente centradas en las necesidades de quien los habita."
+  },
+  "combos": {
+    "eyebrow": "Selecciona",
+    "title": "Tres tipos de remodelación según tu presupuesto.",
+    "sub": "Cada combo define la escala del mobiliario, el almacenamiento y el alcance de la intervención.",
+    "cta": "Ver en el configurador"
+  },
+  "estilos": {
+    "eyebrow": "Escoge",
+    "title": "El estilo, los colores y los acabados que más te gusten.",
+    "mat": "Materiales del moodboard",
+    "cta": "Aplicar este estilo"
+  },
+  "config": {
+    "eyebrow": "Diseños aplicados en tu proyecto",
+    "title": "Combina tu combo con tu estilo.",
+    "sub": "Así se vería cada combinación en tu vivienda. Cambia el combo, el estilo o el espacio y mira el render al instante.",
+    "comboL": "Combo",
+    "styleL": "Estilo",
+    "rooms": ["Cocina", "Baño social", "Baño principal"],
+    "yourSel": "Tu selección",
+    "note": "Llevamos esta combinación directo a tu solicitud de cotización.",
+    "cta": "Cotizar esta combinación"
+  },
+  "cmp": {
+    "eyebrow": "Mismo espacio, dos estilos",
+    "title": "Desliza para ver cómo cambia el carácter del hogar.",
+    "tabs": ["Cocina", "Baño"]
+  },
+  "recibe": {
+    "eyebrow": "Recibe",
+    "days": "días",
+    "p": "Recibe tu vivienda completamente remodelada, con todos los estándares de calidad y supervisada por nuestro equipo de profesionales, en un periodo máximo de 60 días."
+  },
+  "proy": {
+    "eyebrow": "Algunos proyectos",
+    "title": "Arquitectura que genera valor.",
+    "p": "Diseño interior, arquitectura y ejecución técnica integrados para crear espacios funcionales, estéticos y altamente competitivos.",
+    "ver": "Ver"
+  },
+  "cot": {
+    "eyebrow": "Cotiza tu proyecto",
+    "title": "Cuéntanos sobre tu espacio.",
+    "sub": "Cada proyecto se cotiza según el metraje, el alcance, la ubicación y los acabados. Completa los datos y te enviamos una propuesta a la medida.",
+    "tipoL": "Tipo de inmueble",
+    "tipos": ["Apartamento", "Casa", "Oficina", "Local comercial", "VIS"],
+    "m2L": "Área aproximada",
+    "espL": "Espacios a intervenir",
+    "esp": ["Cocina", "Baños", "Habitaciones", "Sala", "Comedor", "Lavanderia"],
+    "nameL": "Nombre",
+    "telL": "Teléfono",
+    "cityL": "Ciudad / barrio",
+    "msgL": "Cuéntanos más (opcional)",
+    "sumT": "Resumen de tu solicitud",
+    "kTipo": "Inmueble",
+    "kArea": "Área",
+    "kCombo": "Combo",
+    "kEstilo": "Estilo",
+    "kEsp": "Espacios",
+    "kPlazo": "Plazo de ejecución",
+    "plazoA": "Hasta 60 días",
+    "plazoB": "Cronograma a medida",
+    "none": "Por definir",
+    "send": "Enviar solicitud",
+    "wa": "Enviar por WhatsApp",
+    "thanksT": "Recibimos tu solicitud.",
+    "thanks": "Te contactaremos en menos de 24 horas hábiles para agendar la visita técnica."
+  },
+  "ag": {
+    "eyebrow": "Agenda una cita",
+    "title": "Visitemos tu espacio.",
+    "sub": "Elige una visita técnica en tu inmueble o una videollamada con nuestro equipo de diseño.",
+    "modes": ["Visita al inmueble", "Videollamada"],
+    "dayL": "Elige el día",
+    "timeL": "Elige la hora",
+    "pick": "Selecciona día y hora",
+    "confirm": "Confirmar",
+    "okT": "Cita solicitada.",
+    "okWa": "Confirmar por WhatsApp"
+  },
+  "foot": {
+    "eyebrow": "¡Trabajemos juntos!",
+    "tag": "Arquitectura · Interiorismo · Remodelación"
+  },
+  "hola": "Hola Inhabi, quiero información sobre sus remodelaciones."
+}
