@@ -1,0 +1,51 @@
+
+name: Publicar dist en page
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'dist/**'
+      - '.github/workflows/deploy.yml'
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-page
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publicar carpeta dist
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener repositorio
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Validar carpeta dist
+        run: |
+          if [ ! -d "./dist" ]; then
+            echo "::error::No existe la carpeta dist"
+            exit 1
+          fi
+
+          if [ -z "$(ls -A ./dist)" ]; then
+            echo "::error::La carpeta dist está vacía"
+            exit 1
+          fi
+
+      - name: Publicar exclusivamente dist
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: page
+          publish_dir: ./dist
+          force_orphan: true
+          enable_jekyll: false
