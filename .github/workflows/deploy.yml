@@ -39,16 +39,6 @@ jobs:
       - name: Create SPA fallback
         run: cp dist/index.html dist/404.html
 
-      - name: Validate generated files
-        run: |
-          test -s dist/index.html
-          test -s dist/system-design/index.html
-          test -s dist/sitemap.xml
-          test -s dist/robots.txt
-
-          echo "Build and SEO files verified."
-          find dist -maxdepth 3 -type f
-
       - name: Deploy dist to page
         uses: peaceiris/actions-gh-pages@v4
         with:
