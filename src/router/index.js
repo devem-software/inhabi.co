@@ -1,24 +1,34 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
 
-const routes = [
+import HomeView from '@/views/HomeView.vue'
+import SystemDesignView from '@/views/SystemDesignView.vue'
+
+export const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/HomeView.vue')
+    component: HomeView,
   },
   {
     path: '/system-design',
     name: 'system-design',
-    component: () => import('@/views/SystemDesignView.vue')
-  }
+    component: SystemDesignView,
+  },
 ]
 
-export default createRouter({
-  history: createWebHistory(),
-  routes,
-  scrollBehavior(to, from, saved) {
-    if (saved) return saved
-    if (to.hash) return { el: to.hash, behavior: 'smooth', top: 80 }
-    return { top: 0 }
-  }
-})
+export function createAppRouter() {
+  return createRouter({
+    // Condicionamos el historial: Memoria para el servidor (SSG) y Web para el cliente
+    history: import.meta.env.SSR 
+      ? createMemoryHistory(import.meta.env.BASE_URL) 
+      : createWebHistory(import.meta.env.BASE_URL),
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) return savedPosition
+      if (to.hash) return { el: to.hash, behavior: 'smooth' }
+      return { top: 0 }
+    },
+  })
+}
+
+export default createAppRouter()
