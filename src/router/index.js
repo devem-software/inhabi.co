@@ -12,4 +12,9 @@ export const routes = [
     name: 'system-design',
     component: SystemDesignView,
   },
+  // ✅ Añade esta ruta comodín para redirigir cualquier fallo de la URL base
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
+  }
 ]

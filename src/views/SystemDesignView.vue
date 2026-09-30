@@ -1169,7 +1169,7 @@ function copyColor(hex, token) {
 
 // SEO para SYSTEM DESIGN
 
-import { useHead } from "@unhead/vue";
+import { useHead } from "@vueuse/head";
 
 const canonical = "https://devem-software.github.io/inhabi.co/system-design";
 

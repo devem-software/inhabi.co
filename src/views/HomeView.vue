@@ -44,7 +44,7 @@ const waHello = computed(
 
 
 // SEO para HOME
-import { useHead } from "@unhead/vue";
+import { useHead } from "@vueuse/head";
 
 const siteUrl = "https://devem-software.github.io/inhabi.co/";
 
