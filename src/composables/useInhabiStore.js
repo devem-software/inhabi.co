@@ -4,6 +4,8 @@ const es = import('@/data/langs/es.json')
 
 export const WA = '573227276453'
 
+export const siteUrl = "https://devem-software.github.io/inhabi.co/"
+
 
 /* ---------- Resolución de imágenes y assets ---------- */
 /* Vite bundlea todo lo que esté en src/img y src/assets en build-time.

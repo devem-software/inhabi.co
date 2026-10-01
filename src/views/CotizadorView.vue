@@ -1,20 +1,87 @@
 <script setup>
-import { computed, ref, watch, onUnmounted } from "vue";
-import { store, t, ASSET } from "@/composables/useInhabiStore";
+import { store, t, siteUrl } from "@/composables/useInhabiStore";
 import LogoComponent from "@/components/LogoComponent.vue";
 
 import CotizadorSection from "@/components/CotizadorSection.vue";
 
-const props = defineProps({ scrolled: Boolean, default: true });
 
-/* ---------- Estado del menú móvil ---------- */
-const menuOpen = ref(false);
+// SEO para HOME
+import { useHead } from "@vueuse/head";
 
-/* ---------- Estilo dinámico del nav ---------- */
-const navStyle = computed(() => ({
-  background: props.scrolled || menuOpen.value ? "rgba(18,17,14,.88)" : "transparent",
-  backdropFilter: props.scrolled || menuOpen.value ? "blur(12px)" : "none",
-}));
+useHead({
+  title: "Inhabi | Arquitectura, interiorismo y remodelación en Bogotá",
+
+  meta: [
+    {
+      name: "description",
+      content:
+        "Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá. Soluciones integrales, diseño personalizado y ejecución técnica.",
+    },
+    {
+      name: "robots",
+      content: "index, follow",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      property: "og:title",
+      content: "Inhabi | Arquitectura e interiorismo",
+    },
+    {
+      property: "og:description",
+      content: "Transformamos espacios con arquitectura, diseño interior y remodelación integral.",
+    },
+    {
+      property: "og:url",
+      content: siteUrl,
+    },
+    {
+      property: "og:image",
+      content: `${siteUrl}assets/inhabi-social.jpg`,
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+  ],
+
+  link: [
+    {
+      rel: "canonical",
+      href: siteUrl,
+    },
+  ],
+
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        name: "Inhabi",
+        url: siteUrl,
+        image: `${siteUrl}assets/inhabi-social.jpg`,
+        description: "Arquitectura, interiorismo y remodelación integral en Bogotá, Colombia.",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Bogotá",
+          addressRegion: "Bogotá D.C.",
+          addressCountry: "CO",
+        },
+        areaServed: {
+          "@type": "City",
+          name: "Bogotá",
+        },
+      }),
+    },
+  ],
+});
+
+
+
+
 </script>
 
 <template>

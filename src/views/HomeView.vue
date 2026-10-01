@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
-import { store, T, WA } from "@/composables/useInhabiStore";
+import { store, T, WA, siteUrl } from "@/composables/useInhabiStore";
 
 import IntroLoader from "@/components/IntroLoader.vue";
 import AppNav from "@/components/AppNav.vue";
@@ -48,7 +48,6 @@ const waHello = computed(
 // SEO para HOME
 import { useHead } from "@vueuse/head";
 
-const siteUrl = "https://devem-software.github.io/inhabi.co/";
 
 useHead({
   title: "Inhabi | Arquitectura, interiorismo y remodelación en Bogotá",
