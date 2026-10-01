@@ -22,7 +22,8 @@ const q = computed(() => store.q)
 
 // Espacios con contadores
 var as  = []
-const spaceLabels = ['Cocina', 'Habitaciones', 'Baños', 'Lavandería', 'Sala', 'Comedor']
+const spaceLabels = computed(() => t.value.cot.esp)
+console.log(spaceLabels.value)
 const spaceCounts = ref([1, 2, 1, 1, 1, 0])
 
 const increment = (i) => spaceCounts.value[i]++
@@ -33,7 +34,7 @@ const decrement = (i) => {
 const espLabelsSelected = computed(() => {
   const selected = []
   spaceCounts.value.forEach((count, i) => {
-    if (count > 0) selected.push(`${count} ${spaceLabels[i]}`)
+    if (count > 0) selected.push(`${count} ${spaceLabels.value[i]}`)
   })
   return selected.join(', ') || 'Ninguno'
 })
@@ -98,6 +99,10 @@ const summary = computed(() => [
   { k: 'Estilo', v: currentStyle.value[store.lang].name },
 ])
 
+const summarySpaces = computed(() => {
+  return espLabelsSelected.value.split(", ")
+})
+
 const quoteMsg = computed(() => {
 
   return `Hola Inhabi, estoy interesad@ en remodelar mi apartamento:
@@ -138,9 +143,9 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
           <div v-reveal class="head">
             <div class="head-left">
               <h2 class="title">
-                <span v-if="step === 1">Configura tus espacios</span>
-                <span v-if="step === 2">Selecciona tu diseño</span>
-                <span v-if="step === 3">Tus datos de contacto</span>
+                <span v-if="step === 1">{{t.cot.espL}}</span>
+                <span v-if="step === 2">{{t.cot.disL}}</span>
+                <span v-if="step === 3">{{t.cot.datL}}</span>
               </h2>
             </div>
           </div>
@@ -149,14 +154,14 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
           <div v-if="step === 1" class="step-content anim-fade">
             <div class="group">
               <div class="slider-head">
-                <span class="label">Área aproximada</span>
+                <span class="label">{{t.cot.m2L}}</span>
                 <span class="slider-value">{{ q.m2 }} m²</span>
               </div>
               <input type="range" min="10" max="70" step="1" :value="q.m2" @input="onM2" class="range" />
             </div>
 
             <div class="group mt-32">
-              <span class="label">Espacios a intervenir</span>
+              <span class="label">{{t.cot.espL}}</span>
               <div class="counter-grid">
                 <div
                   v-for="(label, i) in spaceLabels"
@@ -279,7 +284,11 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
           <div class="summary">
             <div v-for="(s, i) in summary" :key="i" class="sum-row">
               <span class="sum-k">{{ s.k }}</span>
-              <span class="sum-v">{{ s.v }}</span>
+              <span class="sum-v" v-if="s.k !== 'Espacios'">{{ s.v }}</span>
+              <span class="sum-v" v-else>
+                <span v-for="(space, i) in summarySpaces" :key="i" class="sum-space">{{ space }}</span>
+              </span>
+
             </div>
           </div>
 
@@ -325,6 +334,7 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
 .head-left {
   display: grid;
   gap: 12px;
+  margin-bottom:1.5rem ;
 }
 .title {
   margin: 0;
@@ -612,7 +622,7 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
 .sum-row {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1rem;
   padding: 11px 0;
   border-bottom: 1px solid rgba(243, 240, 233, 0.12);
   font-size: 14px;
@@ -622,6 +632,19 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
 }
 .sum-v {
   text-align: right;
+  gap:.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-flow: row wrap;
+}
+
+.sum-space {
+  background: #f3f0e9;
+  color: #12110e;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: .75rem;
 }
 
 /* Botones Acción */

@@ -3,106 +3,20 @@ import { computed } from "vue";
 import { store, t, IMG } from "@/composables/useInhabiStore";
 
 /* ─────────────────────────────────────────────────────────────
-   Datos de servicios (ES / EN)
+   Carga dinámica de los JSON de servicios según el idioma
    ───────────────────────────────────────────────────────────── */
-const SERVICIOS = [
+const archivosServicios = import.meta.glob(
+  '@/data/servicios/*.json',
   {
-    id: "diseno",
-    n: "01",
-    img: "servicio_diseno",
-    es: {
-      title: "Diseño",
-      kw: "Concepto · Identidad · Espacio",
-      d: "Traducimos tu forma de habitar en un proyecto único. Exploramos materiales, luz y proporción para crear espacios que se sienten tan bien como se ven.",
-      list: [
-        "Diseño arquitectónico",
-        "Diseño de interiores",
-        "Mobiliario a medida",
-        "Visualización 3D",
-      ],
-    },
-    en: {
-      title: "Design",
-      kw: "Concept · Identity · Space",
-      d: "We translate the way you live into a unique project. We explore materials, light and proportion to create spaces that feel as good as they look.",
-      list: ["Architectural design", "Interior design", "Custom furniture", "3D visualization"],
-    },
-  },
-  {
-    id: "construccion",
-    n: "02",
-    img: "servicio_construccion",
-    es: {
-      title: "Construcción",
-      kw: "Ejecución · Precisión · Calidad",
-      d: "Ejecutamos cada proyecto con rigor técnico y acabados impecables. Nuestro equipo supervisa cada etapa para que el resultado final sea exactamente el que diseñamos.",
-      list: ["Obra nueva", "Ampliaciones", "Adecuación de espacios", "Supervisión técnica"],
-    },
-    en: {
-      title: "Construction",
-      kw: "Execution · Precision · Quality",
-      d: "We execute every project with technical rigor and impeccable finishes. Our team supervises each stage so the final result is exactly what we designed.",
-      list: ["New construction", "Extensions", "Space fit-out", "Technical supervision"],
-    },
-  },
-  {
-    id: "remodelaciones",
-    n: "03",
-    img: "servicio_remodelacion",
-    es: {
-      title: "Remodelaciones",
-      kw: "Transformación · Confianza · 60 días",
-      d: "Renovamos tu vivienda de principio a fin en un plazo máximo de 60 días. Un solo equipo, un solo presupuesto, un solo responsable de principio a fin.",
-      list: [
-        "Remodelación integral",
-        "Cocinas y baños",
-        "Acabados y pisos",
-        "Entrega llave en mano",
-      ],
-    },
-    en: {
-      title: "Renovations",
-      kw: "Transformation · Trust · 60 days",
-      d: "We renovate your home end to end within a maximum of 60 days. One team, one budget, one person accountable from start to finish.",
-      list: ["Full renovation", "Kitchens & baths", "Finishes & flooring", "Turnkey delivery"],
-    },
-  },
-  {
-    id: "consultoria",
-    n: "04",
-    img: "servicio_consultoria",
-    es: {
-      title: "Consultoría",
-      kw: "Estrategia · Viabilidad · Valor",
-      d: "Acompañamos tu proyecto con criterio técnico y estratégico. Evaluamos viabilidad, alcance y presupuesto antes de invertir el primer peso.",
-      list: [
-        "Estudios de viabilidad",
-        "Presupuestos y cronogramas",
-        "Interventoría",
-        "Asesoría en compra",
-      ],
-    },
-    en: {
-      title: "Consulting",
-      kw: "Strategy · Feasibility · Value",
-      d: "We support your project with technical and strategic criteria. We assess feasibility, scope and budget before you invest the first peso.",
-      list: [
-        "Feasibility studies",
-        "Budgets & schedules",
-        "Project supervision",
-        "Purchase advisory",
-      ],
-    },
-  },
-];
+    eager: true,
+    import: 'default'
+  }
+);
 
-const lang = computed(() => store.lang);
-
-const imgUrl = (id) => computed(() => {
-  alert(id)
-  const url = IMG(id);
-  console.log(url)
-  return url;
+const serviciosList = computed(() => {
+  const idioma = store.lang || 'es';
+  const archivo = archivosServicios[`/src/data/servicios/${idioma}.json`];
+  return archivo?.servicios ?? [];
 });
 </script>
 
@@ -120,40 +34,30 @@ const imgUrl = (id) => computed(() => {
 
       <!-- ── Grid de tarjetas ───────────────────────── -->
       <div class="servicios__grid">
-        <article v-for="s in SERVICIOS" :key="s.id" class="card servicio-card">
+        <article v-for="s in serviciosList" :key="s.id" class="card servicio-card">
           <!-- Imagen -->
           <div class="card__media servicio-card__media">
-            <img
-              :src="IMG(s.img)"
-              :alt="s[lang].title"
-              loading="lazy"
-            />
+            <img :src="IMG(s.img)" :alt="s.title" loading="lazy" />
             <span class="servicio-card__num">{{ s.n }}</span>
           </div>
 
           <!-- Cuerpo -->
           <div class="card__body servicio-card__body">
             <div class="servicio-card__head">
-              <h3 class="card__title">{{ s[lang].title }}</h3>
+              <h3 class="card__title">{{ s.title }}</h3>
             </div>
 
-            <span class="card__kw">{{ s[lang].kw }}</span>
+            <span class="card__kw">{{ s.kw }}</span>
 
-            <p class="card__desc">{{ s[lang].d }}</p>
+            <p class="card__desc">{{ s.d }}</p>
 
             <!-- Lista de entregables -->
             <ul class="servicio-card__list">
-              <li v-for="item in s[lang].list" :key="item">
+              <li v-for="item in s.list" :key="item">
                 <span class="servicio-card__dot" aria-hidden="true"></span>
                 {{ item }}
               </li>
             </ul>
-
-            <!-- CTA -->
-            <!-- <a href="#cotizar" class="card__cta servicio-card__cta">
-              {{ t.cta }}
-              <span aria-hidden="true">→</span>
-            </a> -->
           </div>
         </article>
       </div>
@@ -293,7 +197,7 @@ const imgUrl = (id) => computed(() => {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform .2s var(--ease);
+  transition: transform 0.2s var(--ease);
 }
 .servicio-card:hover .servicio-card__media img {
   transform: scale(1.05);

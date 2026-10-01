@@ -1,0 +1,45 @@
+{
+  "servicios": [
+    {
+      "id": "diseno",
+      "n": "01",
+      "img": "servicio_diseno",
+      "title": "Design",
+      "kw": "Concept · Identity · Space",
+      "d": "We translate the way you live into a unique project. We explore materials, light and proportion to create spaces that feel as good as they look.",
+      "list": ["Architectural design", "Interior design", "Custom furniture", "3D visualization"]
+    },
+    {
+      "id": "construccion",
+      "n": "02",
+      "img": "servicio_construccion",
+      "title": "Construction",
+      "kw": "Execution · Precision · Quality",
+      "d": "We execute every project with technical rigor and impeccable finishes. Our team supervises each stage so the final result is exactly what we designed.",
+      "list": ["New construction", "Extensions", "Space fit-out", "Technical supervision"]
+    },
+    {
+      "id": "remodelaciones",
+      "n": "03",
+      "img": "servicio_remodelacion",
+      "title": "Renovations",
+      "kw": "Transformation · Trust · 60 days",
+      "d": "We renovate your home end to end within a maximum of 60 days. One team, one budget, one person accountable from start to finish.",
+      "list": ["Full renovation", "Kitchens & baths", "Finishes & flooring", "Turnkey delivery"]
+    },
+    {
+      "id": "consultoria",
+      "n": "04",
+      "img": "servicio_consultoria",
+      "title": "Consulting",
+      "kw": "Strategy · Feasibility · Value",
+      "d": "We support your project with technical and strategic criteria. We assess feasibility, scope and budget before you invest the first peso.",
+      "list": [
+        "Feasibility studies",
+        "Budgets & schedules",
+        "Project supervision",
+        "Purchase advisory"
+      ]
+    }
+  ]
+}

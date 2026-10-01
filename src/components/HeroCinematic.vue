@@ -29,10 +29,10 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
 
       <div class="hero-a-row">
         <p class="hero-a-sub">{{ t.hero.sub }}</p>
-        <!-- <div style="display: flex; gap: 12px; flex-wrap: wrap">
+         <div style="display: flex; gap: 12px; flex-wrap: wrap">
           <a href="#configurador" class="btn-light">{{ t.hero.cta1 }}</a>
           <a href="#cotizar" class="btn-outline">{{ t.hero.cta2 }}</a>
-        </div> -->
+        </div> 
       </div>
 
       <div class="hero-a-steps">

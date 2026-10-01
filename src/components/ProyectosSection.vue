@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import {store, t} from '@/composables/useInhabiStore.js'
+import {store, t, IMG} from '@/composables/useInhabiStore.js'
 
 const archivosProyectos = import.meta.glob(
   '@/data/proyectos/*.json',
@@ -73,7 +73,7 @@ const nextImage = () => {
           @click="openModal(p)"
         >
           <div class="card__media">
-            <img :src="p.imagenes[0]" :alt="p.titulo">
+            <img :src="IMG(p.imagenes[0])" :alt="p.titulo">
           </div>
           <div class="card-project__meta">
             <span class="card-project__name">{{ p.titulo }}</span>
@@ -100,7 +100,7 @@ const nextImage = () => {
               <!-- 2. Carrusel de imágenes -->
               <div class="modal-carousel">
                 <div class="carousel-track">
-                  <img :src="activeProject.imagenes[currentImgIndex]" :alt="activeProject.titulo">
+                  <img :src="IMG(activeProject.imagenes[currentImgIndex])" :alt="activeProject.titulo">
                 </div>
 
                 <!-- Controles del carrusel -->
@@ -115,13 +115,13 @@ const nextImage = () => {
 
               <!-- 3. Intervención -->
               <div class="modal-intervention">
-                <span class="eyebrow">Intervención</span>
+                <span class="eyebrow">{{t.proy.inter}}</span>
                 <p class="t-body-sm">{{ activeProject.intervencion }}</p>
               </div>
 
               <!-- 4. Reseña -->
               <div class="modal-review">
-                <span class="eyebrow">Reseña del cliente</span>
+                <span class="eyebrow">{{t.proy.resena}}</span>
                 <blockquote class="review-quote">
                   {{ activeProject.resena }}
                 </blockquote>

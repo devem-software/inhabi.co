@@ -1,0 +1,55 @@
+{
+  "servicios": [
+    {
+      "id": "diseno",
+      "n": "01",
+      "img": "servicio_diseno",
+      "title": "Diseño",
+      "kw": "Concepto · Identidad · Espacio",
+      "d": "Traducimos tu forma de habitar en un proyecto único. Exploramos materiales, luz y proporción para crear espacios que se sienten tan bien como se ven.",
+      "list": [
+        "Diseño arquitectónico",
+        "Diseño de interiores",
+        "Mobiliario a medida",
+        "Visualización 3D"
+      ]
+    },
+    {
+      "id": "construccion",
+      "n": "02",
+      "img": "servicio_construccion",
+      "title": "Construcción",
+      "kw": "Ejecución · Precisión · Calidad",
+      "d": "Ejecutamos cada proyecto con rigor técnico y acabados impecables. Nuestro equipo supervisa cada etapa para que el resultado final sea exactamente el que diseñamos.",
+      "list": ["Obra nueva", "Ampliaciones", "Adecuación de espacios", "Supervisión técnica"]
+    },
+    {
+      "id": "remodelaciones",
+      "n": "03",
+      "img": "servicio_remodelacion",
+      "title": "Remodelaciones",
+      "kw": "Transformación · Confianza · 60 días",
+      "d": "Renovamos tu vivienda de principio a fin en un plazo máximo de 60 días. Un solo equipo, un solo presupuesto, un solo responsable de principio a fin.",
+      "list": [
+        "Remodelación integral",
+        "Cocinas y baños",
+        "Acabados y pisos",
+        "Entrega llave en mano"
+      ]
+    },
+    {
+      "id": "consultoria",
+      "n": "04",
+      "img": "servicio_consultoria",
+      "title": "Consultoría",
+      "kw": "Estrategia · Viabilidad · Valor",
+      "d": "Acompañamos tu proyecto con criterio técnico y estratégico. Evaluamos viabilidad, alcance y presupuesto antes de invertir el primer peso.",
+      "list": [
+        "Estudios de viabilidad",
+        "Presupuestos y cronogramas",
+        "Interventoría",
+        "Asesoría en compra"
+      ]
+    }
+  ]
+}

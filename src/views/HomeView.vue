@@ -7,18 +7,17 @@ import AppNav from "@/components/AppNav.vue";
 import HeroCinematic from "@/components/HeroCinematic.vue";
 import HeroEditorial from "@/components/HeroEditorial.vue";
 import EstudioSection from "@/components/EstudioSection.vue";
-import CombosSection from "@/components/CombosSection.vue";
-import EstilosSection from "@/components/EstilosSection.vue";
-import ConfiguradorSection from "@/components/ConfiguradorSection.vue";
-import ComparadorSection from "@/components/ComparadorSection.vue";
-import RecibeSection from "@/components/RecibeSection.vue";
 import ProyectosSection from "@/components/ProyectosSection.vue";
 import ServiciosSection from "@/components/ServiciosSection.vue";
-import CotizarSection from "@/components/CotizarSection.vue";
-import AgendaSection from "@/components/AgendaSection.vue";
 import AppFooter from "@/components/AppFooter.vue";
-import CotizadorSection from "@/components/CotizadorSection.vue";
-
+// import CombosSection from "@/components/CombosSection.vue";
+// import EstilosSection from "@/components/EstilosSection.vue";
+// import ConfiguradorSection from "@/components/ConfiguradorSection.vue";
+// import ComparadorSection from "@/components/ComparadorSection.vue";
+// import RecibeSection from "@/components/RecibeSection.vue";
+// import CotizarSection from "@/components/CotizarSection.vue";
+// import AgendaSection from "@/components/AgendaSection.vue";
+// import CotizadorSection from "@/components/CotizadorSection.vue";
 
 /* ── Editor props equivalentes ───────────────────────── */
 const heroVariant = "A · Cinemático"; // 'A · Cinemático' | 'B · Editorial'
@@ -44,80 +43,12 @@ const waHello = computed(
   () => `https://wa.me/${WA}?text=${encodeURIComponent(T[store.lang].hola)}`,
 );
 
-
 // SEO para HOME
 import { useHead } from "@vueuse/head";
-
+import { seo } from "@/data/dataSeo.js";
 
 useHead({
-  title: "Inhabi | Arquitectura, interiorismo y remodelación en Bogotá",
-
-  meta: [
-    {
-      name: "description",
-      content:
-        "Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá. Soluciones integrales, diseño personalizado y ejecución técnica.",
-    },
-    {
-      name: "robots",
-      content: "index, follow",
-    },
-    {
-      property: "og:type",
-      content: "website",
-    },
-    {
-      property: "og:title",
-      content: "Inhabi | Arquitectura e interiorismo",
-    },
-    {
-      property: "og:description",
-      content: "Transformamos espacios con arquitectura, diseño interior y remodelación integral.",
-    },
-    {
-      property: "og:url",
-      content: siteUrl,
-    },
-    {
-      property: "og:image",
-      content: `${siteUrl}inhabi-social.jpg`,
-    },
-    {
-      name: "twitter:card",
-      content: "summary_large_image",
-    },
-  ],
-
-  link: [
-    {
-      rel: "canonical",
-      href: siteUrl,
-    },
-  ],
-
-  script: [
-    {
-      type: "application/ld+json",
-      innerHTML: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "GeneralContractor",
-        name: "Inhabi",
-        url: siteUrl,
-        image: `${siteUrl}inhabi-social.jpg`,
-        description: "Arquitectura, interiorismo y remodelación integral en Bogotá, Colombia.",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Bogotá",
-          addressRegion: "Bogotá D.C.",
-          addressCountry: "CO",
-        },
-        areaServed: {
-          "@type": "City",
-          name: "Bogotá",
-        },
-      }),
-    },
-  ],
+  ...seo,
 });
 </script>
 
@@ -133,12 +64,12 @@ useHead({
     <ProyectosSection />
     <ServiciosSection />
     <EstudioSection />
-     <!-- <CombosSection />   -->
-     <!-- <EstilosSection />   -->
+    <!-- <CombosSection />   -->
+    <!-- <EstilosSection />   -->
     <!-- <ComparadorSection /> -->
     <!-- <RecibeSection /> -->
     <!-- <CotizarSection /> -->
-     <!-- <AgendaSection /> -->
+    <!-- <AgendaSection /> -->
     <AppFooter />
 
     <a :href="waHello" target="_blank" rel="noopener" aria-label="WhatsApp" class="wa-float"
