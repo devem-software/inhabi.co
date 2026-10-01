@@ -853,6 +853,8 @@ import { ref, onMounted, onUnmounted } from "vue";
 import CodeBlock from "@/components/system-design/CodeBlock.vue";
 import CompareSlider from "@/components/system-design/CompareSlider.vue";
 import ColorSwatch from "@/components/system-design/ColorSwatch.vue";
+import { siteUrl } from "@/composables/useInhabiStore";
+
 
 /* ---------------- Navegación lateral ---------------- */
 const navItems = [
@@ -1171,16 +1173,15 @@ function copyColor(hex, token) {
 
 import { useHead } from "@vueuse/head";
 
-const canonical = "https://devem-software.github.io/inhabi.co/system-design";
 
 useHead({
-  title: "Diseño y soluciones arquitectónicas | Inhabi",
+  title: "Inhabi | Arquitectura, interiorismo y remodelación en Bogotá",
 
   meta: [
     {
       name: "description",
       content:
-        "Explora las soluciones de diseño arquitectónico e interiorismo de Inhabi. Creamos espacios funcionales, personalizados y adaptados a cada proyecto.",
+        "Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá. Soluciones integrales, diseño personalizado y ejecución técnica.",
     },
     {
       name: "robots",
@@ -1192,22 +1193,54 @@ useHead({
     },
     {
       property: "og:title",
-      content: "Diseño arquitectónico e interiorismo | Inhabi",
+      content: "Inhabi | Arquitectura e interiorismo",
     },
     {
       property: "og:description",
-      content: "Diseño, materiales y soluciones para transformar tus espacios.",
+      content: "Transformamos espacios con arquitectura, diseño interior y remodelación integral.",
     },
     {
       property: "og:url",
-      content: canonical,
+      content: siteUrl,
+    },
+    {
+      property: "og:image",
+      content: `${siteUrl}inhabi-social.jpg`,
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
     },
   ],
 
   link: [
     {
       rel: "canonical",
-      href: canonical,
+      href: siteUrl,
+    },
+  ],
+
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        name: "Inhabi",
+        url: siteUrl,
+        image: `${siteUrl}inhabi-social.jpg`,
+        description: "Arquitectura, interiorismo y remodelación integral en Bogotá, Colombia.",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Bogotá",
+          addressRegion: "Bogotá D.C.",
+          addressCountry: "CO",
+        },
+        areaServed: {
+          "@type": "City",
+          name: "Bogotá",
+        },
+      }),
     },
   ],
 });

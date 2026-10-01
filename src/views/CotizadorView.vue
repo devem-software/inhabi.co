@@ -39,7 +39,7 @@ useHead({
     },
     {
       property: "og:image",
-      content: `${siteUrl}assets/inhabi-social.jpg`,
+      content: `${siteUrl}inhabi-social.jpg`,
     },
     {
       name: "twitter:card",
@@ -62,7 +62,7 @@ useHead({
         "@type": "GeneralContractor",
         name: "Inhabi",
         url: siteUrl,
-        image: `${siteUrl}assets/inhabi-social.jpg`,
+        image: `${siteUrl}inhabi-social.jpg`,
         description: "Arquitectura, interiorismo y remodelación integral en Bogotá, Colombia.",
         address: {
           "@type": "PostalAddress",
