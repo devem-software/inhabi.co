@@ -21,6 +21,7 @@ const prevStep = () => { if (step.value > 1) step.value-- }
 const q = computed(() => store.q)
 
 // Espacios con contadores
+var as  = []
 const spaceLabels = ['Cocina', 'Habitaciones', 'Baños', 'Lavandería', 'Sala', 'Comedor']
 const spaceCounts = ref([1, 2, 1, 1, 1, 0])
 
