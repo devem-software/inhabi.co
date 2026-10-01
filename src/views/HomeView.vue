@@ -17,6 +17,8 @@ import ServiciosSection from "@/components/ServiciosSection.vue";
 import CotizarSection from "@/components/CotizarSection.vue";
 import AgendaSection from "@/components/AgendaSection.vue";
 import AppFooter from "@/components/AppFooter.vue";
+import CotizadorSection from "@/components/CotizadorSection.vue";
+
 
 /* ── Editor props equivalentes ───────────────────────── */
 const heroVariant = "A · Cinemático"; // 'A · Cinemático' | 'B · Editorial'
@@ -129,12 +131,11 @@ useHead({
     <HeroCinematic v-if="!heroVariant.startsWith('B')" :delay="heroDelay" :intro-on="introOn" />
     <HeroEditorial v-else :delay="heroDelay" />
 
-    <ServiciosSection />
     <ProyectosSection />
+    <ServiciosSection />
     <EstudioSection />
-    <!-- <CombosSection />  -->
-    <!-- <EstilosSection />  -->
-    <ConfiguradorSection />
+     <!-- <CombosSection />   -->
+     <!-- <EstilosSection />   -->
     <!-- <ComparadorSection /> -->
     <!-- <RecibeSection /> -->
     <!-- <CotizarSection /> -->

@@ -45,19 +45,19 @@ export const ASSET = (name) => resolve(ASSET_MODULES, '../assets', name)
 
 export const R = {
   industrial: {
-    vital: ['r17-81', 'bano_social_industrial_vital', 'bano_industrial_vital'],
-    balance: ['r14-74', 'bano_social_industrial_balance', 'bano_industrital_balance'],
-    integral: ['r20-88', 'bano_social_industrial_integral', 'bano_industrital_integral'],
+    vital: ['r17-81', 'bano_industrial_vital'],
+    balance: ['r14-74', 'bano_industrital_balance'],
+    integral: ['r20-88', 'bano_industrital_integral'],
   },
   minimal: {
-    vital: ['r26-106', 'r27-109', 'r28-110'],
-    balance: ['r23-97', 'r24-102', 'r25-103'],
-    integral: ['r29-113', 'r30-116', 'r31-117'],
+    vital: ['r26-106',  'r28-110'],
+    balance: ['r23-97',  'r25-103'],
+    integral: ['r29-113',  'r31-117'],
   },
   natural: {
-    vital: ['r35-129', 'r36-132', 'r37-133'],
-    balance: ['r32-122', 'r33-125', 'r34-126'],
-    integral: ['r38-136', 'r39-139', 'r40-140'],
+    vital: ['r35-129',  'r37-133'],
+    balance: ['r32-122',  'r34-126'],
+    integral: ['r38-136',  'r40-140'],
   },
 }
 
@@ -208,6 +208,7 @@ export const T = {
       agendar: 'Agendar',
       estudio: 'Nosotros',
       servicios: 'Servicios',
+      inicio: 'Inicio',
     },
     hero: {
       eyebrow: 'Arquitectura e interiorismo · Bogotá',
@@ -218,7 +219,7 @@ export const T = {
       cta2: 'Solicitar cotización',
     },
     steps: [
-      ['Selecciona', 'Tu combo'],
+      ['Elige', 'Tu combo'],
       ['Escoge', 'Tu estilo'],
       ['Recibe', 'En 60 días'],
     ],
@@ -235,7 +236,7 @@ export const T = {
       cta: 'Cotizar este servicio'
     },
     combos: {
-      eyebrow: 'Selecciona',
+      eyebrow: 'Elige',
       title: 'Tres tipos de remodelación según tu presupuesto.',
       sub: 'Cada combo define la escala del mobiliario, el almacenamiento y el alcance de la intervención.',
       cta: 'Ver en el configurador',
@@ -252,7 +253,7 @@ export const T = {
       sub: 'Así se vería cada combinación en tu vivienda. Cambia el combo, el estilo o el espacio y mira el render al instante.',
       comboL: 'Combo',
       styleL: 'Estilo',
-      rooms: ['Cocina', 'Baño social', 'Baño principal'],
+      rooms: ['Cocina', 'Baño'],
       yourSel: 'Tu selección',
       note: 'Llevamos esta combinación directo a tu solicitud de cotización.',
       cta: 'Cotizar esta combinación',
@@ -308,7 +309,7 @@ export const T = {
       modes: ['Visita al inmueble', 'Videollamada'],
       dayL: 'Elige el día',
       timeL: 'Elige la hora',
-      pick: 'Selecciona día y hora',
+      pick: 'Elige día y hora',
       confirm: 'Confirmar',
       okT: 'Cita solicitada.',
       okWa: 'Confirmar por WhatsApp',
@@ -326,6 +327,7 @@ export const T = {
       agendar: 'Book',
       estudio: 'About us',
       servicios: 'Services',
+      inicio: 'Home',
     },
     hero: {
       eyebrow: 'Architecture & interior design · Bogotá',
@@ -370,7 +372,7 @@ export const T = {
       sub: 'See how each combination would look in your home. Switch package, style or room and the render updates instantly.',
       comboL: 'Package',
       styleL: 'Style',
-      rooms: ['Kitchen', 'Guest bath', 'Main bath'],
+      rooms: ['Kitchen', 'Bath'],
       yourSel: 'Your selection',
       note: 'We carry this combination straight into your quote request.',
       cta: 'Quote this combination',
@@ -454,7 +456,7 @@ export const store = reactive({
   cmp: 50,
   cmpRoom: 0,
   dragging: false,
-  q: { tipo: 0, m2: 70, esp: [0, 1], nombre: '', tel: '', email: '', ciudad: '', msg: '' },
+  q: { tipo: 0, m2: 35, esp: [0, 1], nombre: '', apellido: '', tel: '', email: '', ciudad: '', msg: '' },
   sent: false,
   mode: 0,
   day: -1,

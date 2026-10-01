@@ -73,7 +73,9 @@ function langStyle(lang) {
         <button class="lang-btn" :style="langStyle('en')" @click="store.lang = 'en'">EN</button>
       </div>
 
-      <a href="#agenda" class="nav-cta">{{ t.nav.agendar }}</a>
+      <router-link to="/cotiza" class="nav-cta" @click="closeMenu">
+        {{ t.nav.cotizar }}
+      </router-link>
     </div>
 
     <!-- Botón hamburguesa (solo móvil) -->
@@ -115,9 +117,9 @@ function langStyle(lang) {
             <button class="lang-btn" :style="langStyle('en')" @click="store.lang = 'en'">EN</button>
           </div>
 
-          <a href="#agenda" class="nav-cta" @click="closeMenu">
-            {{ t.nav.agendar }}
-          </a>
+          <router-link to="/cotiza" class="nav-cta" @click="closeMenu">
+            {{ t.nav.cotizar }}
+          </router-link>
         </div>
       </div>
     </div>
@@ -149,7 +151,7 @@ function langStyle(lang) {
   align-items: center;
 }
 .brand-logo {
-  height: 22px;
+  height: 1.5rem;
   width: auto;
   display: block;
 }

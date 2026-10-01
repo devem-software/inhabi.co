@@ -1,30 +1,30 @@
 <script setup>
-import { computed, onMounted, onUnmounted } from 'vue'
-import { t, IMG, HERO_B, store } from '@/composables/useInhabiStore'
+import { computed, onMounted, onUnmounted } from "vue";
+import { t, IMG, HERO_B, store } from "@/composables/useInhabiStore";
 
-const props = defineProps({ delay: String })
+const props = defineProps({ delay: String });
 
-const steps = computed(() => t.value.steps.map((x, i) => ({ n: '0' + (i + 1), k: x[0], v: x[1] })))
+const steps = computed(() => t.value.steps.map((x, i) => ({ n: "0" + (i + 1), k: x[0], v: x[1] })));
 
-let timer
+let timer;
 onMounted(() => {
   timer = setInterval(() => {
-    store.heroI = (store.heroI + 1) % HERO_B.length
-  }, 5200)
-})
-onUnmounted(() => clearInterval(timer))
+    store.heroI = (store.heroI + 1) % HERO_B.length;
+  }, 5200);
+});
+onUnmounted(() => clearInterval(timer));
 
 const slides = computed(() =>
   HERO_B.map((x, i) => ({
     src: IMG(x[0]),
     op: i === store.heroI ? 1 : 0,
     sc: i === store.heroI ? 1 : 1.08,
-    bar: i === store.heroI ? '#f3f0e9' : 'rgba(243,240,233,.35)',
+    bar: i === store.heroI ? "#f3f0e9" : "rgba(243,240,233,.35)",
     go: () => (store.heroI = i),
   })),
-)
+);
 
-const caption = computed(() => HERO_B[store.heroI][1])
+const caption = computed(() => HERO_B[store.heroI][1]);
 </script>
 
 <template>
@@ -45,7 +45,7 @@ const caption = computed(() => HERO_B[store.heroI][1])
       <div class="hero-b-steps">
         <div v-for="s in steps" :key="s.n" class="hero-b-step">
           <span class="hero-b-num">{{ s.n }}</span>
-          <span class="hero-b-k">{{ s.k }}</span>
+           <span class="hero-b-k">{{ s.k }}</span> 
           <span class="hero-b-v">{{ s.v }}</span>
         </div>
       </div>
@@ -99,7 +99,7 @@ const caption = computed(() => HERO_B[store.heroI][1])
 }
 .eyebrow {
   font:
-    500 11px/1.4 'IBM Plex Mono',
+    500 11px/1.4 "IBM Plex Mono",
     monospace;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -108,7 +108,7 @@ const caption = computed(() => HERO_B[store.heroI][1])
 .hero-b-title {
   margin: 0;
   font:
-    400 clamp(52px, 6.6vw, 120px)/0.94 'Instrument Serif',
+    400 clamp(52px, 6.6vw, 120px)/0.94 "Instrument Serif",
     serif;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -136,13 +136,13 @@ const caption = computed(() => HERO_B[store.heroI][1])
 }
 .hero-b-num {
   font:
-    400 13px/1 'IBM Plex Mono',
+    400 13px/1 "IBM Plex Mono",
     monospace;
   color: #cdd2c0;
 }
 .hero-b-k {
   font:
-    500 11px/1 'IBM Plex Mono',
+    500 11px/1 "IBM Plex Mono",
     monospace;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -181,7 +181,7 @@ const caption = computed(() => HERO_B[store.heroI][1])
 }
 .hero-b-cap {
   font:
-    500 11px/1.4 'IBM Plex Mono',
+    500 11px/1.4 "IBM Plex Mono",
     monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;
