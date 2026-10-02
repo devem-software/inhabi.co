@@ -55,6 +55,20 @@
         "Construction under our own design",
         "Prior feasibility evaluation"
       ]
+    },
+    {
+      "id": "consultoria",
+      "n": "05",
+      "img": "consultoria",
+      "title": "CONSULTING",
+      "kw": "STRATEGY · FEASIBILITY · VALUE",
+      "d": "We support your project with technical and strategic criteria. We assess feasibility, scope, and budget before you invest your first peso.",
+      "list": [
+        "Feasibility studies",
+        "Budgets and schedules",
+        "Project supervision (Interventoría)",
+        "Work inspection (before and after handover)"
+      ]
     }
   ]
 }

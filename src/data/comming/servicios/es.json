@@ -55,6 +55,20 @@
         "Obra bajo nuestro propio diseño",
         "Evaluación previa de viabilidad"
       ]
+    },
+    {
+      "id": "consultoria",
+      "n": "05",
+      "img": "consultoria",
+      "title": "CONSULTORÍA",
+      "kw": "ESTRATEGIA · VIABILIDAD · VALOR",
+      "d": "Acompañamos tu proyecto con criterio técnico y estratégico. Evaluamos viabilidad, alcance y presupuesto antes de invertir el primer peso.",
+      "list": [
+        "Estudios de viabilidad",
+        "Presupuestos y cronogramas",
+        "Interventoría",
+        "Recibo de obra (antes y después de la entrega)"
+      ]
     }
   ]
 }
