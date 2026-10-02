@@ -3,6 +3,7 @@
     {
       "id": 1,
       "titulo": "Prieto 208",
+      "tipo": "comercial",
       "imagenes": [
         "bano_industrial_vital",
         "bano_industrial_balance",
@@ -15,6 +16,19 @@
     {
       "id": 2,
       "titulo": "Serna & Velasco",
+      "tipo": "vivienda",
+      "imagenes": [
+        "bano_industrial_vital",
+        "bano_industrial_balance"
+      ],
+      "intervencion": "Diseño interior de estilo industrial. Incorporación de texturas de concreto expuesto, iluminación en rieles y perfilería metálica negra en divisiones de baño y estudio.",
+      "resena": "Captaron a la perfección el estilo minimalista e industrial que queríamos. Muy profesionales en los tiempos de entrega.",
+      "cliente": "Serna & Velasco"
+    },
+    {
+      "id": 3,
+      "titulo": "Balcon de rosales",
+      "tipo": "institucional",
       "imagenes": [
         "bano_industrial_vital",
         "bano_industrial_balance"

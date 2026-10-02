@@ -22,9 +22,9 @@ useHead({
   <!-- <nav class="nav" :style="navStyle"> -->
   <nav class="nav" style="background: rgba(18,17,14,.88);backdrop-filter: blur(12px);">
     <!-- Marca -->
-    <a href="#top" class="brand" @click="closeMenu">
+    <router-link to="/" class="brand" @click="closeMenu">
       <LogoComponent class="brand-logo" icon text />
-    </a>
+    </router-link>
     <!-- Botón hamburguesa (solo móvil) -->
     <div class="nav-links">
       <router-link to="/" class="nav-cta" @click="closeMenu">

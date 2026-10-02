@@ -3,52 +3,71 @@
     {
       "id": "diseno",
       "n": "01",
-      "img": "servicio_diseno",
-      "title": "Diseño",
-      "kw": "Concepto · Identidad · Espacio",
-      "d": "Traducimos tu forma de habitar en un proyecto único. Exploramos materiales, luz y proporción para crear espacios que se sienten tan bien como se ven.",
+      "img": "diseno",
+      "title": "DISEÑO",
+      "kw": "CONCEPTO · IDENTIDAD · ESPACIO",
+      "d": "Traducimos tu forma de habitar en un proyecto único — presencial o remoto. Exploramos materiales, luz y proporción para crear espacios que se sienten tan bien como se ven.",
       "list": [
         "Diseño arquitectónico",
         "Diseño de interiores",
         "Mobiliario a medida",
-        "Visualización 3D"
+        "Visualización 3D",
+        "Diseño remoto internacional"
+      ]
+    },
+    {
+      "id": "remodelacion",
+      "n": "02",
+      "img": "remodelacion",
+      "title": "REMODELACIÓN DE OBRA GRIS",
+      "kw": "ESTRUCTURA · EFICIENCIA · 60 DÍAS",
+      "d": "Transformamos el espacio desde cero: pisos, paredes, techos y acabados, en un plazo máximo de 60 días. Un solo equipo, un solo presupuesto, un solo responsable de principio a fin.",
+      "list": [
+        "Pisos y paredes",
+        "Instalaciones",
+        "Acabados",
+        "Entrega en 60 días"
+      ]
+    },
+    {
+      "id": "integral",
+      "n": "03",
+      "img": "integral",
+      "title": "REMODELACIÓN INTEGRAL",
+      "kw": "TRANSFORMACIÓN · DETALLE · CONFIANZA",
+      "d": "Renovamos espacios ya construidos con el mismo rigor de un proyecto de diseño desde cero: cocinas, baños, mobiliario a medida y acabados de alto nivel.",
+      "list": [
+        "Cocinas y baños",
+        "Mobiliario a medida",
+        "Acabados de alto nivel",
+        "Acompañamiento en cada etapa"
       ]
     },
     {
       "id": "construccion",
-      "n": "02",
-      "img": "servicio_construccion",
-      "title": "Construcción",
-      "kw": "Ejecución · Precisión · Calidad",
-      "d": "Ejecutamos cada proyecto con rigor técnico y acabados impecables. Nuestro equipo supervisa cada etapa para que el resultado final sea exactamente el que diseñamos.",
-      "list": ["Obra nueva", "Ampliaciones", "Adecuación de espacios", "Supervisión técnica"]
-    },
-    {
-      "id": "remodelaciones",
-      "n": "03",
-      "img": "servicio_remodelacion",
-      "title": "Remodelaciones",
-      "kw": "Transformación · Confianza · 60 días",
-      "d": "Renovamos tu vivienda de principio a fin en un plazo máximo de 60 días. Un solo equipo, un solo presupuesto, un solo responsable de principio a fin.",
+      "n": "04",
+      "img": "construccion",
+      "title": "DISEÑO Y CONSTRUCCIÓN",
+      "kw": "INTEGRAL · PRECISIÓN · UN SOLO RESPONSABLE",
+      "d": "Diseñamos y construimos el mismo proyecto, de principio a fin, bajo evaluación previa de alcance y presupuesto.",
       "list": [
-        "Remodelación integral",
-        "Cocinas y baños",
-        "Acabados y pisos",
-        "Entrega llave en mano"
+        "Proyectos integrales",
+        "Obra bajo nuestro propio diseño",
+        "Evaluación previa de viabilidad"
       ]
     },
     {
       "id": "consultoria",
-      "n": "04",
-      "img": "servicio_consultoria",
-      "title": "Consultoría",
-      "kw": "Estrategia · Viabilidad · Valor",
+      "n": "05",
+      "img": "consultoria",
+      "title": "CONSULTORÍA",
+      "kw": "ESTRATEGIA · VIABILIDAD · VALOR",
       "d": "Acompañamos tu proyecto con criterio técnico y estratégico. Evaluamos viabilidad, alcance y presupuesto antes de invertir el primer peso.",
       "list": [
         "Estudios de viabilidad",
         "Presupuestos y cronogramas",
         "Interventoría",
-        "Asesoría en compra"
+        "Recibo de obra (antes y después de la entrega)"
       ]
     }
   ]

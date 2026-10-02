@@ -43,11 +43,11 @@ const caption = computed(() => HERO_B[store.heroI][1]);
       </div>
 
       <div class="hero-b-steps">
-        <div v-for="s in steps" :key="s.n" class="hero-b-step">
+         <div v-for="s in steps" :key="s.n" class="hero-b-step">
           <span class="hero-b-num">{{ s.n }}</span>
-           <span class="hero-b-k">{{ s.k }}</span> 
+           <span class="hero-b-k">{{ s.k }}</span>
           <span class="hero-b-v">{{ s.v }}</span>
-        </div>
+        </div> 
       </div>
     </div>
 

@@ -11,35 +11,56 @@ export const siteUrl = "https://devem-software.github.io/inhabi.co/";
    import.meta.glob con { eager: true } devuelve un objeto { ruta: url }
    de forma SÍNCRONA (URLs ya hasheadas). No hay que usar `import()` dinámico. */
 
-const IMG_MODULES = import.meta.glob("../img/*.{jpg,jpeg,png,webp,avif,svg}", {
+const IMG_MODULES = import.meta.glob("../img/**/*.{jpg,jpeg,png,webp,avif,svg}", {
   eager: true,
   query: "?url",
   import: "default",
 });
 
-const ASSET_MODULES = import.meta.glob("../assets/*.{png,jpg,jpeg,svg,webp}", {
+const ASSET_MODULES = import.meta.glob("../assets/**/*.{png,jpg,jpeg,svg,webp}", {
   eager: true,
   query: "?url",
+  import: "default",
+});
+
+const SERVICIOS_MODULES = import.meta.glob("@/data/servicios/**/*.json", {
+  eager: true,
   import: "default",
 });
 
 function resolve(modules, prefix, name) {
-  // Si ya viene con extensión: "r02-equipo.png"
+  // Siempre unimos el prefijo base con la ruta/nombre que ingreses
+  const basePath = `${prefix}/${name}`;
+
+  // Si ya viene con extensión: "r02-equipo.png" o "logos/cafam.png"
   if (/\.[a-z0-9]+$/i.test(name)) {
-    const key = `${prefix}/${name}`;
-    if (modules[key]) return modules[key];
+    if (modules[basePath]) return modules[basePath];
+
+    // Búsqueda flexible de respaldo si la ruta exacta varía en el glob
+    const altKey = Object.keys(modules).find((k) => k.endsWith(name));
+    if (altKey) return modules[altKey];
   }
-  // Si no: probar todas las extensiones
+
+  // Si no tiene extensión: probar todas las extensiones admitidas
   for (const ext of ["jpg", "jpeg", "png", "webp", "avif", "svg"]) {
-    const key = `${prefix}/${name}.${ext}`;
+    const key = `${basePath}.${ext}`;
     if (modules[key]) return modules[key];
+
+    // Búsqueda flexible por terminación
+    const altKey = Object.keys(modules).find((k) => k.endsWith(`${name}.${ext}`));
+    if (altKey) return modules[altKey];
   }
-  console.warn(`[inhabi] recurso no encontrado: ${name}`);
+
+  console.warn(`[inhabi] recurso no encontrado: ${name} (buscado en ${basePath})`);
   return "";
 }
 
 /** Imagen dentro de src/img/  →  IMG('r44-157') o IMG('r02-equipo.png') */
-export const IMG = (name) => resolve(IMG_MODULES, "../img", name);
+export const IMG = (name) => {
+  const resolved = resolve(IMG_MODULES, "../img", name);
+  console.log(resolved);
+  return resolved;
+};
 
 /** Asset dentro de src/assets/  →  ASSET('inhabi-logo-hd.png') */
 export const ASSET = (name) => resolve(ASSET_MODULES, "../assets", name);
@@ -59,6 +80,43 @@ export const R = {
     vital: ["r35-129", "r37-133"],
     balance: ["r32-122", "r34-126"],
     integral: ["r38-136", "r40-140"],
+  },
+};
+
+export const TIPO_PROYECTO = {
+  es: {
+    vivienda: {
+      id: "vivienda",
+      label: "Vivienda",
+      description: "Proyecto de vivienda",
+    },
+    comercial: {
+      id: "comercial",
+      label: "Comercial",
+      description: "Proyecto comercial",
+    },
+    institucional: {
+      id: "institucional",
+      label: "Institucional",
+      description: "Proyecto institucional",
+    },
+  },
+  en: {
+    vivienda: {
+      id: "vivienda",
+      label: "Residential",
+      description: "Residential project",
+    },
+    comercial: {
+      id: "comercial",
+      label: "Commercial",
+      description: "Commercial project",
+    },
+    institucional: {
+      id: "institucional",
+      label: "Institutional",
+      description: "Institutional project",
+    },
   },
 };
 
@@ -197,6 +255,23 @@ export const PROJECTS = [
   { slug: "terraza-nodo", n: "03", name: "Terraza Nodo", img: "r47-162" },
 ];
 
+export const LOGOS = [
+  "cafam",
+  "carnes_piamontesa",
+  "lala",
+  "mascoagro",
+  "movar",
+  "nativas",
+  "piamontesa",
+  "platzi",
+  "suarez",
+  "techo",
+  "universidad_libre",
+  "vid_construcciones",
+  "embajada_francia",
+  "liftit",
+];
+
 export const T = {
   es: {
     nav: {
@@ -269,7 +344,7 @@ export const T = {
       p: "Recibe tu vivienda completamente remodelada, con todos los estándares de calidad y supervisada por nuestro equipo de profesionales, en un periodo máximo de 60 días.",
     },
     proy: {
-      eyebrow: "Algunos proyectos",
+      eyebrow: "Nuestro proyectos",
       title: "Arquitectura que genera valor.",
       p: "Diseño interior, arquitectura y ejecución técnica integrados para crear espacios funcionales, estéticos y altamente competitivos.",
       ver: "Ver",
@@ -393,7 +468,7 @@ export const T = {
       p: "Receive your home fully renovated to every quality standard, supervised by our team of professionals, within a maximum of 60 days.",
     },
     proy: {
-      eyebrow: "Selected projects",
+      eyebrow: "Our projects",
       title: "Architecture that creates value.",
       p: "Interior design, architecture and technical execution integrated to create functional, beautiful and highly competitive spaces.",
       ver: "View",
@@ -492,6 +567,12 @@ export const currentImgs = computed(() => R[store.style][store.combo]);
 export const currentLabel = computed(
   () => `${currentCombo.value[store.lang].name} · ${currentStyle.value[store.lang].name}`,
 );
+export const currentServicios = computed(() => {
+  const archivo = SERVICIOS_MODULES[`/src/data/servicios/${store.lang || "es"}.json`];
+  return archivo?.servicios ?? [];
+});
+
+export const currentTipo = computed(() => TIPO_PROYECTO[store.lang]);
 
 /* Botón on/off helper */
 export const on = (active) =>

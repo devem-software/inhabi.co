@@ -3,6 +3,7 @@
     {
       "id": 1,
       "titulo": "Prieto 208",
+      "tipo": "vivienda",
       "imagenes": [
         "bano_industrial_vital",
         "bano_industrial_balance",
@@ -15,6 +16,7 @@
     {
       "id": 2,
       "titulo": "Serna & Velasco",
+      "tipo": "vivienda",
       "imagenes": [
         "bano_industrial_vital",
         "bano_industrial_balance"

@@ -1,22 +1,9 @@
 <script setup>
 import { computed } from "vue";
-import { store, t, IMG } from "@/composables/useInhabiStore";
-
-/* ─────────────────────────────────────────────────────────────
-   Carga dinámica de los JSON de servicios según el idioma
-   ───────────────────────────────────────────────────────────── */
-const archivosServicios = import.meta.glob(
-  '@/data/servicios/*.json',
-  {
-    eager: true,
-    import: 'default'
-  }
-);
+import { t, IMG, currentServicios } from "@/composables/useInhabiStore";
 
 const serviciosList = computed(() => {
-  const idioma = store.lang || 'es';
-  const archivo = archivosServicios[`/src/data/servicios/${idioma}.json`];
-  return archivo?.servicios ?? [];
+  return currentServicios.value;
 });
 </script>
 
@@ -29,15 +16,14 @@ const serviciosList = computed(() => {
           <div class="eyebrow">{{ t.servicios.eyebrow }}</div>
           <h2 class="title">{{ t.servicios.title }}</h2>
         </div>
-        <p class="sub">{{ t.servicios.sub }}</p>
       </header>
 
       <!-- ── Grid de tarjetas ───────────────────────── -->
       <div class="servicios__grid">
-        <article v-for="s in serviciosList" :key="s.id" class="card servicio-card">
+        <article v-for="s in serviciosList" :key="s.id" class="card servicio-card" :id="s.id">
           <!-- Imagen -->
           <div class="card__media servicio-card__media">
-            <img :src="IMG(s.img)" :alt="s.title" loading="lazy" />
+            <img :src="IMG(`/servicios/${s.img}`)" :alt="s.title" loading="lazy" />
             <span class="servicio-card__num">{{ s.n }}</span>
           </div>
 
@@ -46,9 +32,7 @@ const serviciosList = computed(() => {
             <div class="servicio-card__head">
               <h3 class="card__title">{{ s.title }}</h3>
             </div>
-
             <span class="card__kw">{{ s.kw }}</span>
-
             <p class="card__desc">{{ s.d }}</p>
 
             <!-- Lista de entregables -->
@@ -165,7 +149,7 @@ const serviciosList = computed(() => {
 .servicios__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  gap: 20px;
+  gap: 1rem;
 }
 
 /* ── Tarjeta ───────────────────────────────────────────── */
@@ -186,7 +170,7 @@ const serviciosList = computed(() => {
 /* Imagen */
 .servicio-card__media {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--ink-soft);
 }

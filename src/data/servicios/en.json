@@ -3,42 +3,71 @@
     {
       "id": "diseno",
       "n": "01",
-      "img": "servicio_diseno",
-      "title": "Design",
-      "kw": "Concept · Identity · Space",
-      "d": "We translate the way you live into a unique project. We explore materials, light and proportion to create spaces that feel as good as they look.",
-      "list": ["Architectural design", "Interior design", "Custom furniture", "3D visualization"]
+      "img": "diseno",
+      "title": "DESIGN",
+      "kw": "CONCEPT · IDENTITY · SPACE",
+      "d": "We translate the way you live into a unique project — in-person or remote. We explore materials, light, and proportion to create spaces that feel as good as they look.",
+      "list": [
+        "Architectural design",
+        "Interior design",
+        "Custom furniture",
+        "3D visualization",
+        "International remote design"
+      ]
+    },
+    {
+      "id": "remodelacion",
+      "n": "02",
+      "img": "remodelacion",
+      "title": "SHELL & CORE REMODELING",
+      "kw": "STRUCTURE · EFFICIENCY · 60 DAYS",
+      "d": "We transform the space from scratch: floors, walls, ceilings, and finishes, within a maximum timeframe of 60 days. One single team, one single budget, one single person accountable from start to finish.",
+      "list": [
+        "Floors and walls",
+        "Installations",
+        "Finishes",
+        "Delivery in 60 days"
+      ]
+    },
+    {
+      "id": "integral",
+      "n": "03",
+      "img": "integral",
+      "title": "FULL RENOVATION",
+      "kw": "TRANSFORMATION · DETAIL · TRUST",
+      "d": "We renovate already built spaces with the exact same rigor as a custom design project from scratch: kitchens, bathrooms, custom furniture, and high-level finishes.",
+      "list": [
+        "Kitchens & bathrooms",
+        "Custom furniture",
+        "High-level finishes",
+        "Guidance at every stage"
+      ]
     },
     {
       "id": "construccion",
-      "n": "02",
-      "img": "servicio_construccion",
-      "title": "Construction",
-      "kw": "Execution · Precision · Quality",
-      "d": "We execute every project with technical rigor and impeccable finishes. Our team supervises each stage so the final result is exactly what we designed.",
-      "list": ["New construction", "Extensions", "Space fit-out", "Technical supervision"]
-    },
-    {
-      "id": "remodelaciones",
-      "n": "03",
-      "img": "servicio_remodelacion",
-      "title": "Renovations",
-      "kw": "Transformation · Trust · 60 days",
-      "d": "We renovate your home end to end within a maximum of 60 days. One team, one budget, one person accountable from start to finish.",
-      "list": ["Full renovation", "Kitchens & baths", "Finishes & flooring", "Turnkey delivery"]
+      "n": "04",
+      "img": "construccion",
+      "title": "DESIGN & CONSTRUCTION",
+      "kw": "INTEGRAL · PRECISION · ONE SINGLE PERSON ACCOUNTABLE",
+      "d": "We design and build the same project from start to finish, under a prior evaluation of scope and budget.",
+      "list": [
+        "Comprehensive projects",
+        "Construction under our own design",
+        "Prior feasibility evaluation"
+      ]
     },
     {
       "id": "consultoria",
-      "n": "04",
-      "img": "servicio_consultoria",
-      "title": "Consulting",
-      "kw": "Strategy · Feasibility · Value",
-      "d": "We support your project with technical and strategic criteria. We assess feasibility, scope and budget before you invest the first peso.",
+      "n": "05",
+      "img": "consultoria",
+      "title": "CONSULTING",
+      "kw": "STRATEGY · FEASIBILITY · VALUE",
+      "d": "We support your project with technical and strategic criteria. We assess feasibility, scope, and budget before you invest your first peso.",
       "list": [
         "Feasibility studies",
-        "Budgets & schedules",
-        "Project supervision",
-        "Purchase advisory"
+        "Budgets and schedules",
+        "Project supervision (Interventoría)",
+        "Work inspection (before and after handover)"
       ]
     }
   ]

@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
-import { t, IMG, HERO_B } from "@/composables/useInhabiStore";
+import { t, IMG, HERO_B, LOGOS } from "@/composables/useInhabiStore";
+import MarqueeSection from "@/components/MarqueeSection.vue";
 
 const props = defineProps({
   delay: String,
@@ -29,18 +30,18 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
 
       <div class="hero-a-row">
         <p class="hero-a-sub">{{ t.hero.sub }}</p>
-         <div style="display: flex; gap: 12px; flex-wrap: wrap">
+        <!-- <div style="display: flex; gap: 12px; flex-wrap: wrap">
           <a href="#configurador" class="btn-light">{{ t.hero.cta1 }}</a>
           <a href="#cotizar" class="btn-outline">{{ t.hero.cta2 }}</a>
-        </div> 
+        </div>  -->
       </div>
-
       <div class="hero-a-steps">
-        <div v-for="s in steps" :key="s.n" class="hero-a-step">
+        <MarqueeSection :images="LOGOS" :duration="300" :repeat="10" :gap="16" />
+        <!-- <div v-for="s in steps" :key="s.n" class="hero-a-step">
           <span class="hero-a-num">{{ s.n }}</span>
           <span class="hero-a-k">{{ s.k }}</span>
           <span class="hero-a-v">{{ s.v }}</span>
-        </div>
+        </div> -->
       </div>
     </div>
   </header>
@@ -78,13 +79,15 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
 }
 .hero-a-content {
   position: relative;
-  height: 100dvh;
+  height: 100vh;
   padding: 0 clamp(20px, 4vw, 56px) 40px;
+  padding-top: clamp(5rem, 10vh, 8rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
   animation: heroUp 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  top: 0;
+  margin-top: 0;
 }
 .eyebrow {
   font-family: "IBM Plex Mono", monospace;
@@ -95,14 +98,14 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
 
   text-transform: uppercase;
   color: #cdd2c0;
-  margin-top:4rem;
-  margin-bottom:auto;
+  margin-bottom: auto;
 }
 .hero-a-title {
   margin: 0;
-  font:
-    400 clamp(48px, min(8.4vw, 13vh), 148px)/0.92 "Instrument Serif",
-    serif;
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(48px, min(8.4vw, 13vh), 6rem);
+  font-weight: 400px;
+  line-height: 0.85;
   letter-spacing: -0.02em;
   max-width: 14ch;
   text-wrap: balance;
@@ -113,11 +116,12 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
   gap: 32px;
   align-items: flex-end;
   justify-content: space-between;
+  margin-top: 2rem;
 }
 .hero-a-sub {
   margin: 0;
   max-width: clamp(30ch, 50%, 46ch);
-  font-size: clamp(1rem, 1.5vw, 2rem);
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
   color: #d8d4c8;
   text-wrap: pretty;
 }
@@ -125,7 +129,7 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
   margin-top: auto;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
 }
 .hero-a-step {
   padding: 20px 20px 0 0;
@@ -134,7 +138,7 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
   border-right: 1px solid rgba(243, 240, 233, 0.22);
   padding: 4rem 0 0 1rem;
   position: relative;
-  font-size: clamp(.75rem, 2vw, 2rem);
+  font-size: clamp(0.75rem, 2vw, 2rem);
 }
 .hero-a-step:last-child {
   border-right: none;
