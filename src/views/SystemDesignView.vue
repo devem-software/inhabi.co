@@ -1169,14 +1169,10 @@ function copyColor(hex, token) {
 }
 
 // SEO para SYSTEM DESIGN
-// SEO para HOME
 import { useHead } from '@vueuse/head'
 import { seo } from '@/data/dataSeo.js'
 
-useHead({
-  ...seo,
-  title: 'Inhabi | Guia de diseño',
-})
+useHead(seo)
 </script>
 
 <style scoped>

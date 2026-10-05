@@ -9,10 +9,7 @@ import CotizadorSection from '@/components/CotizadorSection.vue'
 import { useHead } from '@vueuse/head'
 import { seo } from '@/data/dataSeo.js'
 
-useHead({
-  ...seo,
-  title: 'Inhabi | Cotizador',
-})
+useHead(seo)
 </script>
 
 <template>

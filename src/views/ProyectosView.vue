@@ -36,6 +36,12 @@ const proyectosFiltrados = computed(() => {
     (p) => p.tipo.toLowerCase() === categoriaActual.value.toLowerCase(),
   )
 })
+
+// SEO para HOME
+import { useHead } from '@vueuse/head'
+import { seo } from '@/data/dataSeo.js'
+
+useHead(seo)
 </script>
 
 <template>

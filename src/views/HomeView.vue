@@ -45,9 +45,7 @@ const waHello = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(T[
 import { useHead } from '@vueuse/head'
 import { seo } from '@/data/dataSeo.js'
 
-useHead({
-  ...seo,
-})
+useHead(seo)
 </script>
 
 <template>
