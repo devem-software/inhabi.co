@@ -3,15 +3,24 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { VitePWA } from 'vite-plugin-pwa'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 export default defineConfig(({ command, mode }) => {
-  // Verificamos si estamos en producción (ya sea build normal o ssg)
-  const isProduction = command === 'build' || mode === 'production';
+  // Verifica si la variable de entorno para GitHub Pages está activa
+  const isGitHubPages = process.env.VITE_DEPLOY_TARGET === 'gh-pages';
 
   return {
     plugins: [
       vue(),
       vueDevTools(),
+      ViteImageOptimizer({
+        test: /\.(jpe?g|png|gif|tiff|webp|svg|avif)$/i,
+        includePublic: true,
+        logStats: true,
+        png: { quality: 80 },
+        jpeg: { quality: 80 },
+        webp: { quality: 80 },
+      }),
       VitePWA({
         registerType: 'autoUpdate',
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'inhabi-social.jpg'],
@@ -42,15 +51,14 @@ export default defineConfig(({ command, mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
-    // Ajuste seguro del base para producción (GitHub Pages o dominio raíz)
-    base: isProduction ? '/inhabi.co/' : '/',
+    // <--- Dinámico: Si es para GitHub Pages usa '/inhabi.co/', de lo contrario '/' para Cloudflare
+    base: isGitHubPages ? '/inhabi.co/' : '/',
     build: {
-      emptyOutDir: true, // Limpia dist de forma segura antes de compilar y evita bloqueos de archivos
+      emptyOutDir: true,
     },
     ssgOptions: {
       script: 'async',
       formatting: 'minify',
-      // Evita que falle al renderizar rutas dinámicas vacías en SSR
       includedRoutes(paths) {
         return ['/', '/cotiza', '/proyectos', '/proyectos/vivienda', '/proyectos/comercial', '/proyectos/institucional'];
       },
