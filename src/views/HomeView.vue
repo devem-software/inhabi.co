@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
-import { store, T, WA, siteUrl } from "@/composables/useInhabiStore";
+import { store, T, WA, siteUrl, LOGOS } from "@/composables/useInhabiStore";
 
 import IntroLoader from "@/components/IntroLoader.vue";
 import AppNav from "@/components/AppNav.vue";
@@ -18,9 +18,10 @@ import AppFooter from "@/components/AppFooter.vue";
 // import CotizarSection from "@/components/CotizarSection.vue";
 // import AgendaSection from "@/components/AgendaSection.vue";
 // import CotizadorSection from "@/components/CotizadorSection.vue";
+import MarqueeSection from "@/components/MarqueeSection.vue";
+
 
 /* ── Editor props equivalentes ───────────────────────── */
-const heroVariant = "A · Cinemático"; // 'A · Cinemático' | 'B · Editorial'
 const introMode = "Cada carga"; // 'Cada carga' | 'Desactivada'
 
 const wantIntro = introMode !== "Desactivada";
@@ -58,10 +59,11 @@ useHead({
 
     <AppNav :scrolled="scrolled" />
 
-    <HeroCinematic v-if="!heroVariant.startsWith('B')" :delay="heroDelay" :intro-on="introOn" />
-    <HeroEditorial v-else :delay="heroDelay" />
+    <HeroCinematic :delay="heroDelay" :intro-on="introOn" />
 
+    <MarqueeSection :images="LOGOS" :duration="300" :repeat="10" :gap="16" />
     <ProyectosSection />
+
     <ServiciosSection />
     <EstudioSection />
     <!-- <CombosSection />   -->

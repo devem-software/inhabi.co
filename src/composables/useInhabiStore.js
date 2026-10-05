@@ -65,6 +65,18 @@ export const IMG = (name) => {
 /** Asset dentro de src/assets/  →  ASSET('inhabi-logo-hd.png') */
 export const ASSET = (name) => resolve(ASSET_MODULES, "../assets", name);
 
+export const FRONT_IMAGES = [
+  "viv_01",
+  "viv_02",
+  "viv_03",
+  "inst_01",
+  "inst_02",
+  "inst_03",
+  "loc_01",
+  "loc_02",
+  "loc_03",
+];
+
 export const R = {
   industrial: {
     vital: ["r17-81", "bano_industrial_vital"],
@@ -88,17 +100,17 @@ export const TIPO_PROYECTO = {
     vivienda: {
       id: "vivienda",
       label: "Vivienda",
-      description: "Proyecto de vivienda",
+      description: "Calidez, comodidad",
     },
     comercial: {
       id: "comercial",
       label: "Comercial",
-      description: "Proyecto comercial",
+      description: "Proyeccion, ambiente",
     },
     institucional: {
       id: "institucional",
       label: "Institucional",
-      description: "Proyecto institucional",
+      description: "Elegancia, profesionalismo",
     },
   },
   en: {

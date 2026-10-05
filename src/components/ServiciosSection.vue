@@ -156,11 +156,16 @@ const serviciosList = computed(() => {
 .servicio-card {
   display: flex;
   flex-direction: column;
-  background: #000;
   border: 1px solid var(--border-dark-1);
   transition:
     border-color var(--t-base) var(--ease),
     transform var(--t-slow) var(--ease);
+    overflow: hidden;
+  background: var(--ink-soft, #1b1a16);
+  border-radius: .5rem;
+  border: 1px solid var(--border-dark-1, rgba(243, 240, 233, 0.12));
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .servicio-card:hover {
   border-color: var(--sage);

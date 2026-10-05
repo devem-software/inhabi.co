@@ -52,7 +52,7 @@ const rootStyle = computed(() => ({
 
 <template>
   <div v-if="items.length" class="marquee-section" :style="rootStyle">
-    <div class="marquee-title">Nuestros clientes</div>
+    <div class="marquee-title">Ellos ha depositado su confianza en nosotros</div>
     <div
       class="marquee"
       :class="{ 'is-accessible': '' }"
@@ -88,10 +88,13 @@ const rootStyle = computed(() => ({
   text-align: left;
   line-height: 1;
   color: color-mix(in srgb, transparent, white);
+  padding: 3rem clamp(20px, 4vw, 56px) 0 clamp(20px, 4vw, 56px);
+   
 }
 
 .marquee-title {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  text-align:center;
 }
 
 .marquee {

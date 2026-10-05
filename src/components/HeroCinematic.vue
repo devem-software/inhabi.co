@@ -1,11 +1,16 @@
 <script setup>
 import { computed } from "vue";
-import { t, IMG, HERO_B, LOGOS } from "@/composables/useInhabiStore";
+import { t, IMG, HERO_B, FRONT_IMAGES } from "@/composables/useInhabiStore";
 import MarqueeSection from "@/components/MarqueeSection.vue";
 
 const props = defineProps({
   delay: String,
   introOn: Boolean,
+});
+
+const images = computed(() => {
+  let rnd = Math.floor(Math.random() * FRONT_IMAGES.length);
+  return FRONT_IMAGES[rnd];
 });
 
 const steps = computed(() => t.value.steps.map((x, i) => ({ n: "0" + (i + 1), k: x[0], v: x[1] })));
@@ -16,7 +21,7 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
 <template>
   <header id="top" data-screen-label="Hero A" class="hero-a">
     <div v-parallax="0.25" class="hero-a-bg">
-      <img :src="IMG('r44-157')" alt="" class="hero-a-img" :style="{ animationDelay: kbDelay }" />
+      <img :src="IMG(`front/${images}`)" alt="" class="hero-a-img" :style="{ animationDelay: kbDelay }" />
     </div>
     <div class="hero-a-overlay"></div>
 
@@ -30,18 +35,6 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
 
       <div class="hero-a-row">
         <p class="hero-a-sub">{{ t.hero.sub }}</p>
-        <!-- <div style="display: flex; gap: 12px; flex-wrap: wrap">
-          <a href="#configurador" class="btn-light">{{ t.hero.cta1 }}</a>
-          <a href="#cotizar" class="btn-outline">{{ t.hero.cta2 }}</a>
-        </div>  -->
-      </div>
-      <div class="hero-a-steps">
-        <MarqueeSection :images="LOGOS" :duration="300" :repeat="10" :gap="16" />
-        <!-- <div v-for="s in steps" :key="s.n" class="hero-a-step">
-          <span class="hero-a-num">{{ s.n }}</span>
-          <span class="hero-a-k">{{ s.k }}</span>
-          <span class="hero-a-v">{{ s.v }}</span>
-        </div> -->
       </div>
     </div>
   </header>
@@ -66,6 +59,7 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
   object-fit: cover;
   display: block;
   animation: kb 3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  filter: brightness(1.1) contrast(1.05) saturate(1.1);
 }
 .hero-a-overlay {
   position: absolute;
@@ -74,17 +68,16 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
     180deg,
     rgba(18, 17, 14, 0.55) 0%,
     rgba(18, 17, 14, 0.25) 50%,
-    rgba(18, 17, 14, 0.85) 100%
+    rgba(18, 17, 14, 1) 100%
   );
 }
 .hero-a-content {
   position: relative;
   height: 100vh;
   padding: 0 clamp(20px, 4vw, 56px) 40px;
-  padding-top: clamp(5rem, 10vh, 8rem);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   animation: heroUp 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   top: 0;
   margin-top: 0;
@@ -98,7 +91,6 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
 
   text-transform: uppercase;
   color: #cdd2c0;
-  margin-bottom: auto;
 }
 .hero-a-title {
   margin: 0;

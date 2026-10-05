@@ -4,15 +4,16 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { VitePWA } from 'vite-plugin-pwa'
 
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command, mode }) => {
+  // Verificamos si estamos en producción (ya sea build normal o ssg)
+  const isProduction = command === 'build' || mode === 'production';
+
   return {
     plugins: [
       vue(),
       vueDevTools(),
       VitePWA({
-        // registerType: 'autoUpdate' descarga la nueva caché silenciosamente en segundo plano
         registerType: 'autoUpdate',
-        // Archivos en public/ que deben cachearse explícitamente
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'inhabi-social.jpg'],
         manifest: {
           name: 'Inhabi — Arquitectura e interiorismo',
@@ -41,6 +42,18 @@ export default defineConfig(({ command }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
-    base: command === 'build' ? '/inhabi.co/' : '/',
+    // Ajuste seguro del base para producción (GitHub Pages o dominio raíz)
+    base: isProduction ? '/inhabi.co/' : '/',
+    build: {
+      emptyOutDir: true, // Limpia dist de forma segura antes de compilar y evita bloqueos de archivos
+    },
+    ssgOptions: {
+      script: 'async',
+      formatting: 'minify',
+      // Evita que falle al renderizar rutas dinámicas vacías en SSR
+      includedRoutes(paths) {
+        return ['/', '/cotiza', '/proyectos', '/proyectos/vivienda', '/proyectos/comercial', '/proyectos/institucional'];
+      },
+    },
   }
 })

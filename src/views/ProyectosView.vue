@@ -2,32 +2,47 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { store, t, IMG } from '@/composables/useInhabiStore.js'
-import LogoComponent from "@/components/LogoComponent.vue";
+import LogoComponent from "@/components/LogoComponent.vue"
 
 const route = useRoute()
-const categoriaActual = computed(() => route.params.categoria || 'vivienda')
+// Si la ruta es solo /proyectos, categoriaActual será una cadena vacía ""
+const categoriaActual = computed(() => route.params.categoria || '')
 
 // Carga dinámica de proyectos según el idioma actual
 const archivosProyectos = import.meta.glob('@/data/proyectos/*.json', { eager: true, import: 'default' })
 
-const proyectosFiltrados = computed(() => {
+// Obtener todos los proyectos del idioma actual
+const todosLosProyectos = computed(() => {
   const idioma = store.lang || 'es'
   const archivo = archivosProyectos[`/src/data/proyectos/${idioma}.json`]
-  const lista = archivo?.proyectos ?? []
-  
-  // Filtra por la categoría presente en la URL
-  return lista.filter(p => p.tipo.toLowerCase() === categoriaActual.value.toLowerCase())
+  return archivo?.proyectos ?? []
+})
+
+// Extraer categorías únicas de forma dinámica desde los datos
+const categoriasDisponibles = computed(() => {
+  const cats = todosLosProyectos.value.map(p => p.tipo).filter(Boolean)
+  return [...new Set(cats)] // Elimina duplicados
+})
+
+// Filtrar proyectos según si hay una categoría seleccionada en la URL o no
+const proyectosFiltrados = computed(() => {
+  if (!categoriaActual.value) {
+    return todosLosProyectos.value // Si estamos en /proyectos, muestra todos
+  }
+  return todosLosProyectos.value.filter(
+    p => p.tipo.toLowerCase() === categoriaActual.value.toLowerCase()
+  )
 })
 </script>
 
 <template>
   <div class="projects-page">
-    <!-- Header temático (estilo AppNav) -->
+    <!-- Header temático -->
     <header class="page-nav">
       <router-link to="/" class="brand">
         <LogoComponent class="brand-logo" icon text/>
       </router-link>
-      
+
       <div class="nav-actions">
         <router-link to="/#proyectos" class="nav-btn-back">← Volver</router-link>
         <router-link to="/cotiza" class="nav-cta">{{ t.nav.cotizar }}</router-link>
@@ -37,16 +52,38 @@ const proyectosFiltrados = computed(() => {
     <!-- Contenido principal -->
     <main class="container sec">
       <div class="head">
-        <span class="eyebrow">{{ t.nav.proyectos }} / {{ categoriaActual.toUpperCase() }}</span>
+        <span class="eyebrow">
+          {{ t.nav.proyectos }} <span v-if="categoriaActual">/ {{ categoriaActual.toUpperCase() }}</span>
+        </span>
         <h1 class="title">Arquitectura que genera valor.</h1>
       </div>
 
-      <!-- Grid de proyectos filtrados por categoría -->
-      <div class="grid-proyectos mt-48">
+      <!-- Barra de botones de filtro dinámicos -->
+      <div class="filter-bar mt-48">
+        <router-link 
+          to="/proyectos" 
+          class="filter-btn"
+          :class="{ active: !categoriaActual }"
+        >
+          Todos
+        </router-link>
+        <router-link 
+          v-for="cat in categoriasDisponibles" 
+          :key="cat"
+          :to="`/proyectos/${cat.toLowerCase()}`"
+          class="filter-btn"
+          :class="{ active: categoriaActual.toLowerCase() === cat.toLowerCase() }"
+        >
+          {{ cat }}
+        </router-link>
+      </div>
+
+      <!-- Grid de proyectos filtrados -->
+      <div class="grid-proyectos mt-32">
         <router-link
           v-for="(p, index) in proyectosFiltrados"
           :key="p.slug"
-          :to="`/proyectos/${categoriaActual}/${p.titulo}`"
+          :to="`/proyectos/${p.tipo.toLowerCase()}/${p.titulo}`"
           class="card-project"
         >
           <div class="card__media">
@@ -60,7 +97,7 @@ const proyectosFiltrados = computed(() => {
         </router-link>
       </div>
 
-      <!-- Estado vacío si no hay proyectos en la categoría -->
+      <!-- Estado vacío -->
       <div v-if="proyectosFiltrados.length === 0" class="empty-state">
         <p>No hay proyectos disponibles en esta categoría actualmente.</p>
       </div>
@@ -128,6 +165,35 @@ const proyectosFiltrados = computed(() => {
   margin: 0;
 }
 .mt-48 { margin-top: 48px; }
+.mt-32 { margin-top: 32px; }
+
+/* Barra de botones de filtro */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.filter-btn {
+  background: rgba(243, 240, 233, 0.05);
+  border: 1px solid rgba(243, 240, 233, 0.15);
+  color: var(--cream);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font: 500 11px/1 'IBM Plex Mono', monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.filter-btn:hover {
+  border-color: var(--sage);
+  background: rgba(205, 210, 192, 0.1);
+}
+.filter-btn.active {
+  background: var(--cream);
+  color: var(--ink);
+  border-color: var(--cream);
+}
 
 .grid-proyectos {
   display: grid;

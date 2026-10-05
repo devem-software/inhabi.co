@@ -22,7 +22,7 @@ export const routes = [
     component: SystemDesignView,
   },
   // Listado por categoría (ej: /proyectos/institucional)
-  { path: "/proyectos/:categoria", component: ProyectosView },
+  { path: "/proyectos/:categoria?", component: ProyectosView },
 
   // Detalle del proyecto específico (ej: /proyectos/institucional/platzi)
   { path: "/proyectos/:categoria/:proyecto", component: ProyectosDetailView },
