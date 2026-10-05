@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "build:gh": "cross-env VITE_DEPLOY_TARGET=gh-pages vite-ssg build && node scripts/generate-sitemap.mjs",
+    "build:gh": "cross-env  VITE_DEPLOY_TARGET=gh-pages vite-ssg build && node scripts/generate-sitemap.mjs",
     "build:s": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true });\" && vite-ssg build && node scripts/generate-sitemap.mjs",
     "preview": "vite preview",
     "test:unit": "vitest",
@@ -29,6 +29,7 @@
     "@vitejs/plugin-vue": "^6.0.8",
     "@vitest/eslint-plugin": "^1.6.27",
     "@vue/test-utils": "^2.5.0",
+    "cross-env": "^10.1.0",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-oxlint": "~1.82.0",
