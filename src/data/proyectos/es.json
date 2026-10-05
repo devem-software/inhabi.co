@@ -4,11 +4,7 @@
       "id": 1,
       "titulo": "Prieto 208",
       "tipo": "comercial",
-      "imagenes": [
-        "bano_industrial_vital",
-        "bano_industrial_balance",
-        "bano_industrial_integral"
-      ],
+      "imagenes": ["bano_industrial_vital", "bano_industrial_balance", "bano_industrial_integral"],
       "intervencion": "Remodelación integral de 120 m². Se derribaron muros para integrar la cocina y la zona social, maximizando la luz natural. Diseño de mobiliario a medida con acabados en roble y cuarzo.",
       "resena": "El equipo de Inhabi transformó por completo nuestro apartamento. El proceso fue transparente y el resultado superó nuestras expectativas. La nueva iluminación cambió la forma en que vivimos el espacio.",
       "cliente": "Familia Prieto"
@@ -17,10 +13,7 @@
       "id": 2,
       "titulo": "Serna & Velasco",
       "tipo": "vivienda",
-      "imagenes": [
-        "bano_industrial_vital",
-        "bano_industrial_balance"
-      ],
+      "imagenes": ["bano_industrial_vital", "bano_industrial_balance"],
       "intervencion": "Diseño interior de estilo industrial. Incorporación de texturas de concreto expuesto, iluminación en rieles y perfilería metálica negra en divisiones de baño y estudio.",
       "resena": "Captaron a la perfección el estilo minimalista e industrial que queríamos. Muy profesionales en los tiempos de entrega.",
       "cliente": "Serna & Velasco"
@@ -29,10 +22,7 @@
       "id": 3,
       "titulo": "Balcon de rosales",
       "tipo": "institucional",
-      "imagenes": [
-        "bano_industrial_vital",
-        "bano_industrial_balance"
-      ],
+      "imagenes": ["bano_industrial_vital", "bano_industrial_balance"],
       "intervencion": "Diseño interior de estilo industrial. Incorporación de texturas de concreto expuesto, iluminación en rieles y perfilería metálica negra en divisiones de baño y estudio.",
       "resena": "Captaron a la perfección el estilo minimalista e industrial que queríamos. Muy profesionales en los tiempos de entrega.",
       "cliente": "Serna & Velasco"

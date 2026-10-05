@@ -14,14 +14,18 @@ import {
 
 // Control de pasos
 const step = ref(1)
-const nextStep = () => { if (step.value < 3) step.value++ }
-const prevStep = () => { if (step.value > 1) step.value-- }
+const nextStep = () => {
+  if (step.value < 3) step.value++
+}
+const prevStep = () => {
+  if (step.value > 1) step.value--
+}
 
 // --- PASO 1: ÁREA Y ESPACIOS ---
 const q = computed(() => store.q)
 
 // Espacios con contadores
-var as  = []
+var as = []
 const spaceLabels = computed(() => t.value.cot.esp)
 console.log(spaceLabels.value)
 const spaceCounts = ref([1, 2, 1, 1, 1, 0])
@@ -100,18 +104,23 @@ const summary = computed(() => [
 ])
 
 const summarySpaces = computed(() => {
-  return espLabelsSelected.value.split(", ")
+  return espLabelsSelected.value.split(', ')
 })
 
 const quoteMsg = computed(() => {
-
   return `Hola Inhabi, estoy interesad@ en remodelar mi apartamento:
 
 *INFORMACIÓN DEL APARTAMENTO*
 _Área:_ *${q.value.m2}*m²
 
 _Espacios:_
-${espLabelsSelected.value.split(", ").map(s => {as = s.split(" "); return `- *${as[0]}* ${as[1]}`}).join("\n")}
+${espLabelsSelected.value
+  .split(', ')
+  .map((s) => {
+    as = s.split(' ')
+    return `- *${as[0]}* ${as[1]}`
+  })
+  .join('\n')}
 
 *PAQUETE*
 _Combo:_ *${currentCombo.value[store.lang].name}*
@@ -131,11 +140,9 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
 <template>
   <section id="cotizador-pasos" class="sec">
     <div class="wrap">
-
       <!-- Título de la sección -->
 
       <div class="layout">
-
         <!-- ==============================================
              COLUMNA IZQUIERDA: CONTENIDO DEL PASO ACTUAL
              ============================================== -->
@@ -143,9 +150,9 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
           <div v-reveal class="head">
             <div class="head-left">
               <h2 class="title">
-                <span v-if="step === 1">{{t.cot.espL}}</span>
-                <span v-if="step === 2">{{t.cot.disL}}</span>
-                <span v-if="step === 3">{{t.cot.datL}}</span>
+                <span v-if="step === 1">{{ t.cot.espL }}</span>
+                <span v-if="step === 2">{{ t.cot.disL }}</span>
+                <span v-if="step === 3">{{ t.cot.datL }}</span>
               </h2>
             </div>
           </div>
@@ -154,14 +161,22 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
           <div v-if="step === 1" class="step-content anim-fade">
             <div class="group">
               <div class="slider-head">
-                <span class="label">{{t.cot.m2L}}</span>
+                <span class="label">{{ t.cot.m2L }}</span>
                 <span class="slider-value">{{ q.m2 }} m²</span>
               </div>
-              <input type="range" min="10" max="70" step="1" :value="q.m2" @input="onM2" class="range" />
+              <input
+                type="range"
+                min="10"
+                max="70"
+                step="1"
+                :value="q.m2"
+                @input="onM2"
+                class="range"
+              />
             </div>
 
             <div class="group mt-32">
-              <span class="label">{{t.cot.espL}}</span>
+              <span class="label">{{ t.cot.espL }}</span>
               <div class="counter-grid">
                 <div
                   v-for="(label, i) in spaceLabels"
@@ -224,7 +239,12 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
               </label>
               <label class="field">
                 <span class="label">Apellidos</span>
-                <input :value="q.apellido" @input="onApellido" class="input" placeholder="Tu apellido" />
+                <input
+                  :value="q.apellido"
+                  @input="onApellido"
+                  class="input"
+                  placeholder="Tu apellido"
+                />
               </label>
               <label class="field">
                 <span class="label">Teléfono</span>
@@ -232,15 +252,26 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
               </label>
               <label class="field">
                 <span class="label">Correo electrónico</span>
-                <input :value="q.email" @input="onEmail" type="email" class="input" placeholder="Tu correo" />
+                <input
+                  :value="q.email"
+                  @input="onEmail"
+                  type="email"
+                  class="input"
+                  placeholder="Tu correo"
+                />
               </label>
               <label class="field">
                 <span class="label">Ciudad</span>
                 <input :value="q.ciudad" @input="onCiudad" class="input" placeholder="Ej. Bogotá" />
               </label>
-              <label class="field" style="grid-column: 1 / -1;">
+              <label class="field" style="grid-column: 1 / -1">
                 <span class="label">Dirección del proyecto</span>
-                <input :value="q.direccion" @input="onDireccion" class="input" placeholder="Dirección del inmueble" />
+                <input
+                  :value="q.direccion"
+                  @input="onDireccion"
+                  class="input"
+                  placeholder="Dirección del inmueble"
+                />
               </label>
             </div>
           </div>
@@ -250,7 +281,6 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
              COLUMNA DERECHA: STEPPER Y RESUMEN
              ============================================== -->
         <aside class="side">
-
           <!-- Stepper Visual -->
           <div class="stepper-wrap">
             <div class="step-circle" :class="{ 'is-active': step >= 1 }">1</div>
@@ -286,27 +316,22 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
               <span class="sum-k">{{ s.k }}</span>
               <span class="sum-v" v-if="s.k !== 'Espacios'">{{ s.v }}</span>
               <span class="sum-v" v-else>
-                <span v-for="(space, i) in summarySpaces" :key="i" class="sum-space">{{ space }}</span>
+                <span v-for="(space, i) in summarySpaces" :key="i" class="sum-space">{{
+                  space
+                }}</span>
               </span>
-
             </div>
           </div>
 
           <!-- Botones de Acción -->
           <div class="actions">
             <div v-if="step < 3" class="step-nav">
-              <button class="btn-outline" :disabled="step === 1" @click="prevStep">
-                Atrás
-              </button>
-              <button class="btn-send" @click="nextStep">
-                Siguiente
-              </button>
+              <button class="btn-outline" :disabled="step === 1" @click="prevStep">Atrás</button>
+              <button class="btn-send" @click="nextStep">Siguiente</button>
             </div>
 
             <div v-else class="step-nav-final">
-               <button class="btn-outline" @click="prevStep">
-                Atrás
-              </button>
+              <button class="btn-outline" @click="prevStep">Atrás</button>
               <a :href="waQuote" target="_blank" rel="noopener" class="btn-wa">
                 Enviar a WhatsApp
               </a>
@@ -323,7 +348,7 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   background: #f3f0e9;
   color: #12110e;
   padding: clamp(5rem, 10vw, 7rem) clamp(1rem, 4vw, 3rem);
-  padding-bottom:1rem;
+  padding-bottom: 1rem;
   min-height: 100dvh;
 }
 .wrap {
@@ -334,14 +359,18 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
 .head-left {
   display: grid;
   gap: 12px;
-  margin-bottom:1.5rem ;
+  margin-bottom: 1.5rem;
 }
 .title {
   margin: 0;
-  font: 400 clamp(40px, 5.4vw, 88px)/0.95 'Instrument Serif', serif;
+  font:
+    400 clamp(40px, 5.4vw, 88px)/0.95 'Instrument Serif',
+    serif;
   max-width: 18ch;
 }
-.mt-8 { margin-top: 8px; }
+.mt-8 {
+  margin-top: 8px;
+}
 
 /* LAYOUT PRINCIPAL */
 .layout {
@@ -355,11 +384,19 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   animation: fadeIn 0.4s ease-in-out;
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.mt-32 { margin-top: 32px; }
+.mt-32 {
+  margin-top: 32px;
+}
 
 .group {
   display: grid;
@@ -367,7 +404,9 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
 }
 
 .label {
-  font: 500 .75rem/1 'IBM Plex Mono', monospace;
+  font:
+    500 0.75rem/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #6f7a5f;
@@ -380,7 +419,9 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   align-items: baseline;
 }
 .slider-value {
-  font: 400 3rem/1 'Instrument Serif', serif;
+  font:
+    400 3rem/1 'Instrument Serif',
+    serif;
   white-space: nowrap;
 }
 .range {
@@ -397,14 +438,14 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   display: flex;
   flex-direction: column;
   gap: 12px;
-  border: 1px solid rgba(18,17,14,0.25);
-  padding: .5rem;
+  border: 1px solid rgba(18, 17, 14, 0.25);
+  padding: 0.5rem;
   border-radius: 1rem;
   transition: all 0.25s;
 }
 .counter-chip.is-active {
   border-color: #12110e;
-  background: #1B1A16;
+  background: #1b1a16;
   color: #f3f0e9;
 }
 .counter-name {
@@ -421,10 +462,10 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   font-size: 14px;
 }
 .counter-chip:not(.is-active) .counter-ctrls {
-  background: rgba(18,17,14,0.06);
+  background: rgba(18, 17, 14, 0.06);
 }
 .counter-chip.is-active .counter-ctrls {
-  background: rgba(243,240,233,0.15);
+  background: rgba(243, 240, 233, 0.15);
 }
 .counter-ctrls button {
   border: none;
@@ -441,16 +482,16 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   transition: background 0.2s;
 }
 .counter-chip:not(.is-active) .counter-ctrls button:hover {
-  background: rgba(18,17,14,0.1);
+  background: rgba(18, 17, 14, 0.1);
 }
 .counter-chip.is-active .counter-ctrls button:hover {
-  background: rgba(243,240,233,0.2);
+  background: rgba(243, 240, 233, 0.2);
 }
 
 /* BOTONES COMBO & ESTILO (Paso 2) */
 .stack {
   display: grid;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 .combo-btn {
   cursor: pointer;
@@ -460,12 +501,16 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   align-items: center;
   border: 1px solid;
   padding: 14px 16px;
-  font: 400 24px/1 'Instrument Serif', serif;
+  font:
+    400 24px/1 'Instrument Serif',
+    serif;
   transition: all 0.2s;
-  border-radius:10rem;
+  border-radius: 10rem;
 }
 .combo-num {
-  font: 400 1rem/1 'IBM Plex Mono', monospace;
+  font:
+    400 1rem/1 'IBM Plex Mono',
+    monospace;
 }
 .style-grid {
   display: grid;
@@ -480,7 +525,7 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   padding: 0;
   overflow: hidden;
   transition: all 0.2s;
-  border-radius:.25rem;
+  border-radius: 0.25rem;
 }
 .style-img {
   aspect-ratio: 1/1;
@@ -494,7 +539,9 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
 }
 .style-name {
   padding: 10px 4px;
-  font: 500 10px/1 'IBM Plex Mono', monospace;
+  font:
+    500 10px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: center;
@@ -538,7 +585,7 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
 .stepper-wrap {
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 .step-circle {
   width: 2rem;
@@ -548,7 +595,9 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   display: flex;
   align-items: center;
   justify-content: center;
-  font: 500 .75rem/1 'IBM Plex Mono', monospace;
+  font:
+    500 0.75rem/1 'IBM Plex Mono',
+    monospace;
   color: #6f7a5f;
   transition: all 0.3s ease;
 }
@@ -575,24 +624,26 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   display: flex;
   gap: 1rem;
   background: rgba(243, 240, 233, 0.05);
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 2rem;
-  width:100%;
+  width: 100%;
 }
 .room-tab {
   flex: 1;
   background: transparent;
   border: none;
   color: #a8a597;
-  font: 500 10px/1 'IBM Plex Mono', monospace;
+  font:
+    500 10px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 8px 4px;
-  border-radius: .75rem;
+  border-radius: 0.75rem;
   cursor: pointer;
   transition: all 0.2s;
-  border:1px solid rgba(243, 240, 233, 0.12);
-  flex:1;
+  border: 1px solid rgba(243, 240, 233, 0.12);
+  flex: 1;
 }
 .room-tab.is-active {
   background: #f3f0e9;
@@ -605,7 +656,7 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   aspect-ratio: 16/9;
   overflow: hidden;
   background: #1b1a16;
-  margin:0 auto;
+  margin: 0 auto;
 }
 .room-img img {
   width: 100%;
@@ -632,7 +683,7 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
 }
 .sum-v {
   text-align: right;
-  gap:.5rem;
+  gap: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -644,14 +695,15 @@ const waQuote = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(qu
   color: #12110e;
   padding: 2px 8px;
   border-radius: 999px;
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 
 /* Botones Acción */
 .actions {
   margin-top: 10px;
 }
-.step-nav, .step-nav-final {
+.step-nav,
+.step-nav-final {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 12px;

@@ -4,11 +4,7 @@
       "id": 1,
       "titulo": "Prieto 208",
       "tipo": "vivienda",
-      "imagenes": [
-        "bano_industrial_vital",
-        "bano_industrial_balance",
-        "bano_industrial_integral"
-      ],
+      "imagenes": ["bano_industrial_vital", "bano_industrial_balance", "bano_industrial_integral"],
       "intervencion": "Complete renovation of 120 m². Walls were removed to integrate the kitchen and living area, maximizing natural light. Custom-designed furniture with oak and quartz finishes.",
       "resena": "The Inhabi team completely transformed our apartment. The process was transparent, and the results exceeded our expectations. The new lighting changed the way we experience the space.",
       "author": "Prieto Family"
@@ -17,10 +13,7 @@
       "id": 2,
       "titulo": "Serna & Velasco",
       "tipo": "vivienda",
-      "imagenes": [
-        "bano_industrial_vital",
-        "bano_industrial_balance"
-      ],
+      "imagenes": ["bano_industrial_vital", "bano_industrial_balance"],
       "intervencion": "Industrial-style interior design. Incorporation of exposed concrete textures, track lighting, and black metal framing for bathroom and home office partitions.",
       "resena": "They perfectly captured the minimalist industrial style we wanted. Very professional and punctual with delivery.",
       "cliente": "Serna & Velasco"

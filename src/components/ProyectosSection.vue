@@ -1,7 +1,7 @@
 <script setup>
-import { computed } from "vue";
-import { t, store, currentTipo } from "@/composables/useInhabiStore.js";
-import HeroCard from "@/components/HeroCard.vue";
+import { computed } from 'vue'
+import { t, store, currentTipo } from '@/composables/useInhabiStore.js'
+import HeroCard from '@/components/HeroCard.vue'
 </script>
 
 <template>
@@ -31,8 +31,8 @@ import HeroCard from "@/components/HeroCard.vue";
 /* ================= ESTRUCTURA BASE ================= */
 .sec {
   padding: clamp(72px, 10vw, 140px) clamp(20px, 4vw, 56px);
-  background:  #f3f0e9;
-  color:  #1b1a16;
+  background: #f3f0e9;
+  color: #1b1a16;
 }
 .container {
   max-width: 1400px;
@@ -40,19 +40,19 @@ import HeroCard from "@/components/HeroCard.vue";
 }
 .eyebrow {
   font:
-    500 11px/1 "IBM Plex Mono",
+    500 11px/1 'IBM Plex Mono',
     monospace;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #8F8C80;
+  color: #8f8c80;
   margin-bottom: 16px;
 }
 .title {
   font:
-    400 clamp(2.5rem, 5vw, 5rem)/0.95 "Instrument Serif",
+    400 clamp(2.5rem, 5vw, 5rem)/0.95 'Instrument Serif',
     serif;
   margin: 0;
-  color: #12110E;
+  color: #12110e;
 }
 .mt-48 {
   margin-top: 48px;

@@ -12,7 +12,17 @@
     <div class="swatch__color" :style="{ background: hex, borderBottom }">
       <transition name="fade">
         <span v-if="isCopied" class="swatch__feedback">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <polyline points="20 6 9 17 4 12" />
           </svg>
           Copiado
@@ -31,11 +41,11 @@
 import { ref } from 'vue'
 
 const props = defineProps({
-  name:   { type: String, required: true },
-  hex:    { type: String, required: true },
-  token:  { type: String, default: '' },
+  name: { type: String, required: true },
+  hex: { type: String, required: true },
+  token: { type: String, default: '' },
   /** Ej: '1px solid rgba(243,240,233,.1)' */
-  borderBottom: { type: String, default: 'none' }
+  borderBottom: { type: String, default: 'none' },
 })
 
 const isCopied = ref(false)
@@ -47,7 +57,13 @@ const normalizeHex = (input) => {
   if (!h.startsWith('#')) h = '#' + h
   // Expandir #RGB → #RRGGBB
   if (/^#[0-9a-f]{3}$/i.test(h)) {
-    h = '#' + h.slice(1).split('').map((c) => c + c).join('')
+    h =
+      '#' +
+      h
+        .slice(1)
+        .split('')
+        .map((c) => c + c)
+        .join('')
   }
   return h.toUpperCase()
 }
@@ -128,14 +144,21 @@ const copy = async () => {
   color: var(--ink);
   border-radius: 999px;
   font: 500 10px/1 var(--font-mono);
-  letter-spacing: .14em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   pointer-events: none;
 }
 
 .fade-enter-active,
-.fade-leave-active { transition: opacity .2s var(--ease), transform .2s var(--ease); }
+.fade-leave-active {
+  transition:
+    opacity 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
 .fade-enter-from,
-.fade-leave-to     { opacity: 0; transform: translateY(-4px) scale(.96); }
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.96);
+}
 </style>

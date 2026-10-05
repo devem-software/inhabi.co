@@ -1,5 +1,5 @@
 <script setup>
-import { IMG } from "@/composables/useInhabiStore";
+import { IMG } from '@/composables/useInhabiStore'
 
 // Recibe las propiedades necesarias para la tarjeta
 defineProps({
@@ -17,9 +17,9 @@ defineProps({
   },
   tag: {
     type: String,
-    default: "", // Opcional (ej: "01" o categoría)
-  }
-});
+    default: '', // Opcional (ej: "01" o categoría)
+  },
+})
 </script>
 
 <template>
@@ -47,10 +47,11 @@ defineProps({
   aspect-ratio: 1 / 1; /* Garantiza que sea perfectamente cuadrada */
   overflow: hidden;
   background: var(--ink-soft, #1b1a16);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   border: 1px solid var(--border-dark-1, rgba(243, 240, 233, 0.12));
-  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .inhabi-card:hover {
@@ -86,7 +87,7 @@ defineProps({
   padding: 6px 10px;
   background: rgba(18, 17, 14, 0.72);
   color: var(--cream, #f3f0e9);
-  font: 500 11px/1 var(--font-mono, "IBM Plex Mono", monospace);
+  font: 500 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
   letter-spacing: 0.16em;
   border-radius: 4px;
   z-index: 2;
@@ -102,19 +103,19 @@ defineProps({
   display: grid;
   gap: 8px;
   z-index: 2;
-  
+
   /* Degradado clave: De negro profundo en la base a totalmente transparente arriba */
   background: linear-gradient(
-    to top, 
-    rgba(18, 17, 14, 0.95) 0%, 
-    rgba(18, 17, 14, 0.75) 50%, 
+    to top,
+    rgba(18, 17, 14, 0.95) 0%,
+    rgba(18, 17, 14, 0.75) 50%,
     transparent 100%
   );
 }
 
 .inhabi-card__title {
   margin: 0;
-  font: 400 32px/1.1 var(--font-display, "Instrument Serif", serif);
+  font: 400 32px/1.1 var(--font-display, 'Instrument Serif', serif);
   letter-spacing: -0.01em;
   color: var(--cream, #f3f0e9);
 }

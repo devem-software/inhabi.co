@@ -66,7 +66,7 @@ import { t } from '@/composables/useInhabiStore'
   aspect-ratio: 4/5;
   max-height: 80vh;
   overflow: hidden;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 .photo img {
   position: absolute;

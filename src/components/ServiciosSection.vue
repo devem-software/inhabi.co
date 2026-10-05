@@ -1,10 +1,10 @@
 <script setup>
-import { computed } from "vue";
-import { t, IMG, currentServicios } from "@/composables/useInhabiStore";
+import { computed } from 'vue'
+import { t, IMG, currentServicios } from '@/composables/useInhabiStore'
 
 const serviciosList = computed(() => {
-  return currentServicios.value;
-});
+  return currentServicios.value
+})
 </script>
 
 <template>
@@ -75,7 +75,7 @@ const serviciosList = computed(() => {
 }
 .eyebrow {
   font:
-    500 11px/1 "IBM Plex Mono",
+    500 11px/1 'IBM Plex Mono',
     monospace;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -84,7 +84,7 @@ const serviciosList = computed(() => {
 .title {
   margin: 0;
   font:
-    400 clamp(40px, 5.4vw, 88px)/0.95 "Instrument Serif",
+    400 clamp(40px, 5.4vw, 88px)/0.95 'Instrument Serif',
     serif;
   letter-spacing: -0.01em;
   max-width: 16ch;
@@ -101,7 +101,7 @@ const serviciosList = computed(() => {
   padding: 12px 20px;
   border-radius: 999px;
   font:
-    500 11px/1 "IBM Plex Mono",
+    500 11px/1 'IBM Plex Mono',
     monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -160,12 +160,13 @@ const serviciosList = computed(() => {
   transition:
     border-color var(--t-base) var(--ease),
     transform var(--t-slow) var(--ease);
-    overflow: hidden;
+  overflow: hidden;
   background: var(--ink-soft, #1b1a16);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   border: 1px solid var(--border-dark-1, rgba(243, 240, 233, 0.12));
-  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .servicio-card:hover {
   border-color: var(--sage);

@@ -1,27 +1,32 @@
 <script setup>
-import { computed } from "vue";
-import { t, IMG, HERO_B, FRONT_IMAGES } from "@/composables/useInhabiStore";
-import MarqueeSection from "@/components/MarqueeSection.vue";
+import { computed } from 'vue'
+import { t, IMG, HERO_B, FRONT_IMAGES } from '@/composables/useInhabiStore'
+import MarqueeSection from '@/components/MarqueeSection.vue'
 
 const props = defineProps({
   delay: String,
   introOn: Boolean,
-});
+})
 
 const images = computed(() => {
-  let rnd = Math.floor(Math.random() * FRONT_IMAGES.length);
-  return FRONT_IMAGES[rnd];
-});
+  let rnd = Math.floor(Math.random() * FRONT_IMAGES.length)
+  return FRONT_IMAGES[rnd]
+})
 
-const steps = computed(() => t.value.steps.map((x, i) => ({ n: "0" + (i + 1), k: x[0], v: x[1] })));
+const steps = computed(() => t.value.steps.map((x, i) => ({ n: '0' + (i + 1), k: x[0], v: x[1] })))
 
-const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
+const kbDelay = computed(() => (props.introOn ? '2.4s' : '0s'))
 </script>
 
 <template>
   <header id="top" data-screen-label="Hero A" class="hero-a">
     <div v-parallax="0.25" class="hero-a-bg">
-      <img :src="IMG(`front/${images}`)" alt="" class="hero-a-img" :style="{ animationDelay: kbDelay }" />
+      <img
+        :src="IMG(`front/${images}`)"
+        alt=""
+        class="hero-a-img"
+        :style="{ animationDelay: kbDelay }"
+      />
     </div>
     <div class="hero-a-overlay"></div>
 
@@ -83,7 +88,7 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
   margin-top: 0;
 }
 .eyebrow {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: clamp(0.75rem, 1.5vw, 2rem);
   font-weight: 100;
   line-height: 1.4;
@@ -94,7 +99,7 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
 }
 .hero-a-title {
   margin: 0;
-  font-family: "Instrument Serif", serif;
+  font-family: 'Instrument Serif', serif;
   font-size: clamp(48px, min(8.4vw, 13vh), 6rem);
   font-weight: 400px;
   line-height: 0.85;
@@ -138,7 +143,7 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
 
 .hero-a-num {
   font:
-    italic 500 4em/1 "Instrument Serif",
+    italic 500 4em/1 'Instrument Serif',
     serif;
   color: color-mix(in srgb, transparent 70%, #cdd2c0);
   position: absolute;
@@ -147,7 +152,7 @@ const kbDelay = computed(() => (props.introOn ? "2.4s" : "0s"));
   left: 1rem;
 }
 .hero-a-k {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-family: 1em;
   font-weight: 500;
   line-height: 1;

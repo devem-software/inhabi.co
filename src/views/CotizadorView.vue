@@ -1,26 +1,23 @@
 <script setup>
-import { store, t, siteUrl } from "@/composables/useInhabiStore";
-import LogoComponent from "@/components/LogoComponent.vue";
+import { store, t, siteUrl } from '@/composables/useInhabiStore'
+import LogoComponent from '@/components/LogoComponent.vue'
 
-import CotizadorSection from "@/components/CotizadorSection.vue";
-
+import CotizadorSection from '@/components/CotizadorSection.vue'
 
 // SEO para HOME
 // SEO para HOME
-import { useHead } from "@vueuse/head";
-import { seo } from "@/data/dataSeo.js";
+import { useHead } from '@vueuse/head'
+import { seo } from '@/data/dataSeo.js'
 
 useHead({
   ...seo,
-  title: "Inhabi | Cotizador",
-});
-
-
+  title: 'Inhabi | Cotizador',
+})
 </script>
 
 <template>
   <!-- <nav class="nav" :style="navStyle"> -->
-  <nav class="nav" style="background: rgba(18,17,14,.88);backdrop-filter: blur(12px);">
+  <nav class="nav" style="background: rgba(18, 17, 14, 0.88); backdrop-filter: blur(12px)">
     <!-- Marca -->
     <router-link to="/" class="brand" @click="closeMenu">
       <LogoComponent class="brand-logo" icon text />
@@ -33,7 +30,6 @@ useHead({
     </div>
   </nav>
   <CotizadorSection />
-
 </template>
 
 <style scoped>
@@ -55,7 +51,7 @@ useHead({
   align-items: center;
   gap: clamp(14px, 2.2vw, 32px);
   font:
-    500 11px/1 "IBM Plex Mono",
+    500 11px/1 'IBM Plex Mono',
     monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;

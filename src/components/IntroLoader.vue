@@ -41,7 +41,7 @@ onUnmounted(() => {
       <div class="inner">
         <div class="logo-wrap">
           <!-- Logo animado con selectores profundos -->
-          <LogoComponent class="animated-logo" icon text/>
+          <LogoComponent class="animated-logo" icon text />
         </div>
         <!-- Subtítulo -->
         <div class="caption">
@@ -66,7 +66,7 @@ onUnmounted(() => {
   top: 0;
   bottom: 0;
   width: 50.5%;
-  background: #1B1A16;
+  background: #1b1a16;
 }
 .panel-left {
   left: 0;
@@ -134,27 +134,39 @@ onUnmounted(() => {
 /* Subtítulo debajo del logo */
 .caption {
   text-align: center;
-  font: 500 clamp(10px, 0.8vw, 14px)/1 'IBM Plex Mono', monospace;
+  font:
+    500 clamp(10px, 0.8vw, 14px)/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.5em;
-  color: #E6E1D6;
+  color: #e6e1d6;
   text-transform: uppercase;
   opacity: 0;
-  animation: fadeIn 0.6s ease 2.0s forwards;
+  animation: fadeIn 0.6s ease 2s forwards;
 }
 
 /* ---- KEYFRAMES DEL LOGO ---- */
 
 @keyframes iconAppear {
-  0% { opacity: 0; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes iconToWhite {
-  100% { fill: #ffffff !important; }
+  100% {
+    fill: #ffffff !important;
+  }
 }
 
 @keyframes centerFullLogo {
-  100% { transform: translateX(0); }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /* Efecto ancho de texto 0% a 100% */
@@ -172,18 +184,27 @@ onUnmounted(() => {
 /* ---- KEYFRAMES DEL CONTENEDOR Y PUERTAS ---- */
 
 @keyframes fadeIn {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideOutLeft {
-  to { transform: translateX(-100%); }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes slideOutRight {
-  to { transform: translateX(100%); }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes fadeOutCenter {
-  to { opacity: 0; transform: scale(0.95);  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 }
 </style>

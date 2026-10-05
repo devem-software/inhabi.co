@@ -849,144 +849,143 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import CodeBlock from "@/components/system-design/CodeBlock.vue";
-import CompareSlider from "@/components/system-design/CompareSlider.vue";
-import ColorSwatch from "@/components/system-design/ColorSwatch.vue";
-import { siteUrl } from "@/composables/useInhabiStore";
-
+import { ref, onMounted, onUnmounted } from 'vue'
+import CodeBlock from '@/components/system-design/CodeBlock.vue'
+import CompareSlider from '@/components/system-design/CompareSlider.vue'
+import ColorSwatch from '@/components/system-design/ColorSwatch.vue'
+import { siteUrl } from '@/composables/useInhabiStore'
 
 /* ---------------- Navegación lateral ---------------- */
 const navItems = [
-  { id: "intro", num: "00", label: "Introducción" },
-  { id: "tokens", num: "01", label: "Tokens" },
-  { id: "colores", num: "02", label: "Colores" },
-  { id: "tipografia", num: "03", label: "Tipografía" },
-  { id: "botones", num: "04", label: "Botones" },
-  { id: "badges", num: "05", label: "Badges" },
-  { id: "tarjetas", num: "06", label: "Tarjetas" },
-  { id: "formularios", num: "07", label: "Formularios" },
-  { id: "navegacion", num: "08", label: "Navegación" },
-  { id: "secciones", num: "09", label: "Secciones" },
-  { id: "especiales", num: "10", label: "Especiales" },
-  { id: "animaciones", num: "11", label: "Animaciones" },
-  { id: "utilidades", num: "12", label: "Utilidades" },
-];
-const activeSection = ref("intro");
+  { id: 'intro', num: '00', label: 'Introducción' },
+  { id: 'tokens', num: '01', label: 'Tokens' },
+  { id: 'colores', num: '02', label: 'Colores' },
+  { id: 'tipografia', num: '03', label: 'Tipografía' },
+  { id: 'botones', num: '04', label: 'Botones' },
+  { id: 'badges', num: '05', label: 'Badges' },
+  { id: 'tarjetas', num: '06', label: 'Tarjetas' },
+  { id: 'formularios', num: '07', label: 'Formularios' },
+  { id: 'navegacion', num: '08', label: 'Navegación' },
+  { id: 'secciones', num: '09', label: 'Secciones' },
+  { id: 'especiales', num: '10', label: 'Especiales' },
+  { id: 'animaciones', num: '11', label: 'Animaciones' },
+  { id: 'utilidades', num: '12', label: 'Utilidades' },
+]
+const activeSection = ref('intro')
 
 const handleScroll = () => {
-  const y = window.scrollY + 140;
-  let current = navItems[0].id;
+  const y = window.scrollY + 140
+  let current = navItems[0].id
   for (const item of navItems) {
-    const el = document.getElementById(item.id);
-    if (el && el.offsetTop <= y) current = item.id;
+    const el = document.getElementById(item.id)
+    if (el && el.offsetTop <= y) current = item.id
   }
-  activeSection.value = current;
-};
+  activeSection.value = current
+}
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  handleScroll();
-});
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  handleScroll()
+})
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
+  window.removeEventListener('scroll', handleScroll)
+})
 
 /* ---------------- Datos de color ---------------- */
 const brandColors = [
-  { name: "Ink", hex: "#12110e", token: "--ink" },
-  { name: "Ink Soft", hex: "#1b1a16", token: "--ink-soft" },
-  { name: "Ink Hover", hex: "#2b2a24", token: "--ink-hover" },
-  { name: "Cream", hex: "#f3f0e9", token: "--cream" },
-  { name: "Cream Soft", hex: "#e6e1d6", token: "--cream-soft" },
-  { name: "Sage", hex: "#cdd2c0", token: "--sage" },
-];
+  { name: 'Ink', hex: '#12110e', token: '--ink' },
+  { name: 'Ink Soft', hex: '#1b1a16', token: '--ink-soft' },
+  { name: 'Ink Hover', hex: '#2b2a24', token: '--ink-hover' },
+  { name: 'Cream', hex: '#f3f0e9', token: '--cream' },
+  { name: 'Cream Soft', hex: '#e6e1d6', token: '--cream-soft' },
+  { name: 'Sage', hex: '#cdd2c0', token: '--sage' },
+]
 const darkTextColors = [
-  { name: "FG", hex: "#f3f0e9", token: "--fg" },
-  { name: "FG Muted", hex: "#d8d4c8", token: "--fg-muted" },
-  { name: "FG Soft", hex: "#b9b5a8", token: "--fg-soft" },
-  { name: "FG Dim", hex: "#a8a597", token: "--fg-dim" },
-  { name: "FG Ghost", hex: "#8f8c80", token: "--fg-ghost" },
-];
+  { name: 'FG', hex: '#f3f0e9', token: '--fg' },
+  { name: 'FG Muted', hex: '#d8d4c8', token: '--fg-muted' },
+  { name: 'FG Soft', hex: '#b9b5a8', token: '--fg-soft' },
+  { name: 'FG Dim', hex: '#a8a597', token: '--fg-dim' },
+  { name: 'FG Ghost', hex: '#8f8c80', token: '--fg-ghost' },
+]
 const lightTextColors = [
-  { name: "Ink FG", hex: "#12110e", token: "--ink-fg" },
-  { name: "Ink Muted", hex: "#4d493f", token: "--ink-muted" },
-  { name: "Ink Soft", hex: "#6b675c", token: "--ink-soft-fg" },
-  { name: "Ink Accent", hex: "#6f7a5f", token: "--ink-accent" },
-];
+  { name: 'Ink FG', hex: '#12110e', token: '--ink-fg' },
+  { name: 'Ink Muted', hex: '#4d493f', token: '--ink-muted' },
+  { name: 'Ink Soft', hex: '#6b675c', token: '--ink-soft-fg' },
+  { name: 'Ink Accent', hex: '#6f7a5f', token: '--ink-accent' },
+]
 const borders = [
   {
-    token: "--border-dark-1",
-    value: "rgba(243,240,233,.12)",
-    usage: "Divisores sutiles sobre oscuro",
+    token: '--border-dark-1',
+    value: 'rgba(243,240,233,.12)',
+    usage: 'Divisores sutiles sobre oscuro',
   },
-  { token: "--border-dark-2", value: "rgba(243,240,233,.20)", usage: "Bordes de tarjeta / meta" },
-  { token: "--border-dark-3", value: "rgba(243,240,233,.35)", usage: "Botones tab, inputs" },
-  { token: "--border-dark-4", value: "rgba(243,240,233,.50)", usage: "Botón outline, focus" },
-  { token: "--border-light-1", value: "rgba(18,17,14,.15)", usage: "Divisores sobre claro" },
-  { token: "--border-light-2", value: "rgba(18,17,14,.25)", usage: "Chips, inputs claro" },
-  { token: "--border-light-3", value: "#12110e", usage: "Borde sólido principal" },
-];
+  { token: '--border-dark-2', value: 'rgba(243,240,233,.20)', usage: 'Bordes de tarjeta / meta' },
+  { token: '--border-dark-3', value: 'rgba(243,240,233,.35)', usage: 'Botones tab, inputs' },
+  { token: '--border-dark-4', value: 'rgba(243,240,233,.50)', usage: 'Botón outline, focus' },
+  { token: '--border-light-1', value: 'rgba(18,17,14,.15)', usage: 'Divisores sobre claro' },
+  { token: '--border-light-2', value: 'rgba(18,17,14,.25)', usage: 'Chips, inputs claro' },
+  { token: '--border-light-3', value: '#12110e', usage: 'Borde sólido principal' },
+]
 
 /* ---------------- Datos de utilidades ---------------- */
 const utilities = [
-  { cls: ".flex", effect: "display: flex" },
-  { cls: ".flex-col", effect: "flex-direction: column" },
-  { cls: ".gap-8 / .gap-12 / .gap-16 / .gap-24 / .gap-48", effect: "Espaciado entre hijos" },
-  { cls: ".wrap", effect: "flex-wrap: wrap" },
-  { cls: ".center", effect: "align-items: center" },
-  { cls: ".between", effect: "justify-content: space-between" },
-  { cls: ".baseline", effect: "align-items: baseline" },
-  { cls: ".mt-24 / .mb-24 / .mt-48", effect: "Márgenes verticales" },
-  { cls: ".hr", effect: "Divisor oscuro" },
-  { cls: ".hr--light", effect: "Divisor claro" },
-];
+  { cls: '.flex', effect: 'display: flex' },
+  { cls: '.flex-col', effect: 'flex-direction: column' },
+  { cls: '.gap-8 / .gap-12 / .gap-16 / .gap-24 / .gap-48', effect: 'Espaciado entre hijos' },
+  { cls: '.wrap', effect: 'flex-wrap: wrap' },
+  { cls: '.center', effect: 'align-items: center' },
+  { cls: '.between', effect: 'justify-content: space-between' },
+  { cls: '.baseline', effect: 'align-items: baseline' },
+  { cls: '.mt-24 / .mb-24 / .mt-48', effect: 'Márgenes verticales' },
+  { cls: '.hr', effect: 'Divisor oscuro' },
+  { cls: '.hr--light', effect: 'Divisor claro' },
+]
 
 const sectionBackgrounds = [
-  { cls: "ds-demo--dark", label: ".section--dark" },
-  { cls: "ds-demo--dark2", label: ".section--dark2" },
-  { cls: "ds-demo--light", label: ".section--light" },
-  { cls: "ds-demo--light2", label: ".section--light2" },
-];
+  { cls: 'ds-demo--dark', label: '.section--dark' },
+  { cls: 'ds-demo--dark2', label: '.section--dark2' },
+  { cls: 'ds-demo--light', label: '.section--light' },
+  { cls: 'ds-demo--light2', label: '.section--light2' },
+]
 
 /* ---------------- Demo interactiva ---------------- */
-const rangeValue = ref(120);
-const selectedDay = ref(29);
-const selectedTime = ref("10:30");
+const rangeValue = ref(120)
+const selectedDay = ref(29)
+const selectedTime = ref('10:30')
 const demoDays = [
-  { wd: "Lun", num: 28, mo: "Sep" },
-  { wd: "Mar", num: 29, mo: "Sep" },
-  { wd: "Mié", num: 30, mo: "Sep" },
-  { wd: "Jue", num: 1, mo: "Oct" },
-  { wd: "Vie", num: 2, mo: "Oct" },
-];
-const demoTimes = ["9:00", "10:30", "12:00", "14:30", "16:00", "17:30"];
+  { wd: 'Lun', num: 28, mo: 'Sep' },
+  { wd: 'Mar', num: 29, mo: 'Sep' },
+  { wd: 'Mié', num: 30, mo: 'Sep' },
+  { wd: 'Jue', num: 1, mo: 'Oct' },
+  { wd: 'Vie', num: 2, mo: 'Oct' },
+]
+const demoTimes = ['9:00', '10:30', '12:00', '14:30', '16:00', '17:30']
 
 /* ---------------- Bloques de código ---------------- */
 const codeSpacing = `/* Espaciado */
 --gutter:    clamp(20px, 4vw, 56px);
 --section-y: clamp(72px, 10vw, 140px);
---max-w:     1400px;`;
+--max-w:     1400px;`
 
 const codeRadii = `--r-pill: 999px;  /* Botones, badges */
 --r-sm:   4px;    /* Chips, badges cuadrados */
 --r-md:   8px;    /* Tarjetas */
---r-lg:   16px;`;
+--r-lg:   16px;`
 
 const codeMotion = `--ease:    cubic-bezier(.2, .7, .2, 1);
 --ease-io: cubic-bezier(.76, 0, .24, 1);
---t-fast:  .2s;   --t-base: .3s;   --t-slow: .4s;`;
+--t-fast:  .2s;   --t-base: .3s;   --t-slow: .4s;`
 
 const codeShadows = `--shadow-sm: 0 4px 12px rgba(0,0,0,.18);
 --shadow-md: 0 10px 30px rgba(0,0,0,.28);
---shadow-lg: 0 20px 50px rgba(0,0,0,.35);`;
+--shadow-lg: 0 20px 50px rgba(0,0,0,.35);`
 
 const codeTypography = `<p class="t-display">Habitar</p>
 <p class="t-h1">Espacios que se <em>sienten</em>.</p>
 <p class="t-h2">Tres formas de habitar</p>
 <p class="t-lead">…</p>
-<p class="t-eyebrow">Arquitectura e interiorismo</p>`;
+<p class="t-eyebrow">Arquitectura e interiorismo</p>`
 
 const codeButtons = `<!-- Botones base -->
 <button class="btn btn--primary">Diseña tu espacio</button>
@@ -1006,12 +1005,12 @@ const codeButtons = `<!-- Botones base -->
 <div class="lang-toggle">
   <button class="is-on">ES</button>
   <button>EN</button>
-</div>`;
+</div>`
 
 const codeBadges = `<span class="badge">01 · Combos</span>
 <span class="badge badge--sage">Nuevo</span>
 <span class="badge badge--cream">Integral · Natural</span>
-<span class="badge badge--ghost">En obra</span>`;
+<span class="badge badge--ghost">En obra</span>`
 
 const codeCards = `<!-- Tarjeta combo -->
 <article class="card is-active">
@@ -1027,7 +1026,7 @@ const codeCards = `<!-- Tarjeta combo -->
     <p class="card__desc">Descripción…</p>
     <span class="card__cta">Ver en el configurador →</span>
   </div>
-</article>`;
+</article>`
 
 const codeForms = `<!-- Campo -->
 <label class="field">
@@ -1045,7 +1044,7 @@ const codeForms = `<!-- Campo -->
   <span class="day__wd">Mar</span>
   <span class="day__num">29</span>
   <span class="day__mo">Sep</span>
-</button>`;
+</button>`
 
 const codeNav = `<nav class="nav">
   <a href="#top">Inhabi</a>
@@ -1057,7 +1056,7 @@ const codeNav = `<nav class="nav">
   </div>
 </nav>
 
-<!-- JS: añade .is-scrolled al superar 60px de scroll -->`;
+<!-- JS: añade .is-scrolled al superar 60px de scroll -->`
 
 const codeSection = `<section class="section section--dark">
   <div class="container">
@@ -1069,7 +1068,7 @@ const codeSection = `<section class="section section--dark">
       <p class="section-head__sub t-body">…</p>
     </header>
   </div>
-</section>`;
+</section>`
 
 const codeCompare = `<div class="compare">
   <img src="antes.jpg">
@@ -1077,7 +1076,7 @@ const codeCompare = `<div class="compare">
   <div class="compare__handle" style="left:50%">
     <div class="compare__knob">‹ ›</div>
   </div>
-</div>`;
+</div>`
 
 const codeAnimations = `<div class="anim-up">…</div>
 
@@ -1093,7 +1092,7 @@ const codeAnimations = `<div class="anim-up">…</div>
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
   }
-}`;
+}`
 
 const codeFileStructure = `styles/
 ├── tokens.css        /* Variables :root — importar primero */
@@ -1108,7 +1107,7 @@ const codeFileStructure = `styles/
 ├── animations.css    /* @keyframes + .anim-* */
 └── utilities.css     /* .flex, .gap-*, .mt-* */
 
-main.css  /* importa todo en orden */`;
+main.css  /* importa todo en orden */`
 
 const codeAdoption = `<link rel="stylesheet" href="styles/main.css">
 
@@ -1117,67 +1116,67 @@ const codeAdoption = `<link rel="stylesheet" href="styles/main.css">
   <div class="container">
     <button class="btn btn--primary">Acción</button>
   </div>
-</section>`;
+</section>`
 
 /* ---------- Copiar HEX de la paleta ---------- */
-const copiedToken = ref(null);
-let copyTimer = null;
+const copiedToken = ref(null)
+let copyTimer = null
 
 function copyColor(hex, token) {
   // Normaliza a #RRGGBB mayúsculas
-  let value = String(hex).trim();
-  if (!value.startsWith("#")) value = "#" + value;
+  let value = String(hex).trim()
+  if (!value.startsWith('#')) value = '#' + value
   if (/^#[0-9a-f]{3}$/i.test(value)) {
     value =
-      "#" +
+      '#' +
       value
         .slice(1)
-        .split("")
+        .split('')
         .map((c) => c + c)
-        .join("");
+        .join('')
   }
-  value = value.toUpperCase();
+  value = value.toUpperCase()
 
   // Copia con fallback
   const done = () => {
-    copiedToken.value = token;
-    clearTimeout(copyTimer);
-    copyTimer = setTimeout(() => (copiedToken.value = null), 1300);
-  };
+    copiedToken.value = token
+    clearTimeout(copyTimer)
+    copyTimer = setTimeout(() => (copiedToken.value = null), 1300)
+  }
 
   if (navigator.clipboard?.writeText) {
     navigator.clipboard
       .writeText(value)
       .then(done)
-      .catch(() => fallback());
+      .catch(() => fallback())
   } else {
-    fallback();
+    fallback()
   }
 
   function fallback() {
-    const ta = document.createElement("textarea");
-    ta.value = value;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
+    const ta = document.createElement('textarea')
+    ta.value = value
+    ta.style.position = 'fixed'
+    ta.style.opacity = '0'
+    document.body.appendChild(ta)
+    ta.select()
     try {
-      document.execCommand("copy");
-      done();
+      document.execCommand('copy')
+      done()
     } catch {}
-    document.body.removeChild(ta);
+    document.body.removeChild(ta)
   }
 }
 
 // SEO para SYSTEM DESIGN
 // SEO para HOME
-import { useHead } from "@vueuse/head";
-import { seo } from "@/data/dataSeo.js";
+import { useHead } from '@vueuse/head'
+import { seo } from '@/data/dataSeo.js'
 
 useHead({
   ...seo,
-  title: "Inhabi | Guia de diseño",
-});
+  title: 'Inhabi | Guia de diseño',
+})
 </script>
 
 <style scoped>
@@ -1214,9 +1213,9 @@ useHead({
   --border-light-2: rgba(18, 17, 14, 0.25);
   --border-light-3: #12110e;
 
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-sans: "Manrope", system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
   --r-pill: 999px;
   --r-sm: 4px;

@@ -1,72 +1,72 @@
 <script setup>
-import { computed, ref, watch, onUnmounted } from "vue";
-import { store, t, currentServicios } from "@/composables/useInhabiStore";
-import LogoComponent from "@/components/LogoComponent.vue";
+import { computed, ref, watch, onUnmounted } from 'vue'
+import { store, t, currentServicios } from '@/composables/useInhabiStore'
+import LogoComponent from '@/components/LogoComponent.vue'
 
-const props = defineProps({ scrolled: Boolean });
+const props = defineProps({ scrolled: Boolean })
 
 /* ---------- Estado del menú móvil y dropdowns ---------- */
-const menuOpen = ref(false);
-const activeDesktopDropdown = ref(null); // Guarda el índice del ítem de escritorio abierto
-const activeMobileSub = ref(null);       // Guarda el índice del ítem móvil abierto
+const menuOpen = ref(false)
+const activeDesktopDropdown = ref(null) // Guarda el índice del ítem de escritorio abierto
+const activeMobileSub = ref(null) // Guarda el índice del ítem móvil abierto
 
 function toggleMenu() {
-  menuOpen.value = !menuOpen.value;
-  if (!menuOpen.value) activeMobileSub.value = null;
+  menuOpen.value = !menuOpen.value
+  if (!menuOpen.value) activeMobileSub.value = null
 }
 function closeMenu() {
-  menuOpen.value = false;
-  activeDesktopDropdown.value = null;
-  activeMobileSub.value = null;
+  menuOpen.value = false
+  activeDesktopDropdown.value = null
+  activeMobileSub.value = null
 }
 
 function onKeydown(e) {
-  if (e.key === "Escape") closeMenu();
+  if (e.key === 'Escape') closeMenu()
 }
 
 watch(menuOpen, (open) => {
-  document.body.style.overflow = open ? "hidden" : "";
-  if (open) window.addEventListener("keydown", onKeydown);
-  else window.removeEventListener("keydown", onKeydown);
-});
+  document.body.style.overflow = open ? 'hidden' : ''
+  if (open) window.addEventListener('keydown', onKeydown)
+  else window.removeEventListener('keydown', onKeydown)
+})
 
 onUnmounted(() => {
-  document.body.style.overflow = "";
-  window.removeEventListener("keydown", onKeydown);
-});
+  document.body.style.overflow = ''
+  window.removeEventListener('keydown', onKeydown)
+})
 
 /* Listado dinámico de servicios para el submenú */
 const listServicesItems = computed(() => {
-  return currentServicios.value.map((s) => ({ href: `#${s.id}`, label: s.title }));
-});
+  return currentServicios.value.map((s) => ({ href: `#${s.id}`, label: s.title }))
+})
 
 /* ---------- Estilo dinámico del nav ---------- */
 const navStyle = computed(() => ({
-  background: props.scrolled || menuOpen.value ? "rgba(18,17,14,.88)" : "transparent",
-  backdropFilter: props.scrolled || menuOpen.value ? "blur(12px)" : "none",
-}));
+  background: props.scrolled || menuOpen.value ? 'rgba(18,17,14,.88)' : 'transparent',
+  backdropFilter: props.scrolled || menuOpen.value ? 'blur(12px)' : 'none',
+}))
 
 /* ---------- Enlaces generales con soporte universal de children ---------- */
 const links = computed(() => [
-  { 
-    href: "#proyectos", 
+  {
+    href: '#proyectos',
     label: t.value.nav.proyectos,
   },
-  { 
-    href: "#servicios", 
+  {
+    href: '#servicios',
     label: t.value.nav.servicios,
-    children: listServicesItems.value // Soporte dinámico desde los JSON de servicios
+    children: listServicesItems.value, // Soporte dinámico desde los JSON de servicios
   },
-  { href: "#estudio", label: t.value.nav.estudio },
-]);
+  { href: '#estudio', label: t.value.nav.estudio },
+])
 
 /* ---------- Helper idioma ---------- */
 function langStyle(lang) {
-  const active = store.lang === lang;
+  const active = store.lang === lang
   return {
-    background: active ? "#f3f0e9" : "transparent",
-    color: active ? "#12110e" : "#f3f0e9",
-  };
+    background: active ? '#f3f0e9' : 'transparent',
+    color: active ? '#12110e' : '#f3f0e9',
+  }
 }
 </script>
 
@@ -74,28 +74,29 @@ function langStyle(lang) {
   <nav class="nav" :style="navStyle">
     <!-- Marca -->
     <a href="#top" class="brand" @click="closeMenu">
-      <LogoComponent class="brand-logo" icon text/>
+      <LogoComponent class="brand-logo" icon text />
     </a>
 
     <!-- Navegación escritorio / tablet -->
     <div class="nav-links">
       <template v-for="(l, index) in links" :key="l.href">
         <!-- Ítem con submenú en Escritorio -->
-        <div 
+        <div
           v-if="l.children"
           class="nav-item-dropdown"
           @mouseenter="activeDesktopDropdown = index"
           @mouseleave="activeDesktopDropdown = null"
         >
           <a :href="l.href" class="nav-dropdown-toggle">
-            {{ l.label }} <span class="arrow" :class="{ 'is-rotated': activeDesktopDropdown === index }">▾</span>
+            {{ l.label }}
+            <span class="arrow" :class="{ 'is-rotated': activeDesktopDropdown === index }">▾</span>
           </a>
-          
+
           <Transition name="dropdown">
             <div v-if="activeDesktopDropdown === index" class="dropdown-menu">
-              <a 
-                v-for="sub in l.children" 
-                :key="sub.label" 
+              <a
+                v-for="sub in l.children"
+                :key="sub.label"
                 :href="sub.href"
                 @click="activeDesktopDropdown = null"
               >
@@ -141,7 +142,7 @@ function langStyle(lang) {
           <template v-for="(l, i) in links" :key="l.href">
             <!-- Si tiene hijos (Submenú móvil universal) -->
             <div v-if="l.children" class="mobile-item-group">
-              <button 
+              <button
                 class="mobile-link mobile-dropdown-btn"
                 @click="activeMobileSub = activeMobileSub === i ? null : i"
               >
@@ -151,9 +152,9 @@ function langStyle(lang) {
               </button>
 
               <div v-show="activeMobileSub === i" class="mobile-sublinks">
-                <a 
-                  v-for="sub in l.children" 
-                  :key="sub.label" 
+                <a
+                  v-for="sub in l.children"
+                  :key="sub.label"
                   :href="sub.href"
                   class="mobile-sublink"
                   @click="closeMenu"
@@ -164,12 +165,7 @@ function langStyle(lang) {
             </div>
 
             <!-- Enlace normal móvil -->
-            <a
-              v-else
-              :href="l.href"
-              class="mobile-link"
-              @click="closeMenu"
-            >
+            <a v-else :href="l.href" class="mobile-link" @click="closeMenu">
               <span class="mobile-num">0{{ i + 1 }}</span>
               <span class="mobile-label">{{ l.label }}</span>
               <span class="mobile-arrow">→</span>
@@ -206,8 +202,10 @@ function langStyle(lang) {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: .75rem clamp(20px, 4vw, 56px);
-  transition: background 0.4s, backdrop-filter 0.4s;
+  padding: 0.75rem clamp(20px, 4vw, 56px);
+  transition:
+    background 0.4s,
+    backdrop-filter 0.4s;
 }
 
 .brand {
@@ -224,7 +222,9 @@ function langStyle(lang) {
   display: flex;
   align-items: center;
   gap: clamp(14px, 2.2vw, 32px);
-  font: 500 11px/1 "IBM Plex Mono", monospace;
+  font:
+    500 11px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   flex-wrap: wrap;
@@ -263,7 +263,7 @@ function langStyle(lang) {
   border: 1px solid rgba(243, 240, 233, 0.12);
   border-radius: 8px;
   min-width: 180px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 .dropdown-menu a {
@@ -272,7 +272,9 @@ function langStyle(lang) {
   letter-spacing: 0.14em;
   color: #f3f0e9;
   white-space: nowrap;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .dropdown-menu a:hover {
   background: #f3f0e9;
@@ -282,7 +284,9 @@ function langStyle(lang) {
 /* Transición del Dropdown */
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 .dropdown-enter-from,
 .dropdown-leave-to {
@@ -302,16 +306,22 @@ function langStyle(lang) {
   cursor: pointer;
   border-radius: 999px;
   padding: 6px 10px;
-  font: 500 10px/1 "IBM Plex Mono", monospace;
+  font:
+    500 10px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.12em;
-  transition: background 0.25s, color 0.25s;
+  transition:
+    background 0.25s,
+    color 0.25s;
 }
 .nav-cta {
   background: #f3f0e9;
   color: #12110e;
   padding: 11px 16px;
   border-radius: 999px;
-  transition: background 0.25s, color 0.25s;
+  transition:
+    background 0.25s,
+    color 0.25s;
 }
 .nav-cta:hover {
   background: #cdd2c0;
@@ -330,7 +340,9 @@ function langStyle(lang) {
   background: transparent;
   cursor: pointer;
   padding: 0;
-  transition: background 0.25s, border-color 0.25s;
+  transition:
+    background 0.25s,
+    border-color 0.25s;
 }
 .burger span {
   position: absolute;
@@ -339,15 +351,32 @@ function langStyle(lang) {
   height: 1.5px;
   background: #f3f0e9;
   transform: translateX(-50%);
-  transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.25s, top 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+  transition:
+    transform 0.35s cubic-bezier(0.76, 0, 0.24, 1),
+    opacity 0.25s,
+    top 0.35s cubic-bezier(0.76, 0, 0.24, 1);
 }
-.burger span:nth-child(1) { top: 16px; }
-.burger span:nth-child(2) { top: 21.5px; }
-.burger span:nth-child(3) { top: 27px; }
+.burger span:nth-child(1) {
+  top: 16px;
+}
+.burger span:nth-child(2) {
+  top: 21.5px;
+}
+.burger span:nth-child(3) {
+  top: 27px;
+}
 
-.burger.is-open span:nth-child(1) { top: 21.5px; transform: translateX(-50%) rotate(45deg); }
-.burger.is-open span:nth-child(2) { opacity: 0; }
-.burger.is-open span:nth-child(3) { top: 21.5px; transform: translateX(-50%) rotate(-45deg); }
+.burger.is-open span:nth-child(1) {
+  top: 21.5px;
+  transform: translateX(-50%) rotate(45deg);
+}
+.burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.is-open span:nth-child(3) {
+  top: 21.5px;
+  transform: translateX(-50%) rotate(-45deg);
+}
 
 /* ============================================================
    OVERLAY MÓVIL
@@ -390,7 +419,9 @@ function langStyle(lang) {
   gap: 16px;
   padding: 22px 0;
   border-bottom: 1px solid rgba(243, 240, 233, 0.12);
-  font: 400 clamp(24px, 7vw, 44px)/1 "Instrument Serif", serif;
+  font:
+    400 clamp(24px, 7vw, 44px)/1 'Instrument Serif',
+    serif;
   letter-spacing: -0.01em;
   color: #f3f0e9;
   cursor: pointer;
@@ -413,7 +444,9 @@ function langStyle(lang) {
 }
 .mobile-sublink {
   padding: 14px 0;
-  font: 400 18px/1 "IBM Plex Mono", monospace;
+  font:
+    400 18px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.1em;
   color: #cdd2c0;
   text-transform: uppercase;
@@ -424,12 +457,16 @@ function langStyle(lang) {
 }
 
 .mobile-num {
-  font: 400 16px/1 "IBM Plex Mono", monospace;
+  font:
+    400 16px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.16em;
   color: #cdd2c0;
 }
 .mobile-arrow {
-  font: 400 24px/1 "Instrument Serif", serif;
+  font:
+    400 24px/1 'Instrument Serif',
+    serif;
   color: #cdd2c0;
   opacity: 0.6;
 }
@@ -447,10 +484,19 @@ function langStyle(lang) {
   transition: opacity 0.35s ease;
 }
 @media (min-width: 768px) {
-  .burger, .mobile-menu { display: none !important; }
+  .burger,
+  .mobile-menu {
+    display: none !important;
+  }
 }
 @media (max-width: 767px) {
-  .nav-links { display: none; }
-  .burger { display: inline-flex; align-items: center; justify-content: center; }
+  .nav-links {
+    display: none;
+  }
+  .burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 </style>

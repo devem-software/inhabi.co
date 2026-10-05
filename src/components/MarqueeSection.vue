@@ -1,6 +1,6 @@
 <script setup>
-import { computed, onMounted, onBeforeUnmount, ref, watch, nextTick } from "vue";
-import { IMG } from "@/composables/useInhabiStore";
+import { computed, onMounted, onBeforeUnmount, ref, watch, nextTick } from 'vue'
+import { IMG } from '@/composables/useInhabiStore'
 
 const props = defineProps({
   images: { type: Array, default: () => [] },
@@ -8,44 +8,44 @@ const props = defineProps({
   gap: { type: Number, default: 64 },
   itemWidth: { type: Number, default: 120 },
   itemHeight: { type: Number, default: 50 },
-  altPrefix: { type: String, default: "Cliente" },
+  altPrefix: { type: String, default: 'Cliente' },
   repeat: { type: Number, default: 2 },
   pauseOnHover: { type: Boolean, default: true },
   /** Si es false, la marquesina se anima incluso con prefers-reduced-motion */
   respectReducedMotion: { type: Boolean, default: true },
-});
+})
 
 /* ── Normalización + resolución única de IMG() ───────────── */
 const items = computed(() =>
   props.images.map((item, i) => {
-    const isObj = item && typeof item === "object";
-    const raw = isObj ? item.src : item;
-    const alt = (isObj && item.alt) || `${props.altPrefix} ${i + 1}`;
-    return { src: raw ? IMG(`/logos/${raw}`) : "", alt };
+    const isObj = item && typeof item === 'object'
+    const raw = isObj ? item.src : item
+    const alt = (isObj && item.alt) || `${props.altPrefix} ${i + 1}`
+    return { src: raw ? IMG(`/logos/${raw}`) : '', alt }
   }),
-);
+)
 
 /* ── Repetimos el set N veces para cubrir el viewport ────── */
 const loop = computed(() => {
-  const out = [];
+  const out = []
   for (let r = 0; r < props.repeat; r++) {
     for (let i = 0; i < items.value.length; i++) {
       out.push({
         ...items.value[i],
         _copy: r > 0,
         _key: `${r}-${i}`,
-      });
+      })
     }
   }
-  return out;
-});
+  return out
+})
 
 const rootStyle = computed(() => ({
-  "--marquee-gap": `${props.gap}px`,
-  "--marquee-item-w": `${props.itemWidth}px`,
-  "--marquee-item-h": `${props.itemHeight}px`,
-  "--marquee-duration": `${props.duration}s`,
-}));
+  '--marquee-gap': `${props.gap}px`,
+  '--marquee-item-w': `${props.itemWidth}px`,
+  '--marquee-item-h': `${props.itemHeight}px`,
+  '--marquee-duration': `${props.duration}s`,
+}))
 
 /* ── Animación con Web Animations API ────────────────────── */
 </script>
@@ -89,12 +89,11 @@ const rootStyle = computed(() => ({
   line-height: 1;
   color: color-mix(in srgb, transparent, white);
   padding: 3rem clamp(20px, 4vw, 56px) 1rem clamp(20px, 4vw, 56px);
-
 }
 
 .marquee-title {
   margin-bottom: 1rem;
-  text-align:center;
+  text-align: center;
 }
 
 .marquee {

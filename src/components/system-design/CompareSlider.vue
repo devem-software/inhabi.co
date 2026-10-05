@@ -15,7 +15,9 @@
       <div class="compare__knob">‹ ›</div>
     </div>
     <span class="badge" style="position: absolute; left: 16px; bottom: 16px">Industrial</span>
-    <span class="badge badge--cream" style="position: absolute; right: 16px; bottom: 16px">Natural</span>
+    <span class="badge badge--cream" style="position: absolute; right: 16px; bottom: 16px"
+      >Natural</span
+    >
   </div>
 </template>
 
@@ -39,6 +41,10 @@ const onDown = (e) => {
   e.currentTarget.setPointerCapture?.(e.pointerId)
   set(e)
 }
-const onMove = (e) => { if (dragging.value) set(e) }
-const onUp = () => { dragging.value = false }
+const onMove = (e) => {
+  if (dragging.value) set(e)
+}
+const onUp = () => {
+  dragging.value = false
+}
 </script>

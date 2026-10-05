@@ -2,14 +2,17 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { store, t, IMG } from '@/composables/useInhabiStore.js'
-import LogoComponent from "@/components/LogoComponent.vue"
+import LogoComponent from '@/components/LogoComponent.vue'
 
 const route = useRoute()
 // Si la ruta es solo /proyectos, categoriaActual será una cadena vacía ""
 const categoriaActual = computed(() => route.params.categoria || '')
 
 // Carga dinámica de proyectos según el idioma actual
-const archivosProyectos = import.meta.glob('@/data/proyectos/*.json', { eager: true, import: 'default' })
+const archivosProyectos = import.meta.glob('@/data/proyectos/*.json', {
+  eager: true,
+  import: 'default',
+})
 
 // Obtener todos los proyectos del idioma actual
 const todosLosProyectos = computed(() => {
@@ -20,7 +23,7 @@ const todosLosProyectos = computed(() => {
 
 // Extraer categorías únicas de forma dinámica desde los datos
 const categoriasDisponibles = computed(() => {
-  const cats = todosLosProyectos.value.map(p => p.tipo).filter(Boolean)
+  const cats = todosLosProyectos.value.map((p) => p.tipo).filter(Boolean)
   return [...new Set(cats)] // Elimina duplicados
 })
 
@@ -30,7 +33,7 @@ const proyectosFiltrados = computed(() => {
     return todosLosProyectos.value // Si estamos en /proyectos, muestra todos
   }
   return todosLosProyectos.value.filter(
-    p => p.tipo.toLowerCase() === categoriaActual.value.toLowerCase()
+    (p) => p.tipo.toLowerCase() === categoriaActual.value.toLowerCase(),
   )
 })
 </script>
@@ -40,7 +43,7 @@ const proyectosFiltrados = computed(() => {
     <!-- Header temático -->
     <header class="page-nav">
       <router-link to="/" class="brand">
-        <LogoComponent class="brand-logo" icon text/>
+        <LogoComponent class="brand-logo" icon text />
       </router-link>
 
       <div class="nav-actions">
@@ -53,22 +56,19 @@ const proyectosFiltrados = computed(() => {
     <main class="container sec">
       <div class="head">
         <span class="eyebrow">
-          {{ t.nav.proyectos }} <span v-if="categoriaActual">/ {{ categoriaActual.toUpperCase() }}</span>
+          {{ t.nav.proyectos }}
+          <span v-if="categoriaActual">/ {{ categoriaActual.toUpperCase() }}</span>
         </span>
         <h1 class="title">Arquitectura que genera valor.</h1>
       </div>
 
       <!-- Barra de botones de filtro dinámicos -->
       <div class="filter-bar mt-48">
-        <router-link 
-          to="/proyectos" 
-          class="filter-btn"
-          :class="{ active: !categoriaActual }"
-        >
+        <router-link to="/proyectos" class="filter-btn" :class="{ active: !categoriaActual }">
           Todos
         </router-link>
-        <router-link 
-          v-for="cat in categoriasDisponibles" 
+        <router-link
+          v-for="cat in categoriasDisponibles"
           :key="cat"
           :to="`/proyectos/${cat.toLowerCase()}`"
           class="filter-btn"
@@ -87,7 +87,7 @@ const proyectosFiltrados = computed(() => {
           class="card-project"
         >
           <div class="card__media">
-            <img :src="IMG(p.imagenes[0])" :alt="p.titulo" loading="lazy">
+            <img :src="IMG(p.imagenes[0])" :alt="p.titulo" loading="lazy" />
             <span class="card__num">0{{ index + 1 }}</span>
           </div>
           <div class="card-meta">
@@ -113,20 +113,32 @@ const proyectosFiltrados = computed(() => {
 }
 .page-nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 60;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .75rem clamp(20px, 4vw, 56px);
-  background: rgba(18,17,14,.88);
+  padding: 0.75rem clamp(20px, 4vw, 56px);
+  background: rgba(18, 17, 14, 0.88);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(243,240,233,0.1);
+  border-bottom: 1px solid rgba(243, 240, 233, 0.1);
 }
-.brand-logo { height: 1.5rem; width: auto; display: block; }
-.nav-actions { display: flex; align-items: center; gap: 16px; }
+.brand-logo {
+  height: 1.5rem;
+  width: auto;
+  display: block;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 .nav-btn-back {
-  font: 500 11px/1 "IBM Plex Mono", monospace;
+  font:
+    500 11px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #f3f0e9;
@@ -134,18 +146,24 @@ const proyectosFiltrados = computed(() => {
   opacity: 0.8;
   transition: opacity 0.2s;
 }
-.nav-btn-back:hover { opacity: 1; }
+.nav-btn-back:hover {
+  opacity: 1;
+}
 .nav-cta {
   background: #f3f0e9;
   color: #12110e;
   padding: 10px 18px;
   border-radius: 999px;
-  font: 500 11px/1 "IBM Plex Mono", monospace;
+  font:
+    500 11px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.14em;
   text-decoration: none;
   transition: background 0.25s;
 }
-.nav-cta:hover { background: var(--sage, #cdd2c0); }
+.nav-cta:hover {
+  background: var(--sage, #cdd2c0);
+}
 
 .sec {
   padding: clamp(120px, 14vw, 160px) clamp(20px, 4vw, 56px) 80px;
@@ -153,7 +171,9 @@ const proyectosFiltrados = computed(() => {
   margin: 0 auto;
 }
 .eyebrow {
-  font: 500 11px/1 'IBM Plex Mono', monospace;
+  font:
+    500 11px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--sage, #cdd2c0);
@@ -161,11 +181,17 @@ const proyectosFiltrados = computed(() => {
   margin-bottom: 16px;
 }
 .title {
-  font: 400 clamp(40px, 5.4vw, 88px)/0.95 'Instrument Serif', serif;
+  font:
+    400 clamp(40px, 5.4vw, 88px)/0.95 'Instrument Serif',
+    serif;
   margin: 0;
 }
-.mt-48 { margin-top: 48px; }
-.mt-32 { margin-top: 32px; }
+.mt-48 {
+  margin-top: 48px;
+}
+.mt-32 {
+  margin-top: 32px;
+}
 
 /* Barra de botones de filtro */
 .filter-bar {
@@ -179,7 +205,9 @@ const proyectosFiltrados = computed(() => {
   color: var(--cream);
   padding: 8px 16px;
   border-radius: 999px;
-  font: 500 11px/1 'IBM Plex Mono', monospace;
+  font:
+    500 11px/1 'IBM Plex Mono',
+    monospace;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
@@ -206,9 +234,11 @@ const proyectosFiltrados = computed(() => {
   display: grid;
   gap: 16px;
   background: #000;
-  border: 1px solid rgba(243,240,233,0.12);
+  border: 1px solid rgba(243, 240, 233, 0.12);
   padding: 16px;
-  transition: border-color 0.3s, transform 0.3s;
+  transition:
+    border-color 0.3s,
+    transform 0.3s;
 }
 .card-project:hover {
   border-color: var(--sage, #cdd2c0);
@@ -221,21 +251,46 @@ const proyectosFiltrados = computed(() => {
   background: #1b1a16;
 }
 .card__media img {
-  width: 100%; height: 100%; object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.6s;
 }
-.card-project:hover .card__media img { transform: scale(1.04); }
+.card-project:hover .card__media img {
+  transform: scale(1.04);
+}
 .card__num {
-  position: absolute; top: 12px; left: 12px;
-  padding: 6px 10px; background: rgba(18,17,14,0.72);
-  color: var(--cream); font: 500 11px/1 var(--font-mono);
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 10px;
+  background: rgba(18, 17, 14, 0.72);
+  color: var(--cream);
+  font: 500 11px/1 var(--font-mono);
   border-radius: 4px;
 }
 .card-meta {
-  display: flex; justify-content: space-between; align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   padding-top: 8px;
 }
-.card-title { font: 400 32px/1 'Instrument Serif', serif; margin: 0; }
-.card-arrow { font: 500 10px/1 'IBM Plex Mono', monospace; letter-spacing: 0.16em; color: var(--sage); }
-.empty-state { padding: 60px 0; text-align: center; color: var(--fg-soft); }
+.card-title {
+  font:
+    400 32px/1 'Instrument Serif',
+    serif;
+  margin: 0;
+}
+.card-arrow {
+  font:
+    500 10px/1 'IBM Plex Mono',
+    monospace;
+  letter-spacing: 0.16em;
+  color: var(--sage);
+}
+.empty-state {
+  padding: 60px 0;
+  text-align: center;
+  color: var(--fg-soft);
+}
 </style>

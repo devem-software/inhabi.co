@@ -20,7 +20,7 @@ const waHello = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(t.
       <!-- Información -->
       <div class="info">
         <div class="info-col">
-          <LogoComponent class="logo" icon text/>
+          <LogoComponent class="logo" icon text />
           <span style="color: #a8a597">INHABI S.A.S. · Bogotá – Colombia</span>
         </div>
 

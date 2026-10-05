@@ -13,11 +13,7 @@ import { ref, computed } from 'vue'
 const props = defineProps({ code: { type: String, required: true } })
 const copied = ref(false)
 
-const escapeHtml = (str) =>
-  str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
+const escapeHtml = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 const highlighted = computed(() => escapeHtml(props.code))
 
@@ -44,19 +40,28 @@ const copy = async () => {
   font: 400 12px/1.7 var(--font-mono);
   color: #d8d4c8;
 }
-.code code { white-space: pre; font: inherit; }
+.code code {
+  white-space: pre;
+  font: inherit;
+}
 .copy-btn {
-  position: absolute; top: 10px; right: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   padding: 6px 10px;
-  background: rgba(243,240,233,.06);
+  background: rgba(243, 240, 233, 0.06);
   color: var(--fg-soft);
   border: 1px solid var(--border-dark-2);
   border-radius: var(--r-sm);
   font: 500 10px/1 var(--font-mono);
-  letter-spacing: .12em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: all var(--t-fast) var(--ease);
 }
 .copy-btn:hover,
-.copy-btn.is-copied { background: var(--sage); color: var(--ink); border-color: var(--sage); }
+.copy-btn.is-copied {
+  background: var(--sage);
+  color: var(--ink);
+  border-color: var(--sage);
+}
 </style>
