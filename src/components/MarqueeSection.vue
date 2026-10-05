@@ -88,12 +88,12 @@ const rootStyle = computed(() => ({
   text-align: left;
   line-height: 1;
   color: color-mix(in srgb, transparent, white);
-  padding: 3rem clamp(20px, 4vw, 56px) 0 clamp(20px, 4vw, 56px);
-   
+  padding: 3rem clamp(20px, 4vw, 56px) 1rem clamp(20px, 4vw, 56px);
+
 }
 
 .marquee-title {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align:center;
 }
 

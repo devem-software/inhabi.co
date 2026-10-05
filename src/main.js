@@ -1,5 +1,5 @@
 import { ViteSSG } from "vite-ssg";
-import { createHead } from "@vueuse/head";
+// import { createHead } from "@vueuse/head";
 
 import App from "./App.vue";
 import { routes } from "./router";
@@ -22,7 +22,8 @@ export const createApp = ViteSSG(
     },
   },
   ({ app, head, isClient }) => {
-    app.use(createHead());
+    // app.use(createHead());
+    app.use(head);
 
     app.directive("reveal", reveal);
     app.directive("parallax", parallax);
