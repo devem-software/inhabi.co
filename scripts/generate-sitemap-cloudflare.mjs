@@ -1,9 +1,9 @@
+import { mkdir, writeFile, readdir, readFile } from 'node:fs/promises'
+import { resolve, join } from 'node:path'
 
-import { mkdir, writeFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
-
-const domain = 'https://devem-software.github.io'
-const base = '/inhabi.co/'
+const domain = 'https://inhabi-co.pages.dev'
+// Detecta si se está compilando para GitHub Pages o para la raíz (puedes ajustarlo si usas variables de entorno)
+const base = '/'
 
 // 1. Páginas estáticas principales de tu web
 const staticPages = [

@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "build": "vite build",
     "build:gh": "cross-env  VITE_DEPLOY_TARGET=gh-pages vite-ssg build && node scripts/generate-sitemap.mjs",
-    "build:s": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true });\" && vite-ssg build && node scripts/generate-sitemap.mjs",
+    "build:s": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true });\" && vite-ssg build && node scripts/generate-sitemap-cloudflare.mjs",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
