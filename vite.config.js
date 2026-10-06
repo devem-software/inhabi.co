@@ -1,20 +1,13 @@
 import { fileURLToPath, URL } from "node:url";
-import process from "node:process";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { VitePWA } from "vite-plugin-pwa";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import { ViteSSG } from "vite-ssg";
 
 export default defineConfig(({ command, mode }) => {
-  // Verifica si la variable de entorno para GitHub Pages está activa
   const isGithub = mode === "github";
-  console.log("--------------------------------------------------------")
-  console.log("--------------------------------------------------------")
-  console.log(`el modo de despliege es para ${mode}`)
-  console.log("--------------------------------------------------------")
-  console.log("--------------------------------------------------------")
-
   return {
     plugins: [
       vue(),
@@ -92,6 +85,7 @@ export default defineConfig(({ command, mode }) => {
       includedRoutes(paths) {
         return [
           "/",
+          "/index.html",
           "/cotiza",
           "/proyectos",
           "/proyectos/vivienda",

@@ -2,6 +2,9 @@
 import { computed, onMounted, onBeforeUnmount, ref, watch, nextTick } from 'vue'
 import { IMG } from '@/composables/useInhabiStore'
 
+console.log(import.meta.env.MODE)
+
+
 const props = defineProps({
   images: { type: Array, default: () => [] },
   duration: { type: Number, default: 35 },

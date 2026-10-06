@@ -10,7 +10,7 @@ import "@/styles/system-design.css";
 import { reveal } from "./directives/reveal";
 import { parallax } from "./directives/parallax";
 
-console.log(process.env.VITE_DEPLOY_TARGET)
+import { seo } from "@/data/dataSeo.js";
 
 export const createApp = ViteSSG(
   App,
@@ -29,6 +29,7 @@ export const createApp = ViteSSG(
 
   ({ app, head, isClient }) => {
     app.use(createHead());
+    head.push(seo);
 
     app.directive("reveal", reveal);
     app.directive("parallax", parallax);

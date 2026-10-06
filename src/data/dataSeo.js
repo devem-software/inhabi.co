@@ -1,13 +1,24 @@
 import { siteUrl } from '@/composables/useInhabiStore.js'
 
+const site = siteUrl()
+
 export const seo = {
-  title: 'Inhabi | Arquitectura, interiorismo y remodelación en Bogotá',
+  title: 'Inhabi | Arquitectura, interiorismo y remodelaciónes',
   meta: [
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1'
+    },
+    {
+      name: 'theme-color',
+      content: '#1b1a16'
+    },
     {
       name: 'description',
       content:
         'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá. Soluciones integrales, diseño personalizado y ejecución técnica.',
     },
+    { name: 'author', content:'Inhabi'},
     { name: 'robots', content: 'index, follow' },
 
     // --- Open Graph (Facebook, WhatsApp, LinkedIn) ---
@@ -17,9 +28,9 @@ export const seo = {
       property: 'og:description',
       content: 'Transformamos espacios con arquitectura, diseño interior y remodelación integral.',
     },
-    { property: 'og:url', content: siteUrl },
-    { property: 'og:image', content: `${siteUrl}inhabi-social.jpg` }, // Asegúrate de que siteUrl termine en "/"
-    { property: 'og:image:secure_url', content: `${siteUrl}inhabi-social.jpg` },
+    { property: 'og:url', content: site },
+    { property: 'og:image', content: `${site}inhabi-social.jpg` }, // Asegúrate de que site termine en "/"
+    { property: 'og:image:secure_url', content: `${site}inhabi-social.jpg` },
     { property: 'og:image:type', content: 'image/jpeg' },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '630' },
@@ -31,12 +42,12 @@ export const seo = {
       name: 'twitter:description',
       content: 'Transformamos espacios con arquitectura, diseño interior y remodelación integral.',
     },
-    { name: 'twitter:image', content: `${siteUrl}inhabi-social.jpg` },
+    { name: 'twitter:image', content: `${site}inhabi-social.jpg` },
   ],
   link: [
     {
       rel: 'canonical',
-      href: siteUrl,
+      href: site,
     },
   ],
   script: [
@@ -46,8 +57,8 @@ export const seo = {
         '@context': 'https://schema.org',
         '@type': 'GeneralContractor',
         name: 'Inhabi',
-        url: siteUrl,
-        image: `${siteUrl}inhabi-social.jpg`,
+        url: site,
+        image: `${site}inhabi-social.jpg`,
         description: 'Arquitectura, interiorismo y remodelación integral en Bogotá, Colombia.',
         address: {
           '@type': 'PostalAddress',
