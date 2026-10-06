@@ -14,6 +14,8 @@ coverage
 *.local
 
 # Editor directories and files
+.delta
+.vscode
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -35,12 +37,14 @@ coverage
 __screenshots__/
 
 # Vite
+.vite
 *.timestamp-*-*.mjs
 
 test-results/
 playwright-report/
 
 # Archivos de desarrollo
+dist/
 .editorconfig
 .env
 .env.*
