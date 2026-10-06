@@ -10,6 +10,8 @@ import "@/styles/system-design.css";
 import { reveal } from "./directives/reveal";
 import { parallax } from "./directives/parallax";
 
+console.log(process.env.VITE_DEPLOY_TARGET)
+
 export const createApp = ViteSSG(
   App,
   {
