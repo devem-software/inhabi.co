@@ -8,12 +8,10 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 export default defineConfig(({ command, mode }) => {
   // Verifica si la variable de entorno para GitHub Pages está activa
-  const isGitHubPages = process.env.VITE_DEPLOY_TARGET === "github-pages";
+  const isGithub = mode === "github";
   console.log("--------------------------------------------------------")
   console.log("--------------------------------------------------------")
-  console.log("--------------------------------------------------------")
-  console.log(process.env.VITE_DEPLOY_TARGET)
-  console.log("--------------------------------------------------------")
+  console.log(`el modo de despliege es para ${mode}`)
   console.log("--------------------------------------------------------")
   console.log("--------------------------------------------------------")
 
@@ -84,7 +82,7 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     // <--- Dinámico: Si es para GitHub Pages usa '/inhabi.co/', de lo contrario '/' para Cloudflare
-    base: isGitHubPages ? "/inhabi.co/" : "/",
+    base: isGithub ? "/inhabi.co/" : "/",
     build: {
       emptyOutDir: true,
     },
