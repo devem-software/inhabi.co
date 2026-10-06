@@ -7,7 +7,7 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 export default defineConfig(({ command, mode }) => {
   // Verifica si la variable de entorno para GitHub Pages está activa
-  const isGitHubPages = process.env.VITE_DEPLOY_TARGET === "gh-pages";
+  const isGitHubPages = process.env.VITE_DEPLOY_TARGET === "github-pages";
 
   return {
     plugins: [

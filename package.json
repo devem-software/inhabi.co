@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "build:gh": "cross-env VITE_DEPLOY_TARGET=gh-pages node scripts/clean.mjs && vite-ssg build && node scripts/generate-sitemap.mjs",
+    "build:gh": "cross-env VITE_DEPLOY_TARGET=github-pages node scripts/clean.mjs && vite-ssg build && node scripts/generate-sitemap.mjs",
     "build:s": "node scripts/clean.mjs && vite-ssg build && node scripts/generate-sitemap-cloudflare.mjs",
     "preview": "vite preview",
     "test:unit": "vitest",
