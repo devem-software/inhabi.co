@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from "node:url";
+import process from "node:process";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
@@ -8,6 +9,13 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 export default defineConfig(({ command, mode }) => {
   // Verifica si la variable de entorno para GitHub Pages está activa
   const isGitHubPages = process.env.VITE_DEPLOY_TARGET === "github-pages";
+  console.log("--------------------------------------------------------")
+  console.log("--------------------------------------------------------")
+  console.log("--------------------------------------------------------")
+  console.log(process.env.VITE_DEPLOY_TARGET)
+  console.log("--------------------------------------------------------")
+  console.log("--------------------------------------------------------")
+  console.log("--------------------------------------------------------")
 
   return {
     plugins: [
