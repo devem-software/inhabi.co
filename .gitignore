@@ -39,3 +39,9 @@ __screenshots__/
 
 test-results/
 playwright-report/
+
+# Archivos de desarrollo
+.editorconfig
+.env
+.env.*
+TODO.md
