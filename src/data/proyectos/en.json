@@ -2,21 +2,343 @@
   "proyectos": [
     {
       "id": 1,
-      "titulo": "Prieto 208",
+      "titulo": "Cuatro Vientos House",
       "tipo": "vivienda",
-      "imagenes": ["bano_industrial_vital", "bano_industrial_balance", "bano_industrial_integral"],
-      "intervencion": "Complete renovation of 120 m². Walls were removed to integrate the kitchen and living area, maximizing natural light. Custom-designed furniture with oak and quartz finishes.",
-      "resena": "The Inhabi team completely transformed our apartment. The process was transparent, and the results exceeded our expectations. The new lighting changed the way we experience the space.",
-      "author": "Prieto Family"
+      "ubicacion": "Paipa, Boyacá",
+      "uso": "Multi-family Residential",
+      "area": {
+        "construida": 460,
+        "privada": 2318
+      },
+      "imagenes": [
+        "casa-cuatro-vientos (1)",
+        "casa-cuatro-vientos (2)",
+        "casa-cuatro-vientos (3)"
+      ],
+      "intervencion": "Design & Construction",
+      "resena": "Located on the outskirts of Paipa, this house was designed as a modern building whose geometric composition stands out at first glance. Its large windows create expansive views to appreciate the surrounding landscape and make the most of the local climate conditions.",
+      "cliente": "Casa Cuatro Vientos"
     },
     {
       "id": 2,
-      "titulo": "Serna & Velasco",
+      "titulo": "Fajardo House",
       "tipo": "vivienda",
-      "imagenes": ["bano_industrial_vital", "bano_industrial_balance"],
-      "intervencion": "Industrial-style interior design. Incorporation of exposed concrete textures, track lighting, and black metal framing for bathroom and home office partitions.",
-      "resena": "They perfectly captured the minimalist industrial style we wanted. Very professional and punctual with delivery.",
-      "cliente": "Serna & Velasco"
+      "ubicacion": "La Mesa, Cundinamarca (Miralomas de Holanda Condominium)",
+      "uso": "Single-family Residential",
+      "area": {
+        "construida": 380
+      },
+      "imagenes": [
+        "casa-fajardo (1).jpg",
+        "casa-fajardo (2).jpg",
+        "casa-fajardo (3).jpg"
+      ],
+      "intervencion": "Architectural Design",
+      "resena": "A project where architecture becomes an experience: open spaces, natural materials, carefully integrated lighting, and a continuous connection with the landscape. A contemporary proposal that combines elegance, comfort, and nature to create an exclusive and timeless environment.",
+      "cliente": "Casa Fajardo"
+    },
+    {
+      "id": 3,
+      "titulo": "Cerritos House",
+      "tipo": "vivienda",
+      "ubicacion": "Pereira, Risaralda",
+      "uso": "Multi-family Residential",
+      "area": {
+        "construida": 520,
+        "privada": 2000
+      },
+      "imagenes": [
+        "casa-cerritos (1).jpg",
+        "casa-cerritos (2).jpg",
+        "casa-cerritos (3).jpg"
+      ],
+      "intervencion": "Architectural Design",
+      "resena": "A design proposal that combines sophisticated materiality, spaciousness, and outdoor living. The integration of stone, wood, and glass creates a warm, modern aesthetic, while the terraces, outdoor BBQ area, and pool turn every space into a natural extension of the home.",
+      "cliente": "Casa Cerritos"
+    },
+    {
+      "id": 4,
+      "titulo": "Cristal House",
+      "tipo": "vivienda",
+      "ubicacion": "Cajicá, Cundinamarca",
+      "uso": "Single-family Residential",
+      "area": {
+        "construida": 25
+      },
+      "imagenes": [
+        "casa-cristal (1).jpg",
+        "casa-cristal (2).jpg",
+        "casa-cristal (3).jpg"
+      ],
+      "intervencion": "Architectural Design",
+      "resena": "A place to disconnect, create, and enjoy. A workspace designed to feel like an extension of the garden, where natural light, wood, and glass foster a private, inspiring, and peaceful atmosphere.",
+      "cliente": "Casa Cristal"
+    },
+    {
+      "id": 5,
+      "titulo": "Movar House",
+      "tipo": "vivienda",
+      "ubicacion": "Tabio, Cundinamarca",
+      "uso": "Multi-family Residential",
+      "area": {
+        "construida": 160,
+        "privada": 1200
+      },
+      "imagenes": [
+        "casa-movar (1).jpg",
+        "casa-movar (2).jpg",
+        "casa-movar (3).jpg"
+      ],
+      "intervencion": "Design & Construction",
+      "resena": "A home designed to enjoy the peace of the city outskirts, where space, natural light, and greenery create a sense of openness and calm. Warm, modern architecture that seamlessly connects the interior with the surrounding landscape.",
+      "cliente": "Casa Movar"
+    },
+    {
+      "id": 6,
+      "titulo": "Bari 116 Apartment",
+      "tipo": "vivienda",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Single-family Residential",
+      "area": {
+        "construida": 150
+      },
+      "imagenes": [
+        "apto-bari-116 (1).jpg",
+        "apto-bari-116 (2).jpg"
+      ],
+      "intervencion": "Interior Design",
+      "resena": "The spatial layout promotes fluidity and visual integration. The kitchen, as the heart of the home, opens toward the social area and dining room, creating a perfect atmosphere for gathering with family and friends.",
+      "cliente": "Apto Bari 116"
+    },
+    {
+      "id": 7,
+      "titulo": "Country Paradise Apartment",
+      "tipo": "vivienda",
+      "ubicacion": "Chía, Cundinamarca",
+      "uso": "Multi-family Residential",
+      "area": {
+        "privada": 46
+      },
+      "imagenes": [
+        "apto-country-paradise (1).jpg",
+        "apto-country-paradise (2).jpg",
+        "apto-country-paradise (3).jpg"
+      ],
+      "intervencion": "Design & Construction",
+      "resena": "The design concept is built around a neutral color palette and natural textures. Wood brings warmth and continuity to the space, while light tones enhance the feeling of spaciousness, allowing natural light to take center stage.",
+      "cliente": "Apto Country Paradise"
+    },
+    {
+      "id": 8,
+      "titulo": "Nodo Terrace",
+      "tipo": "vivienda",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Single-family Residential",
+      "area": {
+        "construida": 40
+      },
+      "imagenes": [
+        "terraza-nodo (1).jpg",
+        "terraza-nodo (2).jpg",
+        "terraza-nodo (3).jpg"
+      ],
+      "intervencion": "Architectural Design & Construction",
+      "resena": "A rooftop where architecture transforms the outdoors into a gathering space. The warmth of wood, light-toned brick, and steel achieves a balance between industrial and natural elements, while greenery and filtered light create a serene atmosphere.",
+      "cliente": "Terraza Nodo"
+    },
+    {
+      "id": 9,
+      "titulo": "Platzi Office",
+      "tipo": "institucional",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Corporate",
+      "area": {
+        "construida": 500
+      },
+      "imagenes": [
+        "oficina-platzi (1).jpg",
+        "oficina-platzi (2).jpg",
+        "oficina-platzi (3).jpg"
+      ],
+      "intervencion": "Architectural Competition / Interior Design",
+      "resena": "A space designed to connect people, ideas, and ways of working. The proposal merges deep-focus areas, gathering spots, and collaborative zones within a single setting, creating a flexible workspace where community and work coexist naturally.",
+      "cliente": "Oficina Platzi"
+    },
+    {
+      "id": 10,
+      "titulo": "Postgraduate Building – Universidad Libre (Socorro Campus)",
+      "tipo": "institucional",
+      "ubicacion": "Socorro / Bogotá D.C.",
+      "uso": "Educational",
+      "area": {
+        "construida": 5100
+      },
+      "imagenes": [
+        "universidad-libre-socorro (1).jpg",
+        "universidad-libre-socorro (2).jpg",
+        "universidad-libre-socorro (3).jpg"
+      ],
+      "intervencion": "Architectural Design",
+      "resena": "Architecture that connects. An academic design concept aiming to integrate knowledge, social interaction, and urban context. The building is conceived as an open, dynamic space where architecture fosters new forms of interaction between users and their surroundings.",
+      "cliente": "Edificio Posgrados Universidad Libre – Seccional Socorro"
+    },
+    {
+      "id": 11,
+      "titulo": "CAFAM Office",
+      "tipo": "institucional",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Educational",
+      "area": {
+        "construida": 120
+      },
+      "imagenes": [
+        "oficina-cafam (1).jpg",
+        "oficina-cafam (2).jpg",
+        "oficina-cafam (3).jpg"
+      ],
+      "intervencion": "Interior Design",
+      "resena": "A space tailored to balance focus, collaboration, and well-being. Open sightlines, natural lighting, and connected work areas create a dynamic, flexible atmosphere designed for ideas to flow.",
+      "cliente": "Oficina CAFAM"
+    },
+    {
+      "id": 12,
+      "titulo": "Centenario Building – Universidad Libre (Bogotá Campus)",
+      "tipo": "institucional",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Educational",
+      "area": {
+        "disenada_m2": 2100
+      },
+      "imagenes": [
+        "universidad-libre-bogota (1).jpg",
+        "universidad-libre-bogota (2).jpg",
+        "universidad-libre-bogota (3).jpg"
+      ],
+      "intervencion": "Architectural Design",
+      "resena": "A mixed-use building designed for corporate offices and postgraduate studies for Universidad Libre. Envisioned as a local landmark highlighting corporate brand colors, its architectural language responds directly to its surroundings through surrounding lush greenery.",
+      "cliente": "Edificio Centenario Universidad Libre – Sede Bogotá"
+    },
+    {
+      "id": 13,
+      "titulo": "Liftit Office",
+      "tipo": "institucional",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Corporate",
+      "area": {
+        "construida": 380
+      },
+      "imagenes": [
+        "liftit (1).jpg",
+        "liftit (2).jpg",
+        "liftit (3).jpg"
+      ],
+      "intervencion": "Interior Design",
+      "resena": "Growing with identity. This project stems from a new phase for Liftit: team expansion and the need to endow their workspace with a distinct identity. An office crafted to support that growth and strengthen team identity.",
+      "cliente": "Oficina Liftit"
+    },
+    {
+      "id": 14,
+      "titulo": "Piamontesa Restaurant",
+      "tipo": "comercial",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Commercial",
+      "area": {
+        "construida": 280
+      },
+      "imagenes": [
+        "restaurante-piamontesa (1).jpg"
+      ],
+      "intervencion": "Design & Construction",
+      "resena": "A space created around gathering, fine dining, and the ritual of sharing meals. The proposal conveys the essence of a steakhouse through an immersive atmosphere where nature and interior design blend into an intimate yet sophisticated experience.",
+      "cliente": "Restaurante Piamontesa"
+    },
+    {
+      "id": 15,
+      "titulo": "Piamontesa Store",
+      "tipo": "comercial",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Commercial",
+      "area": {
+        "construida": 255
+      },
+      "imagenes": [
+        "local-piamontesa (1).jpg",
+        "local-piamontesa (2).jpg",
+        "local-piamontesa (3).jpg"
+      ],
+      "intervencion": "Architectural Design & Construction",
+      "resena": "The project combines an industrial aesthetic with design cues from steakhouse tradition, combining wood, ceramics, steel, and greenery in a sophisticated layout. Open display windows and targeted lighting keep products right in the spotlight.",
+      "cliente": "Local Piamontesa"
+    },
+    {
+      "id": 16,
+      "titulo": "LaVaca Lola Store",
+      "tipo": "comercial",
+      "ubicacion": "Tabio, Cundinamarca",
+      "uso": "Commercial",
+      "area": {
+        "construida": 200
+      },
+      "imagenes": [
+        "local-la-vaca-lola (1).jpg",
+        "local-la-vaca-lola (2).jpg",
+        "local-la-vaca-lola (3).jpg"
+      ],
+      "intervencion": "Design & Construction",
+      "resena": "A retail space combining brand identity, rich textures, and functionality. Wood, deep greens, and metal accents foster a warm atmosphere, while accent lighting highlights products and turns merchandising into a core part of the customer experience.",
+      "cliente": "Local LaVaca Lola"
+    },
+    {
+      "id": 17,
+      "titulo": "Navitas Food Restaurant",
+      "tipo": "comercial",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Commercial",
+      "area": {
+        "construida": 150
+      },
+      "imagenes": [
+        "navitas-food (1).jpg",
+        "navitas-food (2).jpg",
+        "navitas-food (3).jpg"
+      ],
+      "intervencion": "Architectural Design & Construction",
+      "resena": "An experience that paves its own path. The project turns the physical journey through the venue into an integral part of the dining experience. An immersive urban atmosphere guides guests into the heart of the restaurant, where brand identity meets contemporary architectural design.",
+      "cliente": "Restaurante Navitas Food"
+    },
+    {
+      "id": 18,
+      "titulo": "Lala Cookies Store",
+      "tipo": "comercial",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Commercial",
+      "area": {
+        "construida": 50
+      },
+      "imagenes": [
+        "lala-cookies (1).jpg"
+      ],
+      "intervencion": "Design & Construction",
+      "resena": "The design concept stems directly from the lalacookies brand identity and its iconic box packaging, whose vibrant colors and fine details make a statement. Architecture and interior design brought the core concept of the box into the retail space while preserving its distinct visual language.",
+      "cliente": "Local Lala Cookies"
+    },
+    {
+      "id": 19,
+      "titulo": "Mascoagro Veterinary Clinic",
+      "tipo": "comercial",
+      "ubicacion": "Tabio, Cundinamarca",
+      "uso": "Commercial",
+      "area": {
+        "construida": 225
+      },
+      "imagenes": [
+        "mascoagro (1).jpg",
+        "mascoagro (2).jpg",
+        "mascoagro (3).jpg"
+      ],
+      "intervencion": "Architectural Design",
+      "resena": "A space designed to convey calm, trust, and well-being from the moment you step inside. A welcoming environment structured to relieve anxiety, offer peace of mind, and ensure pets and families feel fully supported, safe, and at ease.",
+      "cliente": "Veterinaria Mascoagro"
     }
   ]
 }

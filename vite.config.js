@@ -6,6 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import fs from 'node:fs';
 import path from 'node:path';
+import { useUtilSlug } from './src/composables/useInhabiUtils.js';
 
 export default defineConfig(({ command, mode }) => {
   const isGithub = mode === "github";
@@ -24,7 +25,8 @@ export default defineConfig(({ command, mode }) => {
 
       proyectos.forEach((p) => {
         const categoria = p.tipo.toLowerCase();
-        rutasProyectos.push(`/proyectos/${categoria}/${p.titulo}`);
+        const titulo = useUtilSlug(p.titulo)
+        rutasProyectos.push(`/proyectos/${categoria}/${titulo}`);
       });
 
       console.log(`[SSG] ${rutasProyectos.length} rutas de proyectos generadas desde ${ARCHIVO_PRIORITARIO}`);
@@ -98,7 +100,7 @@ export default defineConfig(({ command, mode }) => {
           "/proyectos/comercial",
           "/proyectos/institucional",
           "/servicios",
-          "/servicios/diseño",
+          "/servicios/diseno",
           "/servicios/remodelacion",
           "/servicios/contruccion",
           "/servicios/integral",

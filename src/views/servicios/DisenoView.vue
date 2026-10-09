@@ -33,7 +33,7 @@ import AppNavClean from "@/components/AppNavClean.vue";
 const HeroCard = defineAsyncComponent({
   loader: () => import("@/components/HeroCard.vue"),
   loadingComponent: () => import("@/components/SkeletonCard.vue"),
-  delay: 0,
+  delay: 1,
 });
 
 import { t, currentProyectos } from "@/composables/useInhabiStore";

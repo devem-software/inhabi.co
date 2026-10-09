@@ -9,6 +9,7 @@ import AppBreadcrumbs from "@/components/AppBreadcrumbs.vue";
 import HeroCard from "@/components/HeroCard.vue";
 import ContactButton from "@/components/atoms/ContactButton.vue";
 import AppMetrics from "@/components/AppMetrics.vue";
+import { useUtilSlug } from "@/composables/useInhabiUtils";
 
 const route = useRoute();
 // Si la ruta es solo /proyectos, categoriaActual será una cadena vacía ""
@@ -104,7 +105,7 @@ usePageSeo({
           :key="index"
           :image="p.imagenes[0]"
           :title="p.titulo"
-          :link="`/proyectos/${p.tipo.toLowerCase()}/${p.titulo}`"
+          :link="`/proyectos/${p.tipo.toLowerCase()}/${useUtilSlug(p.titulo)}`"
           labelLink="VER PROYECTO"
           :tag="p.tipo"
         />

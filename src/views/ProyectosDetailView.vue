@@ -6,6 +6,7 @@ import AppNavClean from "@/components/AppNavClean.vue";
 import AppBreadcrumbs from "@/components/AppBreadcrumbs.vue";
 import ContactButton from "@/components/atoms/ContactButton.vue";
 import { usePageSeo } from "@/composables/usePageSeo.js";
+import {useUtilSlug} from '@/composables/useInhabiUtils.js'
 
 const route = useRoute();
 const categoria = computed(() => route.params.categoria);
@@ -33,7 +34,7 @@ const proyecto = computed(() => {
   return (
     archivo.proyectos.find(
       (p) =>
-        p.titulo?.toLowerCase() === proyectoSlug.value?.toLowerCase() &&
+        useUtilSlug(p.titulo) === proyectoSlug.value?.toLowerCase() &&
         p.tipo?.toLowerCase() === categoria.value?.toLowerCase(),
     ) || null
   );
@@ -56,7 +57,7 @@ usePageSeo({
     proyecto.value?.imagenes?.[0] ? `${proyecto.value.imagenes[0]}.jpg` : "inhabi-proyectos.jpg",
   ),
   url: computed(() =>
-    `/proyectos/${categoria.value || ""}/${proyectoSlug.value}`.replace(/\/+/g, "/"),
+    `/proyectos/${categoria.value || ""}/${useUtilSlug(proyectoSlug.value)}`.replace(/\/+/g, "/"),
   ),
 });
 
