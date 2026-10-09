@@ -123,14 +123,14 @@ const langAria = computed(() =>
 
           <Transition name="dropdown">
             <div v-if="activeDesktopDropdown === index" class="dropdown-menu">
-              <a
+              <router-link
                 v-for="sub in l.children"
                 :key="sub.label"
-                :href="sub.href"
+                :to="sub.href"
                 @click="activeDesktopDropdown = null"
               >
                 {{ sub.label }}
-              </a>
+              </router-link>
             </div>
           </Transition>
         </div>
