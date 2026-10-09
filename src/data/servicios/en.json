@@ -5,6 +5,7 @@
       "n": "01",
       "img": "diseno",
       "title": "DESIGN",
+      "link":"Design with us",
       "kw": "CONCEPT · IDENTITY · SPACE",
       "d": "We translate the way you live into a unique project — in-person or remote. We explore materials, light, and proportion to create spaces that feel as good as they look.",
       "list": [
@@ -20,6 +21,7 @@
       "n": "02",
       "img": "remodelacion",
       "title": "SHELL & CORE REMODELING",
+      "link":"Transform your space",
       "kw": "STRUCTURE · EFFICIENCY · 60 DAYS",
       "d": "We transform the space from scratch: floors, walls, ceilings, and finishes, within a maximum timeframe of 60 days. One single team, one single budget, one single person accountable from start to finish.",
       "list": ["Floors and walls", "Installations", "Finishes", "Delivery in 60 days"]
@@ -29,6 +31,7 @@
       "n": "03",
       "img": "integral",
       "title": "FULL RENOVATION",
+      "link":"Renew it fully",
       "kw": "TRANSFORMATION · DETAIL · TRUST",
       "d": "We renovate already built spaces with the exact same rigor as a custom design project from scratch: kitchens, bathrooms, custom furniture, and high-level finishes.",
       "list": [
@@ -43,6 +46,7 @@
       "n": "04",
       "img": "construccion",
       "title": "DESIGN & CONSTRUCTION",
+      "link":"Build without limits",
       "kw": "INTEGRAL · PRECISION · ONE SINGLE PERSON ACCOUNTABLE",
       "d": "We design and build the same project from start to finish, under a prior evaluation of scope and budget.",
       "list": [

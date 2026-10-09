@@ -1,73 +1,101 @@
 <script setup>
-import { computed, ref, watch, onUnmounted } from 'vue'
-import { store, t, currentServicios } from '@/composables/useInhabiStore'
-import LogoComponent from '@/components/LogoComponent.vue'
+import { computed, ref, watch, onUnmounted } from "vue";
+import { store, t, currentServicios, currentTipo } from "@/composables/useInhabiStore";
+import LogoComponent from "@/components/LogoComponent.vue";
 
-const props = defineProps({ scrolled: Boolean })
+/* ============================================================
+   PROPS
+   ============================================================ */
+const props = defineProps({ scrolled: Boolean });
 
-/* ---------- Estado del menú móvil y dropdowns ---------- */
-const menuOpen = ref(false)
-const activeDesktopDropdown = ref(null) // Guarda el índice del ítem de escritorio abierto
-const activeMobileSub = ref(null) // Guarda el índice del ítem móvil abierto
+/* ============================================================
+   ESTADO DEL MENÚ
+   ============================================================ */
+const menuOpen = ref(false);
+const activeDesktopDropdown = ref(null);
+const activeMobileSub = ref(null);
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+const colorBase = (percent) =>
+  `color-mix(in srgb, transparent ${percent}%, var(--dark))`;
 
 function toggleMenu() {
-  menuOpen.value = !menuOpen.value
-  if (!menuOpen.value) activeMobileSub.value = null
+  menuOpen.value = !menuOpen.value;
+  if (!menuOpen.value) activeMobileSub.value = null;
 }
+
 function closeMenu() {
-  menuOpen.value = false
-  activeDesktopDropdown.value = null
-  activeMobileSub.value = null
+  menuOpen.value = false;
+  activeDesktopDropdown.value = null;
+  activeMobileSub.value = null;
+}
+
+function toggleMobileSub(index) {
+  activeMobileSub.value = activeMobileSub.value === index ? null : index;
+}
+
+function toggleLang() {
+  store.lang = store.lang === "es" ? "en" : "es";
 }
 
 function onKeydown(e) {
-  if (e.key === 'Escape') closeMenu()
+  if (e.key === "Escape") closeMenu();
 }
 
+/* ============================================================
+   EFECTOS: bloquear scroll + listener de Escape
+   ============================================================ */
 watch(menuOpen, (open) => {
-  document.body.style.overflow = open ? 'hidden' : ''
-  if (open) window.addEventListener('keydown', onKeydown)
-  else window.removeEventListener('keydown', onKeydown)
-})
+  document.body.style.overflow = open ? "hidden" : "";
+  open
+    ? window.addEventListener("keydown", onKeydown)
+    : window.removeEventListener("keydown", onKeydown);
+});
 
 onUnmounted(() => {
-  document.body.style.overflow = ''
-  window.removeEventListener('keydown', onKeydown)
-})
+  document.body.style.overflow = "";
+  window.removeEventListener("keydown", onKeydown);
+});
 
-/* Listado dinámico de servicios para el submenú */
-const listServicesItems = computed(() => {
-  return currentServicios.value.map((s) => ({ href: `#${s.id}`, label: s.title }))
-})
+/* ============================================================
+   DATOS DERIVADOS
+   ============================================================ */
+const listServicesItems = computed(() =>
+  currentServicios.value.map((s) => ({ href: `#${s.id}`, label: s.title }))
+);
 
-/* ---------- Estilo dinámico del nav ---------- */
-const navStyle = computed(() => ({
-  background: props.scrolled || menuOpen.value ? 'rgba(18,17,14,.88)' : 'transparent',
-  backdropFilter: props.scrolled || menuOpen.value ? 'blur(12px)' : 'none',
-}))
+const listProyectosItems = computed(() =>
+  Object.entries(currentTipo.value).map((p) => ({
+    href: `/proyectos/${p[1].id}`,
+    label: p[1].label,
+  }))
+);
 
-/* ---------- Enlaces generales con soporte universal de children ---------- */
 const links = computed(() => [
-  {
-    href: '#proyectos',
-    label: t.value.nav.proyectos,
-  },
-  {
-    href: '#servicios',
-    label: t.value.nav.servicios,
-    children: listServicesItems.value, // Soporte dinámico desde los JSON de servicios
-  },
-  { href: '#estudio', label: t.value.nav.estudio },
-])
+  { href: "#proyectos", label: t.value.nav.proyectos, children: listProyectosItems.value },
+  { href: "#servicios", label: t.value.nav.servicios, children: listServicesItems.value },
+  { href: "#estudio", label: t.value.nav.estudio },
+]);
 
-/* ---------- Helper idioma ---------- */
-function langStyle(lang) {
-  const active = store.lang === lang
+/* ============================================================
+   ESTILO DINÁMICO DEL NAV
+   ============================================================ */
+const navStyle = computed(() => {
+  const isCompact = props.scrolled || menuOpen.value;
   return {
-    background: active ? '#f3f0e9' : 'transparent',
-    color: active ? '#12110e' : '#f3f0e9',
-  }
-}
+    background: colorBase(isCompact ? 30 : 85),
+    backdropFilter: isCompact ? "blur(4px)" : "blur(1px)",
+  };
+});
+
+/* ============================================================
+   LABELS IDIOMA
+   ============================================================ */
+const langAria = computed(() =>
+  store.lang === "es" ? "Switch to English" : "Cambiar a Español"
+);
 </script>
 
 <template>
@@ -80,7 +108,7 @@ function langStyle(lang) {
     <!-- Navegación escritorio / tablet -->
     <div class="nav-links">
       <template v-for="(l, index) in links" :key="l.href">
-        <!-- Ítem con submenú en Escritorio -->
+        <!-- Ítem con submenú -->
         <div
           v-if="l.children"
           class="nav-item-dropdown"
@@ -89,7 +117,8 @@ function langStyle(lang) {
         >
           <a :href="l.href" class="nav-dropdown-toggle">
             {{ l.label }}
-            <span class="arrow" :class="{ 'is-rotated': activeDesktopDropdown === index }">▾</span>
+
+            <span class="arrow">{{activeDesktopDropdown === index ? '-': '+'}}</span>
           </a>
 
           <Transition name="dropdown">
@@ -106,14 +135,19 @@ function langStyle(lang) {
           </Transition>
         </div>
 
-        <!-- Ítem simple en Escritorio -->
+        <!-- Ítem simple -->
         <a v-else :href="l.href">{{ l.label }}</a>
       </template>
 
-      <div class="lang-switch">
-        <button class="lang-btn" :style="langStyle('es')" @click="store.lang = 'es'">ES</button>
-        <button class="lang-btn" :style="langStyle('en')" @click="store.lang = 'en'">EN</button>
-      </div>
+      <button
+        class="lang-toggle btn btn__small btn__outline"
+        :aria-label="langAria"
+        @click="toggleLang"
+      >
+        <span :class="{ active: store.lang === 'es' }">ES</span>
+        <span class="btn__separator">|</span>
+        <span :class="{ active: store.lang === 'en' }">EN</span>
+      </button>
 
       <router-link to="/cotiza" class="nav-cta" @click="closeMenu">
         {{ t.nav.cotizar }}
@@ -134,21 +168,20 @@ function langStyle(lang) {
     </button>
   </nav>
 
-  <!-- Overlay pantalla completa (solo móvil) -->
+  <!-- Overlay móvil -->
   <Transition name="menu-fade">
     <div v-if="menuOpen" class="mobile-menu" role="dialog" aria-modal="true">
       <div class="mobile-menu-inner">
         <nav class="mobile-links">
           <template v-for="(l, i) in links" :key="l.href">
-            <!-- Si tiene hijos (Submenú móvil universal) -->
+            <!-- Ítem con submenú -->
             <div v-if="l.children" class="mobile-item-group">
               <button
                 class="mobile-link mobile-dropdown-btn"
-                @click="activeMobileSub = activeMobileSub === i ? null : i"
+                @click="toggleMobileSub(i)"
               >
-                <span class="mobile-num">0{{ i + 1 }}</span>
                 <span class="mobile-label">{{ l.label }}</span>
-                <span class="mobile-arrow" :class="{ 'is-rotated': activeMobileSub === i }">▾</span>
+                <span class="mobile-arrow">{{activeMobileSub === i ? '-': '+'}}</span>
               </button>
 
               <div v-show="activeMobileSub === i" class="mobile-sublinks">
@@ -159,27 +192,30 @@ function langStyle(lang) {
                   class="mobile-sublink"
                   @click="closeMenu"
                 >
-                  — {{ sub.label }}
+                  {{ sub.label }}
                 </a>
               </div>
             </div>
 
-            <!-- Enlace normal móvil -->
+            <!-- Enlace simple -->
             <a v-else :href="l.href" class="mobile-link" @click="closeMenu">
-              <span class="mobile-num">0{{ i + 1 }}</span>
               <span class="mobile-label">{{ l.label }}</span>
-              <span class="mobile-arrow">→</span>
             </a>
           </template>
         </nav>
 
         <div class="mobile-foot">
-          <div class="lang-switch">
-            <button class="lang-btn" :style="langStyle('es')" @click="store.lang = 'es'">ES</button>
-            <button class="lang-btn" :style="langStyle('en')" @click="store.lang = 'en'">EN</button>
-          </div>
+          <button
+            class="lang-toggle btn btn__small btn__outline"
+            :aria-label="langAria"
+            @click="toggleLang"
+          >
+            <span :class="{ active: store.lang === 'es' }">ES</span>
+            <span class="btn__separator">|</span>
+            <span :class="{ active: store.lang === 'en' }">EN</span>
+          </button>
 
-          <router-link to="/cotiza" class="nav-cta" @click="closeMenu">
+          <router-link to="/cotiza" class="btn" @click="closeMenu">
             {{ t.nav.cotizar }}
           </router-link>
         </div>
@@ -190,103 +226,94 @@ function langStyle(lang) {
 
 <style scoped>
 /* ============================================================
-   NAV BASE (escritorio + tablet)
+   1. NAV BASE
    ============================================================ */
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0 0 auto 0;
   z-index: 60;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   padding: 0.75rem clamp(20px, 4vw, 56px);
-  transition:
-    background 0.4s,
-    backdrop-filter 0.4s;
+  transition: all 0.4s ease;
 }
 
 .brand {
   display: flex;
   align-items: center;
 }
-.brand-logo {
-  height: 1.5rem;
-  width: auto;
-  display: block;
-}
 
+
+/* ============================================================
+   2. NAV LINKS (escritorio / tablet)
+   ============================================================ */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(14px, 2.2vw, 32px);
-  font:
-    500 11px/1 'IBM Plex Mono',
-    monospace;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  flex-wrap: wrap;
   justify-content: flex-end;
+  gap: clamp(14px, 2.2vw, 32px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: .75rem;
+  font-weight: 500;
+  font-family: var(--font-classic);
+  line-height: 1;
 }
 
-/* ---------- Dropdown de Escritorio ---------- */
+/* ---------- Dropdown escritorio ---------- */
 .nav-item-dropdown {
   position: relative;
 }
+
 .nav-dropdown-toggle {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
 }
+
 .arrow {
-  font-size: 10px;
-  transition: transform 0.25s;
+  width: 1rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size: 1rem;
 }
-.arrow.is-rotated,
-.nav-item-dropdown:hover .arrow {
-  transform: rotate(180deg);
-}
+
 
 .dropdown-menu {
   position: absolute;
-  top: 2rem;
+  top: 150%;
   left: 50%;
   transform: translateX(-50%);
-  padding-top: 12px;
   display: flex;
   flex-direction: column;
+  min-width: 180px;
   background: rgba(18, 17, 14, 0.95);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(243, 240, 233, 0.12);
   border-radius: 8px;
-  min-width: 180px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 .dropdown-menu a {
   padding: 12px 16px;
   font-size: 10px;
-  letter-spacing: 0.14em;
-  color: #f3f0e9;
-  white-space: nowrap;
-  transition:
-    background 0.2s,
-    color 0.2s;
+  letter-spacing: 2px;
+  color: var(--light);
+  transition: all .3s ease;
 }
 .dropdown-menu a:hover {
-  background: #f3f0e9;
-  color: #12110e;
+  background: var(--light);
+  color: var(--dark);
 }
 
-/* Transición del Dropdown */
+/* Transición dropdown */
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .dropdown-enter-from,
 .dropdown-leave-to {
@@ -294,101 +321,53 @@ function langStyle(lang) {
   transform: translateX(-50%) translateY(-6px);
 }
 
-.lang-switch {
-  display: flex;
-  gap: 2px;
-  border: 1px solid rgba(243, 240, 233, 0.25);
-  border-radius: 999px;
-  padding: 3px;
-}
-.lang-btn {
-  border: 0;
-  cursor: pointer;
-  border-radius: 999px;
-  padding: 6px 10px;
-  font:
-    500 10px/1 'IBM Plex Mono',
-    monospace;
-  letter-spacing: 0.12em;
-  transition:
-    background 0.25s,
-    color 0.25s;
-}
+/* ---------- CTA y lang ---------- */
 .nav-cta {
-  background: #f3f0e9;
-  color: #12110e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 6rem;
   padding: 11px 16px;
   border-radius: 999px;
-  transition:
-    background 0.25s,
-    color 0.25s;
+  background: var(--light);
+  color: var(--dark);
+  transition: background 0.25s, color 0.25s;
 }
 .nav-cta:hover {
-  background: #cdd2c0;
-  color: #12110e;
+  background: var(--bg-button);
+  color: var(--dark);
 }
 
-/* ============================================================
-   BOTÓN HAMBURGUESA — oculto por defecto
-   ============================================================ */
-.burger {
-  display: none;
-  position: relative;
-  width: 44px;
-  height: 44px;
-  border: none;
+.lang-toggle {
+  gap: 4px;
   background: transparent;
   cursor: pointer;
-  padding: 0;
-  transition:
-    background 0.25s,
-    border-color 0.25s;
+  letter-spacing: 0.12em;
 }
-.burger span {
-  position: absolute;
-  left: 50%;
-  width: 18px;
-  height: 1.5px;
-  background: #f3f0e9;
-  transform: translateX(-50%);
-  transition:
-    transform 0.35s cubic-bezier(0.76, 0, 0.24, 1),
-    opacity 0.25s,
-    top 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+.lang-toggle span {
+  opacity: 0.4;
+  transition: opacity 0.25s;
 }
-.burger span:nth-child(1) {
-  top: 16px;
+.lang-toggle span.active {
+  opacity: 1;
 }
-.burger span:nth-child(2) {
-  top: 21.5px;
-}
-.burger span:nth-child(3) {
-  top: 27px;
+.lang-toggle .btn__separator {
+  opacity: 0.25;
+  margin: 0 2px;
 }
 
-.burger.is-open span:nth-child(1) {
-  top: 21.5px;
-  transform: translateX(-50%) rotate(45deg);
-}
-.burger.is-open span:nth-child(2) {
-  opacity: 0;
-}
-.burger.is-open span:nth-child(3) {
-  top: 21.5px;
-  transform: translateX(-50%) rotate(-45deg);
-}
 
 /* ============================================================
-   OVERLAY MÓVIL
+   4. OVERLAY MÓVIL
    ============================================================ */
 .mobile-menu {
   position: fixed;
   inset: 0;
   z-index: 55;
-  background: color-mix(in srgb, #12110e 98%, transparent);
   display: flex;
   flex-direction: column;
-  padding: 96px clamp(20px, 6vw, 40px) 32px;
+  padding: 6rem clamp(20px, 6vw, 40px) 1rem;
+  background: color-mix(in srgb, var(--dark) 98%, transparent);
   overflow-y: auto;
 }
 
@@ -398,8 +377,8 @@ function langStyle(lang) {
   justify-content: space-between;
   flex: 1;
   gap: 48px;
-  max-width: 640px;
   width: 100%;
+  max-width: 640px;
   margin: 0 auto;
 }
 
@@ -408,95 +387,99 @@ function langStyle(lang) {
   gap: 0;
   border-top: 1px solid rgba(243, 240, 233, 0.12);
 }
+
 .mobile-link {
-  width: 100%;
-  text-align: left;
-  background: transparent;
-  border: none;
-  display: grid;
-  grid-template-columns: 48px 1fr auto;
+  display: flex;
+  justify-content:space-between;
   align-items: center;
-  gap: 16px;
-  padding: 22px 0;
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border: none;
   border-bottom: 1px solid rgba(243, 240, 233, 0.12);
-  font:
-    400 clamp(24px, 7vw, 44px)/1 'Instrument Serif',
-    serif;
-  letter-spacing: -0.01em;
-  color: #f3f0e9;
+  background: transparent;
+  text-align: left;
   cursor: pointer;
+  color: var(--light);
+  font-size:clamp(24px, 7vw, 44px);
+  font-weight: 500;
+  font-family: var(--font-cursive);
+  line-height: 1;
 }
 
 .mobile-dropdown-btn .mobile-arrow {
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 .mobile-dropdown-btn .mobile-arrow.is-rotated {
   transform: rotate(180deg);
 }
 
-/* Submenú móvil */
 .mobile-sublinks {
   display: flex;
   flex-direction: column;
-  padding-left: 48px;
-  border-bottom: 1px solid rgba(243, 240, 233, 0.12);
   background: rgba(255, 255, 255, 0.02);
+  gap:.5rem;
 }
 .mobile-sublink {
-  padding: 14px 0;
-  font:
-    400 18px/1 'IBM Plex Mono',
-    monospace;
-  letter-spacing: 0.1em;
-  color: #cdd2c0;
+  padding: 1rem 1.25rem;
+  color: var(--light-accent);
+  line-height:1;
+  font-size:1rem;
+  font-family: var(--font-mono);
+  letter-spacing: 2px;
   text-transform: uppercase;
-  transition: color 0.2s;
+  border-left: .25rem solid transparent;
 }
 .mobile-sublink:hover {
-  color: #f3f0e9;
+  color: var(--light);
+  background:var(--dark-hover);
+  border-left: .25rem solid var(--ink-muted);
 }
 
 .mobile-num {
-  font:
-    400 16px/1 'IBM Plex Mono',
-    monospace;
+  color: var(--bg-button);
+  font: 400 16px/1 "IBM Plex Mono", monospace;
   letter-spacing: 0.16em;
-  color: #cdd2c0;
 }
+
 .mobile-arrow {
-  font:
-    400 24px/1 'Instrument Serif',
-    serif;
-  color: #cdd2c0;
+  color: var(--bg-button);
   opacity: 0.6;
+
+  font: 400 2rem/1 "Instrument Serif", serif;
 }
 
 .mobile-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
   flex-wrap: wrap;
+  gap: 16px;
 }
 
+/* Transición overlay */
 .menu-fade-enter-active,
 .menu-fade-leave-active {
   transition: opacity 0.35s ease;
 }
+
+/* ============================================================
+   5. RESPONSIVE
+   ============================================================ */
 @media (min-width: 768px) {
   .burger,
   .mobile-menu {
     display: none !important;
   }
 }
+
 @media (max-width: 767px) {
   .nav-links {
     display: none;
   }
   .burger {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    justify-content:center;
+    align-items:center;
   }
 }
 </style>

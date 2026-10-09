@@ -2,30 +2,343 @@
   "proyectos": [
     {
       "id": 1,
-      "titulo": "Prieto 208",
-      "tipo": "comercial",
-      "imagenes": ["bano_industrial_vital", "bano_industrial_balance", "bano_industrial_integral"],
-      "intervencion": "Remodelación integral de 120 m². Se derribaron muros para integrar la cocina y la zona social, maximizando la luz natural. Diseño de mobiliario a medida con acabados en roble y cuarzo.",
-      "resena": "El equipo de Inhabi transformó por completo nuestro apartamento. El proceso fue transparente y el resultado superó nuestras expectativas. La nueva iluminación cambió la forma en que vivimos el espacio.",
-      "cliente": "Familia Prieto"
+      "titulo": "Casa Cuatro Vientos",
+      "tipo": "vivienda",
+      "ubicacion": "Paipa, Boyacá",
+      "uso": "Vivienda Multifamiliar",
+      "area": {
+        "construida": 460,
+        "privada": 2318
+      },
+      "imagenes": [
+        "casa-cuatro-vientos (1)",
+        "casa-cuatro-vientos (2)",
+        "casa-cuatro-vientos (3)"
+      ],
+      "intervencion": "Diseño & Construcción",
+      "resena": "Esta casa está situada a las afueras de Paipa, diseñada como una construcción moderna donde su composición geométrica resalta a simple vista generando visuales por su gran magnitud en los ventanales para apreciar el entorno del paisaje y aprovechar sus condiciones climáticas.",
+      "cliente": "Casa Cuatro Vientos"
     },
     {
       "id": 2,
-      "titulo": "Serna & Velasco",
+      "titulo": "Casa Fajardo",
       "tipo": "vivienda",
-      "imagenes": ["bano_industrial_vital", "bano_industrial_balance"],
-      "intervencion": "Diseño interior de estilo industrial. Incorporación de texturas de concreto expuesto, iluminación en rieles y perfilería metálica negra en divisiones de baño y estudio.",
-      "resena": "Captaron a la perfección el estilo minimalista e industrial que queríamos. Muy profesionales en los tiempos de entrega.",
-      "cliente": "Serna & Velasco"
+      "ubicacion": "La Mesa, Cundinamarca (Condominio Miralomas de Holanda)",
+      "uso": "Vivienda familiar",
+      "area": {
+        "construida": 380
+      },
+      "imagenes": [
+        "casa-fajardo (1).jpg",
+        "casa-fajardo (2).jpg",
+        "casa-fajardo (3).jpg"
+      ],
+      "intervencion": "Diseño Arquitectónico",
+      "resena": "Un proyecto donde la arquitectura se convierte en una experiencia: espacios abiertos, materiales naturales, iluminación cuidadosamente integrada y una conexión permanente con el paisaje. Una propuesta contemporánea que combina elegancia, confort y naturaleza para crear un entorno exclusivo y atemporal.",
+      "cliente": "Casa Fajardo"
     },
     {
       "id": 3,
-      "titulo": "Balcon de rosales",
+      "titulo": "Casa Cerritos",
+      "tipo": "vivienda",
+      "ubicacion": "Pereira, Risaralda",
+      "uso": "Vivienda Multifamiliar",
+      "area": {
+        "construida": 520,
+        "privada": 2000
+      },
+      "imagenes": [
+        "casa-cerritos (1).jpg",
+        "casa-cerritos (2).jpg",
+        "casa-cerritos (3).jpg"
+      ],
+      "intervencion": "Diseño Arquitectónico",
+      "resena": "Una propuesta que combina materialidad sofisticada, amplitud y vida al aire libre. La integración de piedra, madera y vidrio crea una estética cálida y moderna, mientras las terrazas, el bbq exterior y la piscina convierten cada espacio en una extensión natural de la vivienda.",
+      "cliente": "Casa Cerritos"
+    },
+    {
+      "id": 4,
+      "titulo": "Casa Cristal",
+      "tipo": "vivienda",
+      "ubicacion": "Cajicá, Cundinamarca",
+      "uso": "Vivienda familiar",
+      "area": {
+        "construida": 25
+      },
+      "imagenes": [
+        "casa-cristal (1).jpg",
+        "casa-cristal (2).jpg",
+        "casa-cristal (3).jpg"
+      ],
+      "intervencion": "Diseño Arquitectónico",
+      "resena": "Un lugar para desconectarse, crear y disfrutar. Un espacio de trabajo diseñado para sentirse como parte del jardín, donde la luz natural, la madera y el vidrio crean una atmósfera privada, inspiradora y tranquila.",
+      "cliente": "Casa Cristal"
+    },
+    {
+      "id": 5,
+      "titulo": "Casa Movar",
+      "tipo": "vivienda",
+      "ubicacion": "Tabio, Cundinamarca",
+      "uso": "Vivienda Multifamiliar",
+      "area": {
+        "construida": 160,
+        "privada": 1200
+      },
+      "imagenes": [
+        "casa-movar (1).jpg",
+        "casa-movar (2).jpg",
+        "casa-movar (3).jpg"
+      ],
+      "intervencion": "Diseño & Construcción",
+      "resena": "Un hogar pensado para disfrutar la tranquilidad de las afueras de la ciudad, donde el espacio, la luz natural y la vegetación crean una sensación de amplitud y calma. Una arquitectura cálida y moderna que conecta el interior con el paisaje.",
+      "cliente": "Casa Movar"
+    },
+    {
+      "id": 6,
+      "titulo": "Apto Bari 116",
+      "tipo": "vivienda",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Vivienda familiar",
+      "area": {
+        "construida": 150
+      },
+      "imagenes": [
+        "apto-bari-116 (1).jpg",
+        "apto-bari-116 (2).jpg"
+      ],
+      "intervencion": "Diseño Interior",
+      "resena": "La distribución de los espacios favorece la fluidez y la integración visual. La cocina, corazón del hogar, se abre hacia el área social y el comedor generando una atmosfera perfecta para compartir y disfrutar en familia o con amigos.",
+      "cliente": "Apto Bari 116"
+    },
+    {
+      "id": 7,
+      "titulo": "Apto Country Paradise",
+      "tipo": "vivienda",
+      "ubicacion": "Chía, Cundinamarca",
+      "uso": "Vivienda Multifamiliar",
+      "area": {
+        "privada": 46
+      },
+      "imagenes": [
+        "apto-country-paradise (1).jpg",
+        "apto-country-paradise (2).jpg",
+        "apto-country-paradise (3).jpg"
+      ],
+      "intervencion": "Diseño & Construcción",
+      "resena": "La propuesta se construye a partir de una paleta de materiales neutros y texturas naturales. La madera aporta calidez y continuidad al espacio, mientras que los tonos claros amplifican la percepción de amplitud y permiten que la luz natural se convierta en un elemento protagonista.",
+      "cliente": "Apto Country Paradise"
+    },
+    {
+      "id": 8,
+      "titulo": "Terraza Nodo",
+      "tipo": "vivienda",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Vivienda familiar",
+      "area": {
+        "construida": 40
+      },
+      "imagenes": [
+        "terraza-nodo (1).jpg",
+        "terraza-nodo (2).jpg",
+        "terraza-nodo (3).jpg"
+      ],
+      "intervencion": "Diseño Arquitectónico & Construcción",
+      "resena": "Un rooftop donde la arquitectura convierte el exterior en un espacio de encuentro. La calidez de la madera, el ladrillo claro y el acero generan un equilibrio entre lo industrial y lo natural, mientras la vegetación y la luz filtrada aportan una atmósfera serena.",
+      "cliente": "Terraza Nodo"
+    },
+    {
+      "id": 9,
+      "titulo": "Oficina Platzi",
       "tipo": "institucional",
-      "imagenes": ["bano_industrial_vital", "bano_industrial_balance"],
-      "intervencion": "Diseño interior de estilo industrial. Incorporación de texturas de concreto expuesto, iluminación en rieles y perfilería metálica negra en divisiones de baño y estudio.",
-      "resena": "Captaron a la perfección el estilo minimalista e industrial que queríamos. Muy profesionales en los tiempos de entrega.",
-      "cliente": "Serna & Velasco"
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Corporativo",
+      "area": {
+        "construida": 500
+      },
+      "imagenes": [
+        "oficina-platzi (1).jpg",
+        "oficina-platzi (2).jpg",
+        "oficina-platzi (3).jpg"
+      ],
+      "intervencion": "Concurso Arquitectónico / Diseño Interior",
+      "resena": "Un espacio diseñado para conectar personas, ideas y formas de trabajar. La propuesta combina áreas de concentración, encuentro y colaboración en un mismo escenario, creando un entorno flexible donde el trabajo y la comunidad conviven de manera natural.",
+      "cliente": "Oficina Platzi"
+    },
+    {
+      "id": 10,
+      "titulo": "Edificio Posgrados Universidad Libre – Seccional Socorro",
+      "tipo": "institucional",
+      "ubicacion": "Socorro / Bogotá D.C.",
+      "uso": "Educativo",
+      "area": {
+        "construida": 5100
+      },
+      "imagenes": [
+        "universidad-libre-socorro (1).jpg",
+        "universidad-libre-socorro (2).jpg",
+        "universidad-libre-socorro (3).jpg"
+      ],
+      "intervencion": "Diseño Arquitectónico",
+      "resena": "Arquitectura que conecta. Una propuesta académica que busca integrar conocimiento, encuentro y ciudad. El edificio se concibe como un espacio abierto y dinámico, donde la arquitectura genera nuevas formas de interacción entre los usuarios y el entorno.",
+      "cliente": "Edificio Posgrados Universidad Libre – Seccional Socorro"
+    },
+    {
+      "id": 11,
+      "titulo": "Oficina CAFAM",
+      "tipo": "institucional",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Educativo",
+      "area": {
+        "construida": 120
+      },
+      "imagenes": [
+        "oficina-cafam (1).jpg",
+        "oficina-cafam (2).jpg",
+        "oficina-cafam (3).jpg"
+      ],
+      "intervencion": "Diseño Interior",
+      "resena": "Un espacio concebido para equilibrar concentración, colaboración y bienestar. La apertura visual, la entrada de luz natural y la conexión entre áreas de trabajo crean una atmósfera dinámica y flexible, pensada para que las ideas fluyan.",
+      "cliente": "Oficina CAFAM"
+    },
+    {
+      "id": 12,
+      "titulo": "Edificio Centenario Universidad Libre – Sede Bogotá",
+      "tipo": "institucional",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Educativo",
+      "area": {
+        "disenada_m2": 2100
+      },
+      "imagenes": [
+        "universidad-libre-bogota (1).jpg",
+        "universidad-libre-bogota (2).jpg",
+        "universidad-libre-bogota (3).jpg"
+      ],
+      "intervencion": "Diseño Arquitectónico",
+      "resena": "Un edificio proyectado para uso mixto, oficinas y posgrados de la universidad Libre, concebido para ser un hito en la ciudad, resaltando los colores corporativos. El lenguaje arquitectónico corresponde a su relación con el entorno con una vegetación que lo rodea.",
+      "cliente": "Edificio Centenario Universidad Libre – Sede Bogotá"
+    },
+    {
+      "id": 13,
+      "titulo": "Oficina Liftit",
+      "tipo": "institucional",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Corporativo",
+      "area": {
+        "construida": 380
+      },
+      "imagenes": [
+        "liftit (1).jpg",
+        "liftit (2).jpg",
+        "liftit (3).jpg"
+      ],
+      "intervencion": "Diseño Interior",
+      "resena": "Crecer con identidad. El proyecto nace a partir de una nueva etapa para Liftit: el crecimiento de su equipo y la necesidad de darle identidad al espacio donde trabajan. Una oficina pensada para acompañar esa evolución y fortalecer el sentido de pertenencia.",
+      "cliente": "Oficina Liftit"
+    },
+    {
+      "id": 14,
+      "titulo": "Restaurante Piamontesa",
+      "tipo": "comercial",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Comercial",
+      "area": {
+        "construida": 280
+      },
+      "imagenes": [
+        "restaurante-piamontesa (1).jpg"
+      ],
+      "intervencion": "Diseño & Construcción",
+      "resena": "Un espacio pensado alrededor del encuentro, la buena mesa y el ritual de compartir. La propuesta busca transmitir la esencia de una parrilla a través de una atmósfera envolvente, donde la naturaleza y el interiorismo se integran para crear una experiencia cercana y sofisticada.",
+      "cliente": "Restaurante Piamontesa"
+    },
+    {
+      "id": 15,
+      "titulo": "Local Piamontesa",
+      "tipo": "comercial",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Comercial",
+      "area": {
+        "construida": 255
+      },
+      "imagenes": [
+        "local-piamontesa (1).jpg",
+        "local-piamontesa (2).jpg",
+        "local-piamontesa (3).jpg"
+      ],
+      "intervencion": "Diseño Arquitectónico & Construcción",
+      "resena": "El proyecto combina una estética industrial con referencias al universo de la parrilla, incorporando madera, cerámica, acero y vegetación en una composición de carácter sofisticado. Las vitrinas abiertas y la iluminación puntual ponen el producto en primer plano.",
+      "cliente": "Local Piamontesa"
+    },
+    {
+      "id": 16,
+      "titulo": "Local LaVaca Lola",
+      "tipo": "comercial",
+      "ubicacion": "Tabio, Cundinamarca",
+      "uso": "Comercial",
+      "area": {
+        "construida": 200
+      },
+      "imagenes": [
+        "local-la-vaca-lola (1).jpg",
+        "local-la-vaca-lola (2).jpg",
+        "local-la-vaca-lola (3).jpg"
+      ],
+      "intervencion": "Diseño & Construcción",
+      "resena": "Un espacio comercial que combina identidad, materialidad y funcionalidad. La madera, el verde profundo y los detalles en metal construyen una atmósfera cálida, mientras la iluminación resalta los productos y convierte la exhibición en parte esencial de la experiencia.",
+      "cliente": "Local LaVaca Lola"
+    },
+    {
+      "id": 17,
+      "titulo": "Restaurante Navitas Food",
+      "tipo": "comercial",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Comercial",
+      "area": {
+        "construida": 150
+      },
+      "imagenes": [
+        "navitas-food (1).jpg",
+        "navitas-food (2).jpg",
+        "navitas-food (3).jpg"
+      ],
+      "intervencion": "Diseño Arquitectónico & Construcción",
+      "resena": "Una experiencia que se abre paso. El proyecto transforma el recorrido en parte de la experiencia. Una atmósfera urbana y envolvente acompaña al visitante hasta el corazón del restaurante, donde la identidad de la marca se encuentra con un lenguaje contemporáneo.",
+      "cliente": "Restaurante Navitas Food"
+    },
+    {
+      "id": 18,
+      "titulo": "Local Lala Cookies",
+      "tipo": "comercial",
+      "ubicacion": "Bogotá D.C.",
+      "uso": "Comercial",
+      "area": {
+        "construida": 50
+      },
+      "imagenes": [
+        "lala-cookies (1).jpg"
+      ],
+      "intervencion": "Diseño & Construcción",
+      "resena": "La idea nace desde la marca de lalacookies y la esencia que tiene la caja, donde sus colores y sus detalles marcan una diferencia. La arquitectura y el interiorismo protagonizaron la idea central de la caja plasmada en el local comercial, manteniendo el mismo lenguaje.",
+      "cliente": "Local Lala Cookies"
+    },
+    {
+      "id": 19,
+      "titulo": "Veterinaria Mascoagro",
+      "tipo": "comercial",
+      "ubicacion": "Tabio, Cundinamarca",
+      "uso": "Comercial",
+      "area": {
+        "construida": 225
+      },
+      "imagenes": [
+        "mascoagro (1).jpg",
+        "mascoagro (2).jpg",
+        "mascoagro (3).jpg"
+      ],
+      "intervencion": "Diseño Arquitectónico",
+      "resena": "Un espacio pensado para transmitir calma, confianza y bienestar desde el primer momento. Una experiencia cercana y amable, donde cada visita busca reducir la ansiedad, generar tranquilidad y hacer que mascotas y familias se sientan acompañadas, seguras y bienvenidas.",
+      "cliente": "Veterinaria Mascoagro"
     }
   ]
 }

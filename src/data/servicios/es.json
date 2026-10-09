@@ -5,6 +5,7 @@
       "n": "01",
       "img": "diseno",
       "title": "DISEÑO",
+      "link":"Diseña con nosotros",
       "kw": "CONCEPTO · IDENTIDAD · ESPACIO",
       "d": "Traducimos tu forma de habitar en un proyecto único — presencial o remoto. Exploramos materiales, luz y proporción para crear espacios que se sienten tan bien como se ven.",
       "list": [
@@ -20,6 +21,7 @@
       "n": "02",
       "img": "remodelacion",
       "title": "REMODELACIÓN DE OBRA GRIS",
+      "link":"Transforma tu espacio",
       "kw": "ESTRUCTURA · EFICIENCIA · 60 DÍAS",
       "d": "Transformamos el espacio desde cero: pisos, paredes, techos y acabados, en un plazo máximo de 60 días. Un solo equipo, un solo presupuesto, un solo responsable de principio a fin.",
       "list": ["Pisos y paredes", "Instalaciones", "Acabados", "Entrega en 60 días"]
@@ -29,6 +31,7 @@
       "n": "03",
       "img": "integral",
       "title": "REMODELACIÓN INTEGRAL",
+      "link":"Renueva por completo",
       "kw": "TRANSFORMACIÓN · DETALLE · CONFIANZA",
       "d": "Renovamos espacios ya construidos con el mismo rigor de un proyecto de diseño desde cero: cocinas, baños, mobiliario a medida y acabados de alto nivel.",
       "list": [
@@ -43,6 +46,7 @@
       "n": "04",
       "img": "construccion",
       "title": "DISEÑO Y CONSTRUCCIÓN",
+      "link":"Contruye sin limites",
       "kw": "INTEGRAL · PRECISIÓN · UN SOLO RESPONSABLE",
       "d": "Diseñamos y construimos el mismo proyecto, de principio a fin, bajo evaluación previa de alcance y presupuesto.",
       "list": [

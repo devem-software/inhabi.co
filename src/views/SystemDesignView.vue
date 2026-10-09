@@ -1168,11 +1168,13 @@ function copyColor(hex, token) {
   }
 }
 
-// SEO para SYSTEM DESIGN
-import { useHead } from '@vueuse/head'
-import { seo } from '@/data/dataSeo.js'
+import { usePageSeo } from '@/composables/usePageSeo.js';
 
-useHead(seo)
+usePageSeo({
+  title: "Inhabi - Guia de diseño",
+  description: "Guia de diseño de Inhabi, los detalles uno de los pilares de nuestro trabajo",
+  image:"/seo/inhabi-social.jpg"
+}); // ← toma title/description/image de route.meta
 </script>
 
 <style scoped>

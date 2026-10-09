@@ -1,106 +1,113 @@
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { store, t, IMG } from '@/composables/useInhabiStore.js'
-import LogoComponent from '@/components/LogoComponent.vue'
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { t, currentProyectos } from "@/composables/useInhabiStore.js";
+import { useInhabiMetrics } from "@/composables/useInhabiMetrics";
 
-const route = useRoute()
+import AppNavClean from "@/components/AppNavClean.vue";
+import AppBreadcrumbs from "@/components/AppBreadcrumbs.vue";
+import HeroCard from "@/components/HeroCard.vue";
+import ContactButton from "@/components/atoms/ContactButton.vue";
+import AppMetrics from "@/components/AppMetrics.vue";
+
+const route = useRoute();
 // Si la ruta es solo /proyectos, categoriaActual será una cadena vacía ""
-const categoriaActual = computed(() => route.params.categoria || '')
+const categoriaActual = computed(() => route.params.categoria || "");
 
-// Carga dinámica de proyectos según el idioma actual
-const archivosProyectos = import.meta.glob('@/data/proyectos/*.json', {
-  eager: true,
-  import: 'default',
-})
+const showBreadcrumbs = computed(() => route.name !== "home");
 
-// Obtener todos los proyectos del idioma actual
-const todosLosProyectos = computed(() => {
-  const idioma = store.lang || 'es'
-  const archivo = archivosProyectos[`/src/data/proyectos/${idioma}.json`]
-  return archivo?.proyectos ?? []
-})
+
+const data = currentProyectos();
+
 
 // Extraer categorías únicas de forma dinámica desde los datos
-const categoriasDisponibles = computed(() => {
-  const cats = todosLosProyectos.value.map((p) => p.tipo).filter(Boolean)
-  return [...new Set(cats)] // Elimina duplicados
-})
+const categoriasDisponibles = computed(() => [...new Set(data.value.proyectos.map(p => p.tipo))]);
 
 // Filtrar proyectos según si hay una categoría seleccionada en la URL o no
 const proyectosFiltrados = computed(() => {
   if (!categoriaActual.value) {
-    return todosLosProyectos.value // Si estamos en /proyectos, muestra todos
+    return data.value.proyectos; // Si estamos en /proyectos, muestra todos
   }
-  return todosLosProyectos.value.filter(
+  return data.value.proyectos.filter(
     (p) => p.tipo.toLowerCase() === categoriaActual.value.toLowerCase(),
-  )
-})
+  );
+});
+
+const {
+  experiencia,
+  cantidadProyectos,
+  metrosPorCategoria,
+  metrosTotales,
+  ciudades,
+  cantidadCiudades,
+  stats,
+} = useInhabiMetrics(data);
+
+
+const values = computed(() => [
+  `+${experiencia.value} años`,
+  `${metrosTotales.value.toLocaleString()} <span style="color:var(--ink-soft-accent); font-size:.75em">m<sup>2</sup></span>`,
+  cantidadProyectos.value,
+  cantidadCiudades.value,
+]);
+
+const labels = ["Cumpliendo", "Intervenidos", "Proyectos", "Ciudades"];
+
 
 // SEO para HOME
-import { useHead } from '@vueuse/head'
-import { seo } from '@/data/dataSeo.js'
+import { usePageSeo } from "@/composables/usePageSeo.js";
 
-useHead(seo)
+usePageSeo({
+  title: "Inhabi - Proyectos",
+  description:
+    "Nuestros clientes confirman nuestra calidad, revisa cada uno de nuestrso trabajos para que veas con tus ojos los sueños cumplidos de los que confiaron en nosotros",
+  image: "inhabi-proyectos.jpg",
+}); // ← toma title/description/image de route.meta
 </script>
 
 <template>
   <div class="projects-page">
     <!-- Header temático -->
-    <header class="page-nav">
-      <router-link to="/" class="brand">
-        <LogoComponent class="brand-logo" icon text />
-      </router-link>
-
-      <div class="nav-actions">
-        <router-link to="/#proyectos" class="nav-btn-back">← Volver</router-link>
-        <router-link to="/cotiza" class="nav-cta">{{ t.nav.cotizar }}</router-link>
-      </div>
-    </header>
+    <AppNavClean cotizar />
 
     <!-- Contenido principal -->
-    <main class="container sec">
+    <main class="section">
+      <AppBreadcrumbs v-if="showBreadcrumbs" class="breads" />
       <div class="head">
         <span class="eyebrow">
           {{ t.nav.proyectos }}
-          <span v-if="categoriaActual">/ {{ categoriaActual.toUpperCase() }}</span>
         </span>
         <h1 class="title">Arquitectura que genera valor.</h1>
       </div>
 
+      <AppMetrics class="section__metrics" :values="values" :labels="labels"/>
       <!-- Barra de botones de filtro dinámicos -->
-      <div class="filter-bar mt-48">
-        <router-link to="/proyectos" class="filter-btn" :class="{ active: !categoriaActual }">
+      <div class="filter-bar">
+        <router-link to="/proyectos" class="btn btn__small" :class="{ active: !categoriaActual }">
           Todos
         </router-link>
         <router-link
           v-for="cat in categoriasDisponibles"
           :key="cat"
           :to="`/proyectos/${cat.toLowerCase()}`"
-          class="filter-btn"
-          :class="{ active: categoriaActual.toLowerCase() === cat.toLowerCase() }"
+          class="btn btn__small btn__outline"
+          :class="{ btn__outline_light: categoriaActual.toLowerCase() === cat.toLowerCase() }"
         >
           {{ cat }}
         </router-link>
       </div>
 
-      <!-- Grid de proyectos filtrados -->
-      <div class="grid-proyectos mt-32">
-        <router-link
-          v-for="(p, index) in proyectosFiltrados"
-          :key="p.slug"
-          :to="`/proyectos/${p.tipo.toLowerCase()}/${p.titulo}`"
+      <div class="grid-proyectos">
+        <HeroCard
           class="card-project"
-        >
-          <div class="card__media">
-            <img :src="IMG(p.imagenes[0])" :alt="p.titulo" loading="lazy" />
-            <span class="card__num">0{{ index + 1 }}</span>
-          </div>
-          <div class="card-meta">
-            <h3 class="card-title">{{ p.titulo }}</h3>
-            <span class="card-arrow">Ver proyecto →</span>
-          </div>
-        </router-link>
+          v-for="(p, index) in proyectosFiltrados"
+          :key="index"
+          :image="p.imagenes[0]"
+          :title="p.titulo"
+          :link="`/proyectos/${p.tipo.toLowerCase()}/${p.titulo}`"
+          labelLink="VER PROYECTO"
+          :tag="p.tipo"
+        />
       </div>
 
       <!-- Estado vacío -->
@@ -108,6 +115,7 @@ useHead(seo)
         <p>No hay proyectos disponibles en esta categoría actualmente.</p>
       </div>
     </main>
+    <ContactButton :message="encodeURIComponent(t.hola)" />
   </div>
 </template>
 
@@ -116,69 +124,25 @@ useHead(seo)
   background: var(--ink, #12110e);
   color: var(--cream, #f3f0e9);
   min-height: 100vh;
-}
-.page-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 60;
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem clamp(20px, 4vw, 56px);
-  background: rgba(18, 17, 14, 0.88);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(243, 240, 233, 0.1);
-}
-.brand-logo {
-  height: 1.5rem;
-  width: auto;
-  display: block;
-}
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.nav-btn-back {
-  font:
-    500 11px/1 'IBM Plex Mono',
-    monospace;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #f3f0e9;
-  text-decoration: none;
-  opacity: 0.8;
-  transition: opacity 0.2s;
-}
-.nav-btn-back:hover {
-  opacity: 1;
-}
-.nav-cta {
-  background: #f3f0e9;
-  color: #12110e;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font:
-    500 11px/1 'IBM Plex Mono',
-    monospace;
-  letter-spacing: 0.14em;
-  text-decoration: none;
-  transition: background 0.25s;
-}
-.nav-cta:hover {
-  background: var(--sage, #cdd2c0);
+  flex-direction: column;
 }
 
-.sec {
-  padding: clamp(120px, 14vw, 160px) clamp(20px, 4vw, 56px) 80px;
-  max-width: 1400px;
+.section {
+  padding: 1rem clamp(20px, 4vw, 56px) 80px;
   margin: 0 auto;
+  flex: 1;
+  width: 100%;
 }
+
+.section__metrics{
+  margin: 2rem 0 0 0;
+}
+
 .eyebrow {
   font:
-    500 11px/1 'IBM Plex Mono',
+    500 11px/1 "IBM Plex Mono",
     monospace;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -186,65 +150,34 @@ useHead(seo)
   display: block;
   margin-bottom: 16px;
 }
+
 .title {
-  font:
-    400 clamp(40px, 5.4vw, 88px)/0.95 'Instrument Serif',
-    serif;
+  font-size: clamp(40px, 5.4vw, 88px);
+  line-height: 1;
+  font-family: var(--font-cursive);
+  font-weight: 400;
   margin: 0;
 }
-.mt-48 {
-  margin-top: 48px;
-}
-.mt-32 {
-  margin-top: 32px;
-}
 
-/* Barra de botones de filtro */
 .filter-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-}
-.filter-btn {
-  background: rgba(243, 240, 233, 0.05);
-  border: 1px solid rgba(243, 240, 233, 0.15);
-  color: var(--cream);
-  padding: 8px 16px;
-  border-radius: 999px;
-  font:
-    500 11px/1 'IBM Plex Mono',
-    monospace;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-.filter-btn:hover {
-  border-color: var(--sage);
-  background: rgba(205, 210, 192, 0.1);
-}
-.filter-btn.active {
-  background: var(--cream);
-  color: var(--ink);
-  border-color: var(--cream);
+  gap: 0.5rem;
+  margin: 2rem 0;
 }
 
 .grid-proyectos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
-  gap: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-evenly;
 }
+
 .card-project {
-  text-decoration: none;
-  color: inherit;
-  display: grid;
-  gap: 16px;
-  background: #000;
-  border: 1px solid rgba(243, 240, 233, 0.12);
-  padding: 16px;
-  transition:
-    border-color 0.3s,
-    transform 0.3s;
+  transition: all 0.3s ease;
+  max-width: 30rem;
+  min-width: 20rem;
+  flex: 0 1 30rem;
 }
 .card-project:hover {
   border-color: var(--sage, #cdd2c0);
@@ -252,7 +185,7 @@ useHead(seo)
 }
 .card__media {
   position: relative;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
   overflow: hidden;
   background: #1b1a16;
 }
@@ -283,13 +216,13 @@ useHead(seo)
 }
 .card-title {
   font:
-    400 32px/1 'Instrument Serif',
+    400 32px/1 "Instrument Serif",
     serif;
   margin: 0;
 }
 .card-arrow {
   font:
-    500 10px/1 'IBM Plex Mono',
+    500 10px/1 "IBM Plex Mono",
     monospace;
   letter-spacing: 0.16em;
   color: var(--sage);

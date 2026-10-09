@@ -1,47 +1,62 @@
-import { fileURLToPath, URL } from "node:url";
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import vueDevTools from "vite-plugin-vue-devtools";
-import { VitePWA } from "vite-plugin-pwa";
-import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
-import { ViteSSG } from "vite-ssg";
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueDevTools from 'vite-plugin-vue-devtools';
+import { VitePWA } from 'vite-plugin-pwa';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import fs from 'node:fs';
+import path from 'node:path';
 
 export default defineConfig(({ command, mode }) => {
   const isGithub = mode === "github";
+
+  // ✅ Cargar SOLO es.json para generar las rutas (idioma prioritario)
+  const proyectosPath = path.resolve(import.meta.dirname, './src/data/proyectos');
+  const ARCHIVO_PRIORITARIO = 'es.json';
+  let rutasProyectos = [];
+
+  try {
+    const rutaArchivo = path.join(proyectosPath, ARCHIVO_PRIORITARIO);
+
+    if (fs.existsSync(rutaArchivo)) {
+      const contenido = JSON.parse(fs.readFileSync(rutaArchivo, 'utf-8'));
+      const proyectos = contenido.proyectos || [];
+
+      proyectos.forEach((p) => {
+        const categoria = p.tipo.toLowerCase();
+        rutasProyectos.push(`/proyectos/${categoria}/${p.titulo}`);
+      });
+
+      console.log(`[SSG] ${rutasProyectos.length} rutas de proyectos generadas desde ${ARCHIVO_PRIORITARIO}`);
+    } else {
+      console.warn(`[SSG] No se encontró ${ARCHIVO_PRIORITARIO} en ${proyectosPath}`);
+    }
+  } catch (error) {
+    console.warn('[SSG] Error al cargar proyectos:', error.message);
+  }
+
   return {
     plugins: [
       vue(),
       vueDevTools(),
       ViteImageOptimizer({
-        /* Opciones por defecto (puedes ajustarlas según tus necesidades) */
-        png: {
-          quality: 80,
-        },
-        jpeg: {
-          quality: 80,
-        },
-        webp: {
-          quality: 80,
-        },
-        avif: {
-          quality: 70,
-        },
+        png: { quality: 80 },
+        jpeg: { quality: 80 },
+        webp: { quality: 80 },
+        avif: { quality: 70 },
         svg: {
           multipass: true,
           plugins: [
             {
               name: "preset-default",
               params: {
-                overrides: {
-                  cleanupIds: false, // Evita romper IDs de SVGs si usas animaciones/gradientes
-                },
+                overrides: { cleanupIds: false },
               },
             },
           ],
         },
-        // Procesa tanto los archivos de la carpeta /src/assets como de la carpeta /public
         includePublic: true,
-        logStats: true, // Muestra en consola cuánto peso se redujo por imagen
+        logStats: true,
       }),
       VitePWA({
         registerType: "autoUpdate",
@@ -55,16 +70,8 @@ export default defineConfig(({ command, mode }) => {
           background_color: "#12110e",
           display: "standalone",
           icons: [
-            {
-              src: "android-chrome-192x192.png",
-              sizes: "192x192",
-              type: "image/png",
-            },
-            {
-              src: "android-chrome-512x512.png",
-              sizes: "512x512",
-              type: "image/png",
-            },
+            { src: "android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+            { src: "android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
           ],
         },
       }),
@@ -74,7 +81,6 @@ export default defineConfig(({ command, mode }) => {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
     },
-    // <--- Dinámico: Si es para GitHub Pages usa '/inhabi.co/', de lo contrario '/' para Cloudflare
     base: isGithub ? "/inhabi.co/" : "/",
     build: {
       emptyOutDir: true,
@@ -82,16 +88,23 @@ export default defineConfig(({ command, mode }) => {
     ssgOptions: {
       script: "async",
       formatting: "minify",
-      includedRoutes(paths) {
-        return [
+      includedRoutes() {
+        const rutasEstaticas = [
           "/",
-          "/index.html",
+          "/system-design",
           "/cotiza",
           "/proyectos",
           "/proyectos/vivienda",
           "/proyectos/comercial",
           "/proyectos/institucional",
+          "/servicios",
+          "/servicios/diseño",
+          "/servicios/remodelacion",
+          "/servicios/contruccion",
+          "/servicios/integral",
         ];
+
+        return [...rutasEstaticas, ...rutasProyectos];
       },
     },
   };

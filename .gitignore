@@ -45,6 +45,8 @@ playwright-report/
 
 # Archivos de desarrollo
 dist/
+python/
+backup_imagenes/
 .editorconfig
 .env
 .env.*

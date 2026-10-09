@@ -5,14 +5,14 @@ const es = import("@/data/langs/es.json");
 export const WA = "573227276453";
 
 const URLS_POR_MODO = {
-  development: '',
+  development: "/",
   github: "https://devem-software.github.io/inhabi.co/",
   cloudflare: "https://inhabi-co.pages.dev/",
-  // Puedes agregar más aquí en el futuro
+  production: "https://inhabi.co/", // ⚠️ AGREGUE ESTA LÍNEA con su dominio real
 };
 
 export const siteUrl = () => {
-  return URLS_POR_MODO[import.meta.env.MODE]
+  return URLS_POR_MODO[import.meta.env.MODE];
 };
 
 /* ---------- Resolución de imágenes y assets ---------- */
@@ -36,6 +36,13 @@ const SERVICIOS_MODULES = import.meta.glob("@/data/servicios/**/*.json", {
   eager: true,
   import: "default",
 });
+
+const PROYECTOS_MODULES = import.meta.glob("@/data/proyectos/**/*.json", {
+  eager: true,
+  import: "default",
+})
+
+console.log(PROYECTOS_MODULES)
 
 function resolve(modules, prefix, name) {
   // Siempre unimos el prefijo base con la ruta/nombre que ingreses
@@ -67,7 +74,6 @@ function resolve(modules, prefix, name) {
 /** Imagen dentro de src/img/  →  IMG('r44-157') o IMG('r02-equipo.png') */
 export const IMG = (name) => {
   const resolved = resolve(IMG_MODULES, "../img", name);
-  console.log(resolved);
   return resolved;
 };
 
@@ -126,17 +132,17 @@ export const TIPO_PROYECTO = {
     vivienda: {
       id: "vivienda",
       label: "Residential",
-      description: "Residential project",
+      description: "Warmth, comfort",
     },
     comercial: {
       id: "comercial",
       label: "Commercial",
-      description: "Commercial project",
+      description: "Presence, ambiance",
     },
     institucional: {
       id: "institucional",
       label: "Institutional",
-      description: "Institutional project",
+      description: "Elegance, professionalism",
     },
   },
 };
@@ -300,11 +306,12 @@ export const T = {
       estilos: "Estilos",
       config: "Configurador",
       proyectos: "Proyectos",
-      cotizar: "Cotizar",
+      cotizar: "Inicia tu proyecto",
       agendar: "Agendar",
       estudio: "Nosotros",
       servicios: "Servicios",
       inicio: "Inicio",
+      return:"Volver"
     },
     hero: {
       eyebrow: "Arquitectura e interiorismo · Bogotá",
@@ -327,7 +334,7 @@ export const T = {
     },
     servicios: {
       eyebrow: "Servicios",
-      title: "Lo que hacemos",
+      title: "Lo que amamos hacer",
       sub: "Cuatro líneas de trabajo, un mismo estándar de diseño y ejecución.",
       cta: "Cotizar este servicio",
     },
@@ -413,7 +420,8 @@ export const T = {
       pick: "Elige día y hora",
       confirm: "Confirmar",
       okT: "Cita solicitada.",
-      okWa: "Confirmar por WhatsApp",
+      okWa: "Comunicate por WhatsApp",
+      trustLine: "Ellos ha depositado su confianza en nosotros",
     },
     foot: { eyebrow: "¡Trabajemos juntos!", tag: "Arquitectura · Interiorismo · Remodelación" },
     hola: "Hola Inhabi, quiero información sobre sus remodelaciones.",
@@ -424,11 +432,12 @@ export const T = {
       estilos: "Styles",
       config: "Configurator",
       proyectos: "Projects",
-      cotizar: "Quote",
+      cotizar: "Start your project",
       agendar: "Book",
       estudio: "About us",
       servicios: "Services",
       inicio: "Home",
+      return:"Return"
     },
     hero: {
       eyebrow: "Architecture & interior design · Bogotá",
@@ -451,9 +460,9 @@ export const T = {
     },
     servicios: {
       eyebrow: "Services",
-      title: "Lo que hacemos",
-      sub: "Cuatro líneas de trabajo, un mismo estándar de diseño y ejecución.",
-      cta: "Cotizar este servicio",
+      title: "What we love to do",
+      sub: "Four ways of working, one same care for design and execution.",
+      cta: "Get a quote for this service",
     },
     combos: {
       eyebrow: "Select",
@@ -537,7 +546,8 @@ export const T = {
       pick: "Select day and time",
       confirm: "Confirm",
       okT: "Meeting requested.",
-      okWa: "Confirm on WhatsApp",
+      okWa: "Get in touch on WhatsApp",
+      trustLine: "They have placed their trust in us",
     },
     foot: { eyebrow: "Let’s work together", tag: "Architecture · Interiors · Renovation" },
     hola: "Hi Inhabi, I’d like information about your renovations.",
@@ -588,10 +598,18 @@ export const currentImgs = computed(() => R[store.style][store.combo]);
 export const currentLabel = computed(
   () => `${currentCombo.value[store.lang].name} · ${currentStyle.value[store.lang].name}`,
 );
+
 export const currentServicios = computed(() => {
   const archivo = SERVICIOS_MODULES[`/src/data/servicios/${store.lang || "es"}.json`];
   return archivo?.servicios ?? [];
 });
+
+export const currentProyectos = (categoria = null) => computed(() => {
+  let service = (categoria !== null) ? `/${categoria}` : ''
+  const archivo = PROYECTOS_MODULES[`/src/data/proyectos${service}/${store.lang || "es"}.json`]
+  return archivo ?? [];
+})
+
 
 export const currentTipo = computed(() => TIPO_PROYECTO[store.lang]);
 

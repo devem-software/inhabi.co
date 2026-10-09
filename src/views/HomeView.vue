@@ -1,24 +1,16 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { store, T, WA, siteUrl, LOGOS } from '@/composables/useInhabiStore'
+import { store, t, WA, LOGOS } from '@/composables/useInhabiStore'
 
 import IntroLoader from '@/components/IntroLoader.vue'
 import AppNav from '@/components/AppNav.vue'
 import HeroCinematic from '@/components/HeroCinematic.vue'
-import HeroEditorial from '@/components/HeroEditorial.vue'
 import EstudioSection from '@/components/EstudioSection.vue'
 import ProyectosSection from '@/components/ProyectosSection.vue'
 import ServiciosSection from '@/components/ServiciosSection.vue'
 import AppFooter from '@/components/AppFooter.vue'
-// import CombosSection from "@/components/CombosSection.vue";
-// import EstilosSection from "@/components/EstilosSection.vue";
-// import ConfiguradorSection from "@/components/ConfiguradorSection.vue";
-// import ComparadorSection from "@/components/ComparadorSection.vue";
-// import RecibeSection from "@/components/RecibeSection.vue";
-// import CotizarSection from "@/components/CotizarSection.vue";
-// import AgendaSection from "@/components/AgendaSection.vue";
-// import CotizadorSection from "@/components/CotizadorSection.vue";
 import MarqueeSection from '@/components/MarqueeSection.vue'
+import ContactButton from '@/components/atoms/ContactButton.vue'
 
 /* ── Editor props equivalentes ───────────────────────── */
 const introMode = 'Cada carga' // 'Cada carga' | 'Desactivada'
@@ -31,21 +23,23 @@ const heroDelay = computed(() => (showIntro.value ? '2.65s' : '0s'))
 /* ── Scroll del nav ──────────────────────────────────── */
 const scrolled = ref(false)
 const onScroll = () => {
-  scrolled.value = window.scrollY > 60
+  scrolled.value = window.scrollY > 120
 }
 onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true })
   onScroll()
 })
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
+console.log()
 
-const waHello = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(T[store.lang].hola)}`)
+const waHello = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(t.value.hola)}`)
 
 // SEO para HOME
-import { useHead } from '@vueuse/head'
-import { seo } from '@/data/dataSeo.js'
+import { usePageSeo } from '@/composables/usePageSeo.js';
 
-useHead(seo)
+usePageSeo({
+  title:"Inhabi.co"
+}); // ← toma title/description/image de route.meta
 </script>
 
 <template>
@@ -61,16 +55,8 @@ useHead(seo)
 
     <ServiciosSection />
     <EstudioSection />
-    <!-- <CombosSection />   -->
-    <!-- <EstilosSection />   -->
-    <!-- <ComparadorSection /> -->
-    <!-- <RecibeSection /> -->
-    <!-- <CotizarSection /> -->
-    <!-- <AgendaSection /> -->
     <AppFooter />
 
-    <a :href="waHello" target="_blank" rel="noopener" aria-label="WhatsApp" class="wa-float"
-      >WhatsApp</a
-    >
+    <ContactButton :message="waHello"/>
   </div>
 </template>

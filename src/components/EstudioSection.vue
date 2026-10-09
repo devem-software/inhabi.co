@@ -13,7 +13,7 @@ import { t } from '@/composables/useInhabiStore'
       </div>
 
       <div class="photo">
-        <img v-parallax="-0.08" src="@/img/r02-equipo.png" alt="Equipo Inhabi en obra" />
+        <img v-parallax="-0.1" src="@/img/r02-equipo.png" alt="Equipo Inhabi en obra" />
       </div>
     </div>
   </section>
@@ -63,16 +63,16 @@ import { t } from '@/composables/useInhabiStore'
 }
 .photo {
   position: relative;
-  aspect-ratio: 4/5;
+  aspect-ratio: 4/4;
   max-height: 80vh;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
 }
 .photo img {
   position: absolute;
   inset: -6% 0;
   width: 100%;
-  height: 112%;
+  height: 125%;
   object-fit: cover;
 }
 </style>

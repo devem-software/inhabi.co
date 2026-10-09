@@ -1,16 +1,14 @@
 import { ViteSSG } from "vite-ssg";
-import { createHead } from "@vueuse/head";
-
 import App from "./App.vue";
+// import { createHead } from "@unhead/vue/client";
 import { routes } from "./router";
-
-import "@/styles/global.css";
-import "@/styles/system-design.css";
-
 import { reveal } from "./directives/reveal";
 import { parallax } from "./directives/parallax";
-
 import { seo } from "@/data/dataSeo.js";
+
+import '@/styles/app.scss';
+import "@/styles/global.css";
+import "@/styles/system-design.css";
 
 export const createApp = ViteSSG(
   App,
@@ -26,10 +24,7 @@ export const createApp = ViteSSG(
       return { top: 0 };
     },
   },
-
-  ({ app, head, isClient }) => {
-    app.use(createHead());
-    head.push(seo);
+  ({ app, router, routes, isClient, initialState, head }) => {
 
     app.directive("reveal", reveal);
     app.directive("parallax", parallax);

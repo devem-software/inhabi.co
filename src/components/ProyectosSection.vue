@@ -20,7 +20,7 @@ import HeroCard from '@/components/HeroCard.vue'
           :to="`/proyectos/${index}`"
           class="project-link-wrapper"
         >
-          <HeroCard :image="p.id" :title="p.label" :description="p.description" />
+          <HeroCard :image="'/' + p.id" :title="p.label" :description="p.description" />
         </router-link>
       </div>
     </div>

@@ -1,0 +1,5 @@
+@mixin movil {
+  @media (min-width: 42rem) {
+    @content;
+  }
+}

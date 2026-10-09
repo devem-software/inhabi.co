@@ -1,0 +1,43 @@
+:root {
+  --border-radius: 0.5rem;
+  --dark: #12110e;
+  --dark-soft: #1b1a16;
+  --dark-hover: #2b2a24;
+
+  --light: #f3f0e9;
+  --light-accent: #d1d6c5;
+
+  --ink-muted: #4d493f;
+  --ink-soft: #6d675c;
+  --ink-accent: #6f7a5f;
+  --ink-soft-accent: #8f8c80;
+
+  --bg-button: #cdd2c0;
+  --bg-whatsapp: #25d366;
+  --bg-accent-whatsapp: color-mix(in srgb, var(--light) 80%, var(--bg-whatsapp));
+
+  --font-classic: "Quicksand", serif;
+  --font-cursive: "Instrument Serif";
+  --font-mono: "IBM Plex Mono";
+}
+
+html,
+body {
+  font-size: 16px;
+  margin: 0;
+  background: var(--dark);
+  color: var(--light);
+  font-family: var(--font-classic), system-ui, sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+
+.brand-logo {
+  height: 1rem;
+  width: auto;
+  display: block;
+  @media (min-width: 42rem) {
+    height: 1.5rem;
+  }
+}
+

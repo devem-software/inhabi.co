@@ -1,8 +1,6 @@
 <script setup>
-import { computed, onMounted, onBeforeUnmount, ref, watch, nextTick } from 'vue'
-import { IMG } from '@/composables/useInhabiStore'
-
-console.log(import.meta.env.MODE)
+import { computed } from 'vue'
+import { t,IMG } from '@/composables/useInhabiStore'
 
 
 const props = defineProps({
@@ -55,7 +53,7 @@ const rootStyle = computed(() => ({
 
 <template>
   <div v-if="items.length" class="marquee-section" :style="rootStyle">
-    <div class="marquee-title">Ellos ha depositado su confianza en nosotros</div>
+    <div class="marquee-title">{{t.ag.trustLine}}</div>
     <div
       class="marquee"
       :class="{ 'is-accessible': '' }"

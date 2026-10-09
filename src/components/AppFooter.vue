@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { WA, t, store } from '../composables/useInhabiStore'
+import { WA, t } from '../composables/useInhabiStore'
 import LogoComponent from './LogoComponent.vue'
 
 const waHello = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(t.value.hola)}`)
@@ -42,7 +42,7 @@ const waHello = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(t.
 
       <!-- Línea inferior -->
       <div class="bottom">
-        <span>© 2026 Inhabi.co</span>
+        <span>© {{ new Date().getFullYear()}} Inhabi.co</span>
         <span>{{ t.foot.tag }}</span>
       </div>
     </div>
@@ -55,6 +55,7 @@ const waHello = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(t.
   overflow: hidden;
   background: #12110e;
   padding: clamp(80px, 12vw, 160px) clamp(20px, 4vw, 56px) 36px;
+  padding-bottom:5rem;
 }
 .bg {
   position: absolute;

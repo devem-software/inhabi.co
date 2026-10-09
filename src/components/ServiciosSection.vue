@@ -1,10 +1,10 @@
 <script setup>
-import { computed } from 'vue'
-import { t, IMG, currentServicios } from '@/composables/useInhabiStore'
+import { computed } from "vue";
+import { t, IMG, currentServicios } from "@/composables/useInhabiStore";
 
 const serviciosList = computed(() => {
-  return currentServicios.value
-})
+  return currentServicios.value;
+});
 </script>
 
 <template>
@@ -15,6 +15,7 @@ const serviciosList = computed(() => {
         <div class="head-left">
           <div class="eyebrow">{{ t.servicios.eyebrow }}</div>
           <h2 class="title">{{ t.servicios.title }}</h2>
+          <div class="sub">{{ t.servicios.sub }}</div>
         </div>
       </header>
 
@@ -24,7 +25,6 @@ const serviciosList = computed(() => {
           <!-- Imagen -->
           <div class="card__media servicio-card__media">
             <img :src="IMG(`/servicios/${s.img}`)" :alt="s.title" loading="lazy" />
-            <span class="servicio-card__num">{{ s.n }}</span>
           </div>
 
           <!-- Cuerpo -->
@@ -42,6 +42,9 @@ const serviciosList = computed(() => {
                 {{ item }}
               </li>
             </ul>
+            <router-link v-if="s.link" :to="`/servicios/${s.id}`" class="btn btn__light btn__big" target="__blank"
+              > {{s.link}}</router-link
+            >
           </div>
         </article>
       </div>
@@ -75,7 +78,7 @@ const serviciosList = computed(() => {
 }
 .eyebrow {
   font:
-    500 11px/1 'IBM Plex Mono',
+    500 11px/1 "IBM Plex Mono",
     monospace;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -84,7 +87,7 @@ const serviciosList = computed(() => {
 .title {
   margin: 0;
   font:
-    400 clamp(40px, 5.4vw, 88px)/0.95 'Instrument Serif',
+    400 clamp(40px, 5.4vw, 88px)/0.95 "Instrument Serif",
     serif;
   letter-spacing: -0.01em;
   max-width: 16ch;
@@ -101,7 +104,7 @@ const serviciosList = computed(() => {
   padding: 12px 20px;
   border-radius: 999px;
   font:
-    500 11px/1 'IBM Plex Mono',
+    500 11px/1 "IBM Plex Mono",
     monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -161,16 +164,14 @@ const serviciosList = computed(() => {
     border-color var(--t-base) var(--ease),
     transform var(--t-slow) var(--ease);
   overflow: hidden;
-  background: var(--ink-soft, #1b1a16);
-  border-radius: 0.5rem;
-  border: 1px solid var(--border-dark-1, rgba(243, 240, 233, 0.12));
-  transition:
-    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--dark);
+  border-radius: 1em;
+  border: 1px solid var(--dark-hover);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .servicio-card:hover {
   border-color: var(--sage);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 /* Imagen */
@@ -190,25 +191,21 @@ const serviciosList = computed(() => {
   transition: transform 0.2s var(--ease);
 }
 .servicio-card:hover .servicio-card__media img {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 /* Número sobre la imagen */
-.servicio-card__num {
+.servicio-card__link {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  padding: 6px 10px;
-  background: rgba(18, 17, 14, 0.72);
-  color: var(--cream);
-  font: 500 11px/1 var(--font-mono);
+  bottom: 1rem;
+  right: 1rem;
   letter-spacing: 0.16em;
-  border-radius: 4px;
 }
 
 /* Cuerpo */
 .servicio-card__body {
-  display: grid;
+  display: flex;
+  flex-direction:column;
   gap: 14px;
   padding: 24px;
   border-top: 1px solid var(--border-dark-1);
@@ -224,7 +221,17 @@ const serviciosList = computed(() => {
 
 .servicio-card .card__title {
   font: 400 40px/1 var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 500;
+  font-family: var(--font-cursive);
   margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  .btn {
+    font-size: initial;
+  }
 }
 
 .servicio-card .card__kw {
@@ -250,6 +257,7 @@ const serviciosList = computed(() => {
   gap: 8px;
   border-top: 1px solid var(--border-dark-1);
   padding-top: 16px;
+  margin-bottom: auto;
 }
 .servicio-card__list li {
   display: flex;
