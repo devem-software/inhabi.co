@@ -55,7 +55,6 @@ export default defineConfig(({ command, mode }) => {
       console.warn(`[SSG] No se encontró ${ARCHIVO_PRIORITARIO} en ${proyectosPath}`);
     }
     rutas = [...rutasEstaticas, ...rutasProyectos];
-    console.log("ESTAS SON LAS RUTAS",  rutas)
   } catch (error) {
     console.warn("[SSG] Error al cargar proyectos:", error.message);
   }
