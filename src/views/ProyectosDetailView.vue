@@ -6,7 +6,7 @@ import AppNavClean from "@/components/AppNavClean.vue";
 import AppBreadcrumbs from "@/components/AppBreadcrumbs.vue";
 import ContactButton from "@/components/atoms/ContactButton.vue";
 import { usePageSeo } from "@/composables/usePageSeo.js";
-import {useUtilSlug} from '@/composables/useInhabiUtils.js'
+import { useUtilSlug } from "@/composables/useInhabiUtils.js";
 
 const route = useRoute();
 const categoria = computed(() => route.params.categoria);
@@ -24,7 +24,6 @@ const archivosProyectos = import.meta.glob("@/data/proyectos/*.json", {
 const proyecto = computed(() => {
   const idioma = store.lang || "es";
 
-
   // Intentar con diferentes formatos de clave
   const archivo =
     archivosProyectos[`/src/data/proyectos/${idioma}.json`] ||
@@ -32,13 +31,10 @@ const proyecto = computed(() => {
     archivosProyectos[`@/data/proyectos/${idioma}.json`] ||
     Object.values(archivosProyectos).find((v) => v?.proyectos); // Fallback: buscar cualquier archivo válido
 
-
   if (!archivo?.proyectos) {
-    console.error('[ProyectosDetailView] No se encontró el archivo JSON o no tiene proyectos');
+    console.error("[ProyectosDetailView] No se encontró el archivo JSON o no tiene proyectos");
     return null;
   }
-
-
 });
 
 // 3. SEO Reactivo y Seguro (Sin acceder a .value prematuramente)
@@ -60,11 +56,14 @@ usePageSeo({
   url: computed(() =>
     `/proyectos/${categoria.value || ""}/${useUtilSlug(proyectoSlug.value)}`.replace(/\/+/g, "/"),
   ),
-  review: () => ({
-    body: proyecto.value.resena,
-    author: proyecto.value.cliente,
-    rating: 5
-  })
+  review: computed(() => {
+    if (!proyecto.value) return null;
+    return {
+      body: proyecto.value.resena,
+      author: proyecto.value.cliente,
+      rating: 5,
+    };
+  }),
 });
 
 // --- LÓGICA DEL CARRUSEL ---
