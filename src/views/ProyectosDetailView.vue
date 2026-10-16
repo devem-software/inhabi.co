@@ -21,60 +21,24 @@ const archivosProyectos = import.meta.glob("@/data/proyectos/*.json", {
 });
 
 // 2. Computed robusto para encontrar el proyecto
-// 2. Computed robusto para encontrar el proyecto
 const proyecto = computed(() => {
   const idioma = store.lang || "es";
-  
-  // Debug: Ver todas las claves disponibles
-  console.log('[ProyectosDetailView] Claves disponibles:', Object.keys(archivosProyectos));
-  console.log('[ProyectosDetailView] Buscando archivo:', `/src/data/proyectos/${idioma}.json`);
-  
+
+
   // Intentar con diferentes formatos de clave
-  const archivo = 
+  const archivo =
     archivosProyectos[`/src/data/proyectos/${idioma}.json`] ||
     archivosProyectos[`./src/data/proyectos/${idioma}.json`] ||
     archivosProyectos[`@/data/proyectos/${idioma}.json`] ||
     Object.values(archivosProyectos).find((v) => v?.proyectos); // Fallback: buscar cualquier archivo válido
 
-  console.log('[ProyectosDetailView] Archivo cargado:', archivo);
-  console.log('[ProyectosDetailView] Categoría URL:', categoria.value);
-  console.log('[ProyectosDetailView] Slug URL:', proyectoSlug.value);
 
   if (!archivo?.proyectos) {
     console.error('[ProyectosDetailView] No se encontró el archivo JSON o no tiene proyectos');
     return null;
   }
 
-  // Debug: Ver todos los proyectos disponibles
-  console.log('[ProyectosDetailView] Proyectos disponibles:', archivo.proyectos.map(p => ({
-    titulo: p.titulo,
-    slug: useUtilSlug(p.titulo),
-    tipo: p.tipo,
-    tipoLower: p.tipo?.toLowerCase()
-  })));
 
-  // Búsqueda mejorada
-  const encontrado = archivo.proyectos.find((p) => {
-    const slugCalculado = useUtilSlug(p.titulo);
-    const tipoCalculado = p.tipo?.toLowerCase();
-    const slugBuscado = proyectoSlug.value;
-    const categoriaBuscada = categoria.value?.toLowerCase();
-    
-    console.log(`[ProyectosDetailView] Comparando:`, {
-      titulo: p.titulo,
-      slugCalculado,
-      slugBuscado,
-      matchSlug: slugCalculado === slugBuscado,
-      tipoCalculado,
-      categoriaBuscada,
-      matchTipo: tipoCalculado === categoriaBuscada
-    });
-    
-    return slugCalculado === slugBuscado && tipoCalculado === categoriaBuscada;
-  });
-
-  console.log('[ProyectosDetailView] Proyecto encontrado:', encontrado);
-  return encontrado || null;
 });
 
 // 3. SEO Reactivo y Seguro (Sin acceder a .value prematuramente)
@@ -86,7 +50,7 @@ usePageSeo({
   ),
   description: computed(() =>
     proyecto.value
-      ? `Conoce ${proyecto.value.titulo}, un proyecto de ${proyecto.value.intervencion || "diseño"} de Inhabi.`
+      ? `${proyecto.value.titulo.toUpperCase()} | ${proyecto.value.intervencion || "diseño"} de Inhabi,`
       : "Detalle del proyecto de remodelación e interiorismo.",
   ),
   // 🔑 Clave: Optional chaining (?.) para evitar el error si proyecto es null
@@ -96,6 +60,11 @@ usePageSeo({
   url: computed(() =>
     `/proyectos/${categoria.value || ""}/${useUtilSlug(proyectoSlug.value)}`.replace(/\/+/g, "/"),
   ),
+  review: () => ({
+    body: proyecto.value.resena,
+    author: proyecto.value.cliente,
+    rating: 5
+  })
 });
 
 // --- LÓGICA DEL CARRUSEL ---
