@@ -1,0 +1,44 @@
+/* TEAM */
+
+  Architectural Design & Direction: INHABI Arquitectura
+  Site: https://inhabi.co
+  Location: Bogotá D.C., Colombia
+  Contact: contacto@inhabi.co
+
+  Frontend Developer: devem-software
+  Twitter: @devem.software
+  GitHub: github.com/tu_usuario
+  Location: Bogotá D.C., Colombia
+
+
+/* THANKS */
+
+  Architectural Photographers:
+    - [Nombre del fotógrafo de proyectos]
+    - [Nombre de estudio de fotografía]
+
+  Special Thanks:
+    - Todo el equipo de diseño e ingenieros de obra de INHABI.
+    - A nuestros clientes por confiar en nuestra visión espacial.
+
+
+/* SITE */
+
+  Last update: 2026/10/13
+  Language: Spanish / English
+  Doctype: HTML5
+
+  Frontend Framework: Vue.js 3
+  Build Tool: Vite
+  Styling: Tailwind CSS / CSS3
+  Icons: Lucide Icons
+  Typography: Google Fonts ([Nombre de las fuentes usadas])
+
+  Design Tools: Figma, Rhino, AutoCAD, SketchUp
+  Editor / IDE: VS Code
+
+
+/* LEGAL & RIGHTS */
+
+  Copyright: © 2026 INHABI Arquitectura. Todos los derechos reservados.
+  Design & Architecture: Propiedad intelectual de INHABI.
