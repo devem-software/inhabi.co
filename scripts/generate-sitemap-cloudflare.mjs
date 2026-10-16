@@ -1,7 +1,8 @@
 import { mkdir, writeFile, readdir, readFile } from 'node:fs/promises'
 import { resolve, join } from 'node:path'
 
-const domain = 'https://inhabi-co.pages.dev'
+// const domain = 'https://inhabi-co.pages.dev'
+const domain = 'https://inhabi.co'
 // Detecta si se está compilando para GitHub Pages o para la raíz (puedes ajustarlo si usas variables de entorno)
 const base = '/'
 

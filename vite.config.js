@@ -92,8 +92,8 @@ export default defineConfig(({ command, mode }) => {
         manifest: {
           name: "Inhabi — Arquitectura e interiorismo",
           short_name: "Inhabi.co",
-          start_url: '/',
-          display:'standalone',
+          start_url: "/",
+          display: "standalone",
           description:
             "Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.",
           theme_color: "#12110e",
@@ -130,9 +130,18 @@ export default defineConfig(({ command, mode }) => {
       Sitemap({
         hostname: SITE_URL,
         readable: true, // Deja el archivo XML ordenado y fácil de leer
+        exclude: ['/admin', '/404'],
         changefreq: "weekly", // Le dice a Google que tu web cambia semanalmente
         priority: 0.8, // Prioridad estándar de indexación
         dynamicRoutes: rutas, // Añade rutas dinámicas si usas un CMS
+        robots: [
+          {
+            userAgent: "*",
+            allow: "/",
+            disallow: ["/admin"],
+            sitemap: `${SITE_URL}/sitemap.xml`,
+          },
+        ],
       }),
     ],
     resolve: {
@@ -147,7 +156,7 @@ export default defineConfig(({ command, mode }) => {
     ssgOptions: {
       script: "async",
       formatting: "minify",
-      includedRoutes:(path, routes) => rutas,
+      includedRoutes: (path, routes) => rutas,
     },
   };
 });

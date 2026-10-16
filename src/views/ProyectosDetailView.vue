@@ -59,6 +59,7 @@ usePageSeo({
       ? `Conoce el proyecto ${proyecto.value.titulo.toUpperCase()} (${proyecto.value.intervencion || 'Diseño e interiorismo'}). Un espacio transformado por Inhabi con altos estándares de calidad y acabados arquitectónicos en Bogotá.`
       : 'Explora nuestros proyectos de arquitectura, remodelación y diseño de interiores en Bogotá con Inhabi.',
   ),
+  type: 'CreativeWork',
   // 🔑 Clave: Optional chaining (?.) para evitar el error si proyecto es null
   image: computed(() =>
     proyecto.value?.imagenes?.[0] ? `${proyecto.value.imagenes[0]}.jpg` : 'inhabi-proyectos.jpg',
@@ -68,9 +69,10 @@ usePageSeo({
   ),
   review: computed(() => {
     return {
-      body: proyecto.value?.resena,
-      author: proyecto.value?.cliente,
       rating: 5,
+      author: proyecto.value?.cliente,
+      authorType: 'Organization',
+      body: proyecto.value?.resena,
     }
   }),
   // review: () => ({

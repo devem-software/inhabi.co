@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "build:gh": "node scripts/clean.mjs && vite-ssg build --mode github && node scripts/generate-sitemap.mjs",
-    "build:s": "node scripts/clean.mjs && vite-ssg build --mode cloudflare && node scripts/generate-sitemap-cloudflare.mjs",
+    "build:dev:gh": "node scripts/clean.mjs && vite-ssg build --mode github && node scripts/generate-sitemap.mjs",
+    "build:dev:s": "node scripts/clean.mjs && vite-ssg build --mode cloudflare && node scripts/generate-sitemap-cloudflare.mjs",
+    "build:gh": "node scripts/clean.mjs && vite-ssg build --mode github",
+    "build:s": "node scripts/clean.mjs && vite-ssg build --mode cloudflare",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:e2e": "playwright test",

@@ -9,9 +9,11 @@ export function usePageSeo({
   description,
   image,
   url,
-  type = 'website',
+  type = 'CreativeWork', // ✅ Por defecto usará CreativeWork en lugar de Product
   locale = 'es_CO',
   review = null,
+  creator = { name: 'Inhabi', url: 'https://inhabi.co' }, // ✅ Entidad creadora
+  about = null, // ✅ Permite vincular el cliente/entidad receptora (ej. Universidad Libre)
 } = {}) {
   const route = useRoute()
 
@@ -21,30 +23,49 @@ export function usePageSeo({
     return unref(val) ?? fallback
   }
 
+  // Resolver URLs absolutas de imágenes
+  const resolveImageUrl = () => {
+    const rawImage = getValue(image, route.meta.image)
+    if (!rawImage) return ''
+
+    const resolved = IMG(rawImage) || ASSET(rawImage)
+    const cleanBase = (siteUrl() || '').replace(/\/$/, '')
+
+    if (resolved) {
+      return /^https?:\/\//.test(resolved)
+        ? resolved
+        : `${cleanBase}${resolved.startsWith('/') ? '' : '/'}${resolved}`
+    }
+    return `${cleanBase}/${String(rawImage).replace(/^\//, '')}`
+  }
+
+  const resolvedUrl = () => {
+    const finalPath = getValue(url, route.fullPath) || '/'
+    const cleanBase = (siteUrl() || '').replace(/\/$/, '')
+    const cleanPath = finalPath.startsWith('/') ? finalPath : `/${finalPath}`
+    return `${cleanBase}${cleanPath}`
+  }
+
+  const resolvedTitle = () =>
+    getValue(title, route.meta.title) || 'Inhabi | Arquitectura, interiorismo y remodelación'
+
+  const resolvedDescription = () =>
+    getValue(description, route.meta.description) ||
+    'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.'
+
   useHead({
     // ✅ Título reactivo
-    title: () =>
-      getValue(title, route.meta.title) || 'Inhabi | Arquitectura, interiorismo y remodelación',
+    title: resolvedTitle,
 
     link: [
       {
         rel: 'canonical',
-        href: () => {
-          const finalPath = getValue(url, route.fullPath) || '/'
-          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
-          const cleanPath = finalPath.startsWith('/') ? finalPath : `/${finalPath}`
-          return `${cleanBase}${cleanPath}`
-        },
+        href: resolvedUrl,
       },
     ],
 
     meta: [
-      {
-        name: 'description',
-        content: () =>
-          getValue(description, route.meta.description) ||
-          'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.',
-      },
+      { name: 'description', content: resolvedDescription },
 
       // Open Graph Estáticos
       { property: 'og:type', content: type },
@@ -52,120 +73,79 @@ export function usePageSeo({
       { property: 'og:locale', content: locale },
 
       // Open Graph Reactivos
-      {
-        property: 'og:title',
-        content: () =>
-          getValue(title, route.meta.title) || 'Inhabi | Arquitectura, interiorismo y remodelación',
-      },
-      {
-        property: 'og:description',
-        content: () =>
-          getValue(description, route.meta.description) ||
-          'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.',
-      },
-      {
-        property: 'og:url',
-        content: () => {
-          const finalPath = getValue(url, route.fullPath) || '/'
-          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
-          const cleanPath = finalPath.startsWith('/') ? finalPath : `/${finalPath}`
-          return `${cleanBase}${cleanPath}`
-        },
-      },
-      {
-        property: 'og:image',
-        content: () => {
-          const rawImage = getValue(image, route.meta.image)
-          if (!rawImage) return ''
-
-          const resolved = IMG(rawImage) || ASSET(rawImage)
-          if (resolved) {
-            const cleanBase = (siteUrl() || '').replace(/\/$/, '')
-            return /^https?:\/\//.test(resolved)
-              ? resolved
-              : `${cleanBase}${resolved.startsWith('/') ? '' : '/'}${resolved}`
-          }
-          // Fallback
-          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
-          return `${cleanBase}/${String(rawImage).replace(/^\//, '')}`
-        },
-      },
-      {
-        property: 'og:image:secure_url',
-        content: () => {
-          // Reutilizamos la misma lógica de og:image para mantener consistencia
-          const rawImage = getValue(image, route.meta.image)
-          if (!rawImage) return ''
-          const resolved = IMG(rawImage) || ASSET(rawImage)
-          if (resolved) {
-            const cleanBase = (siteUrl() || '').replace(/\/$/, '')
-            return /^https?:\/\//.test(resolved)
-              ? resolved
-              : `${cleanBase}${resolved.startsWith('/') ? '' : '/'}${resolved}`
-          }
-          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
-          return `${cleanBase}/${String(rawImage).replace(/^\//, '')}`
-        },
-      },
+      { property: 'og:title', content: resolvedTitle },
+      { property: 'og:description', content: resolvedDescription },
+      { property: 'og:url', content: resolvedUrl },
+      { property: 'og:image', content: resolveImageUrl },
+      { property: 'og:image:secure_url', content: resolveImageUrl },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
 
       // Twitter
       { name: 'twitter:card', content: 'summary_large_image' },
-      {
-        name: 'twitter:title',
-        content: () =>
-          getValue(title, route.meta.title) || 'Inhabi | Arquitectura, interiorismo y remodelación',
-      },
-      {
-        name: 'twitter:description',
-        content: () =>
-          getValue(description, route.meta.description) ||
-          'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.',
-      },
-      {
-        name: 'twitter:image',
-        content: () => {
-          const rawImage = getValue(image, route.meta.image)
-          if (!rawImage) return ''
-          const resolved = IMG(rawImage) || ASSET(rawImage)
-          if (resolved) {
-            const cleanBase = (siteUrl() || '').replace(/\/$/, '')
-            return /^https?:\/\//.test(resolved)
-              ? resolved
-              : `${cleanBase}${resolved.startsWith('/') ? '' : '/'}${resolved}`
-          }
-          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
-          return `${cleanBase}/${String(rawImage).replace(/^\//, '')}`
-        },
-      },
+      { name: 'twitter:title', content: resolvedTitle },
+      { name: 'twitter:description', content: resolvedDescription },
+      { name: 'twitter:image', content: resolveImageUrl },
     ],
+
     script: () => {
+      const pageTitle = resolvedTitle()
+      const pageDescription = resolvedDescription()
       const activeReview = getValue(review, null)
-      if (!activeReview) return []
+      const activeCreator = getValue(creator, null)
+      const activeAbout = getValue(about, null)
+
+      // Construcción dinámica del objeto JSON-LD
+      const schemaData = {
+        '@context': 'https://schema.org',
+        '@type': getValue(type, 'CreativeWork'), // ✅ Permite 'CreativeWork', 'RealEstateListing', etc.
+        name: pageTitle,
+        description: pageDescription,
+        url: resolvedUrl(),
+      }
+
+      const imgUrl = resolveImageUrl()
+      if (imgUrl) {
+        schemaData.image = imgUrl
+      }
+
+      // ✅ Agregar creador (Inhabi)
+      if (activeCreator) {
+        schemaData.creator = {
+          '@type': 'Organization',
+          name: activeCreator.name || 'Inhabi',
+          url: activeCreator.url || 'https://inhabi.co',
+        }
+      }
+
+      // ✅ Agregar entidad/cliente evaluado si se especifica
+      if (activeAbout) {
+        schemaData.about = typeof activeAbout === 'string'
+          ? { '@type': 'Thing', name: activeAbout }
+          : activeAbout
+      }
+
+      // ✅ Agregar Review corrigiendo el tipo y autor
+      if (activeReview) {
+        schemaData.review = {
+          '@type': 'Review',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: String(activeReview.rating || '5'),
+            bestRating: '5',
+          },
+          author: {
+            '@type': activeReview.authorType || 'Person',
+            name: activeReview.author || 'Cliente Inhabi', // ✅ Nunca usará el título del proyecto
+          },
+          reviewBody: activeReview.body || '',
+        }
+      }
 
       return [
         {
           type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: getValue(title, route.meta.title) || 'Proyecto Inhabi',
-            description: getValue(description, route.meta.description) || '',
-            review: {
-              '@type': 'Review',
-              reviewRating: {
-                '@type': 'Rating',
-                ratingValue: activeReview.rating || '5',
-                bestRating: '5',
-              },
-              author: {
-                '@type': 'Person',
-                name: activeReview.author || 'Cliente Inhabi',
-              },
-              reviewBody: activeReview.body || '',
-            },
-          }),
+          innerHTML: JSON.stringify(schemaData),
         },
       ]
     },
