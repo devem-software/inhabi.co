@@ -15,7 +15,7 @@ function extraerCiudades(ubicacion) {
   if (!ubicacion) return []
 
   // Separar por "/" (caso "Socorro / Bogotá D.C.")
-  const partes = ubicacion.split('/').map(p => p.trim())
+  const partes = ubicacion.split('/').map((p) => p.trim())
   const ciudades = []
 
   for (const parte of partes) {
@@ -46,7 +46,7 @@ export function useInhabiMetrics(data) {
 
   // 3. Metros totales
   const metrosTotales = computed(() =>
-    proyectosRef.value.reduce((acc, p) => acc + sumarArea(p.area), 0)
+    proyectosRef.value.reduce((acc, p) => acc + sumarArea(p.area), 0),
   )
 
   // 4. Metros por categoría (agrupado por "tipo")

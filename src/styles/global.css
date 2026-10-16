@@ -6,7 +6,7 @@ body {
   background: #12110e;
   color: #f3f0e9;
   font-family: var(--font-classic), system-ui, sans-serif;
-  font-weight:300;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
 }
 * {
@@ -28,4 +28,3 @@ button {
 input[type='range'] {
   accent-color: #12110e;
 }
-

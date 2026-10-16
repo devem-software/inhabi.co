@@ -4,25 +4,24 @@
     target="_blank"
     rel="noopener"
     aria-label="WhatsApp"
-    class="btn btn__big btn__contact btn__float "
+    class="btn btn__big btn__contact btn__float"
     >{{ t.ag.okWa }}</a
   >
 </template>
 <script setup>
-import {t,WA} from '@/composables/useInhabiStore'
+import { t, WA } from '@/composables/useInhabiStore'
 defineProps({
   message: {
     type: String,
-    default:null
+    default: null,
   },
   phone: {
     type: Number,
-    default: null
-  }
+    default: null,
+  },
 })
 </script>
 <style scoped lang="scss">
-
 .btn__float {
   position: fixed;
   right: 1rem;

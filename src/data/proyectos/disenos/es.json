@@ -7,13 +7,7 @@
       "anos_experiencia": 10,
       "metros_cuadrados_disenados": 13760
     },
-    "ubicaciones": [
-      "Bogotá",
-      "Cartagena",
-      "Socorro",
-      "Boyacá",
-      "Tolima"
-    ]
+    "ubicaciones": ["Bogotá", "Cartagena", "Socorro", "Boyacá", "Tolima"]
   },
   "portafolio": [
     {

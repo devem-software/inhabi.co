@@ -26,83 +26,79 @@
         </span>
 
         <!-- Separador | (no se muestra en el último elemento) -->
-        <span v-if="index < breadcrumbs.length - 1" class="breadcrumbs__separator">
-          |
-        </span>
+        <span v-if="index < breadcrumbs.length - 1" class="breadcrumbs__separator"> | </span>
       </li>
     </ol>
   </nav>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
-const route = useRoute();
+const route = useRoute()
 
 // Función auxiliar para formatear texto (ej: "diseno-interior" -> "Diseno interior")
 const formatLabel = (str) => {
-  if (!str) return '';
-  return str
-    .replace(/-/g, ' ')
-    .replace(/\b\w/g, (char) => char.toUpperCase());
-};
+  if (!str) return ''
+  return str.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())
+}
 
 const breadcrumbs = computed(() => {
   // Siempre empezamos con Inicio
-  const crumbs = [{ label: 'Inicio', path: '/' }];
+  const crumbs = [{ label: 'Inicio', path: '/' }]
 
-  if (route.name === 'home') return crumbs;
+  if (route.name === 'home') return crumbs
 
   switch (route.name) {
     case 'servicios':
-      crumbs.push({ label: 'Servicios', path: '/servicios' });
-      break;
+      crumbs.push({ label: 'Servicios', path: '/servicios' })
+      break
 
     case 'diseño': // Nota: maneja el nombre con 'ñ' tal como está en tu router
       crumbs.push(
         { label: 'Servicios', path: '/servicios' },
-        { label: 'Diseño', path: '/servicios/diseno' }
-      );
-      break;
+        { label: 'Diseño', path: '/servicios/diseno' },
+      )
+      break
 
     case 'proyectos':
-      crumbs.push({ label: 'Proyectos', path: '/proyectos' });
+      crumbs.push({ label: 'Proyectos', path: '/proyectos' })
       if (route.params.categoria) {
         crumbs.push({
           label: formatLabel(route.params.categoria),
-          path: `/proyectos/${route.params.categoria}`
-        });
+          path: `/proyectos/${route.params.categoria}`,
+        })
       }
-      break;
+      break
 
     case 'proyecto-detalle':
       crumbs.push(
         { label: 'Proyectos', path: '/proyectos' },
         {
           label: formatLabel(route.params.categoria),
-          path: `/proyectos/${route.params.categoria}`
+          path: `/proyectos/${route.params.categoria}`,
         },
         {
           label: formatLabel(route.params.proyecto),
-          path: null // null indica que es la página actual, sin enlace
-        }
-      );
-      break;
+          path: null, // null indica que es la página actual, sin enlace
+        },
+      )
+      break
 
     default:
       // Para rutas de un solo nivel (cotiza, system-design, etc.)
       const labelMap = {
-        'cotiza': 'Cotiza',
+        cotiza: 'Cotiza',
         'system-design': 'System Design',
-      };
-      const label = labelMap[route.name] || formatLabel(route.name);
-      crumbs.push({ label, path: route.path });
-      break;
+      }
+      const label = labelMap[route.name] || formatLabel(route.name)
+      crumbs.push({ label, path: route.path })
+      break
   }
 
-  return crumbs;
-});
+  return crumbs
+})
 </script>
 
 <style scoped>
@@ -125,7 +121,7 @@ const breadcrumbs = computed(() => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  text-transform:uppercase;
+  text-transform: uppercase;
   letter-spacing: 1px;
   font-family: var(--font-mono);
 }
@@ -134,8 +130,8 @@ const breadcrumbs = computed(() => {
   color: var(--ink-soft-accent);
   text-decoration: none;
   border-radius: 3rem;
-  border:1px solid transparent;
-  padding: .125rem .5rem;
+  border: 1px solid transparent;
+  padding: 0.125rem 0.5rem;
   transition: all 0.2s ease;
 }
 

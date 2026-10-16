@@ -1,104 +1,104 @@
 <script setup>
-import { ref, computed, watch } from "vue";
-import { useRoute } from "vue-router";
-import { store, t, IMG } from "@/composables/useInhabiStore.js";
-import AppNavClean from "@/components/AppNavClean.vue";
-import AppBreadcrumbs from "@/components/AppBreadcrumbs.vue";
-import ContactButton from "@/components/atoms/ContactButton.vue";
-import { usePageSeo } from "@/composables/usePageSeo.js";
-import { useUtilSlug } from "@/composables/useInhabiUtils.js";
+import { ref, computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { store, t, IMG } from '@/composables/useInhabiStore.js'
+import AppNavClean from '@/components/AppNavClean.vue'
+import AppBreadcrumbs from '@/components/AppBreadcrumbs.vue'
+import ContactButton from '@/components/atoms/ContactButton.vue'
+import { usePageSeo } from '@/composables/usePageSeo.js'
+import { useUtilSlug } from '@/composables/useInhabiUtils.js'
 
-const route = useRoute();
-const categoria = computed(() => route.params.categoria);
-const proyectoSlug = computed(() => route.params.proyecto);
+const route = useRoute()
+const categoria = computed(() => route.params.categoria)
+const proyectoSlug = computed(() => route.params.proyecto)
 
-const showBreadcrumbs = computed(() => route.name !== "home");
+const showBreadcrumbs = computed(() => route.name !== 'home')
 
 // 1. Carga de archivos JSON
-const archivosProyectos = import.meta.glob("@/data/proyectos/*.json", {
+const archivosProyectos = import.meta.glob('@/data/proyectos/*.json', {
   eager: true,
-  import: "default",
-});
+  import: 'default',
+})
 
 // 2. Computed robusto para encontrar el proyecto
 const proyecto = computed(() => {
-  const idioma = store.lang || "es";
+  const idioma = store.lang || 'es'
 
   // Intentar encontrar el archivo JSON del idioma activo
   const archivo =
     archivosProyectos[`/src/data/proyectos/${idioma}.json`] ||
     archivosProyectos[`./src/data/proyectos/${idioma}.json`] ||
     archivosProyectos[`@/data/proyectos/${idioma}.json`] ||
-    Object.values(archivosProyectos).find((v) => v?.proyectos);
+    Object.values(archivosProyectos).find((v) => v?.proyectos)
 
   if (!archivo?.proyectos) {
-    console.error("[ProyectosDetailView] No se encontró el archivo JSON o no tiene proyectos");
-    return null;
+    console.error('[ProyectosDetailView] No se encontró el archivo JSON o no tiene proyectos')
+    return null
   }
 
   // ✅ Buscar el proyecto cuyo slug coincida con la URL
-  const slugBuscado = proyectoSlug.value ? proyectoSlug.value.toLowerCase() : "";
+  const slugBuscado = proyectoSlug.value ? proyectoSlug.value.toLowerCase() : ''
 
   return (
     archivo.proyectos.find((p) => {
-      const slugProyecto = useUtilSlug(p.titulo).toLowerCase();
-      return slugProyecto === slugBuscado;
+      const slugProyecto = useUtilSlug(p.titulo).toLowerCase()
+      return slugProyecto === slugBuscado
     }) || null
-  );
-});
+  )
+})
 
 // 3. SEO Reactivo y Seguro (Sin acceder a .value prematuramente)
 usePageSeo({
   title: computed(() =>
     proyecto.value
       ? `${proyecto.value.titulo} | Proyectos Inhabi`
-      : "Proyecto no encontrado | Inhabi",
+      : 'Proyecto no encontrado | Inhabi',
   ),
   description: computed(() =>
     proyecto.value
-      ? `${proyecto.value.titulo.toUpperCase()} | ${proyecto.value.intervencion || "diseño"} de Inhabi,`
-      : "Detalle del proyecto de remodelación e interiorismo.",
+      ? `Conoce el proyecto ${proyecto.value.titulo.toUpperCase()} (${proyecto.value.intervencion || 'Diseño e interiorismo'}). Un espacio transformado por Inhabi con altos estándares de calidad y acabados arquitectónicos en Bogotá.`
+      : 'Explora nuestros proyectos de arquitectura, remodelación y diseño de interiores en Bogotá con Inhabi.',
   ),
   // 🔑 Clave: Optional chaining (?.) para evitar el error si proyecto es null
   image: computed(() =>
-    proyecto.value?.imagenes?.[0] ? `${proyecto.value.imagenes[0]}.jpg` : "inhabi-proyectos.jpg",
+    proyecto.value?.imagenes?.[0] ? `${proyecto.value.imagenes[0]}.jpg` : 'inhabi-proyectos.jpg',
   ),
   url: computed(() =>
-    `/proyectos/${categoria.value || ""}/${useUtilSlug(proyectoSlug.value)}`.replace(/\/+/g, "/"),
+    `/proyectos/${categoria.value || ''}/${useUtilSlug(proyectoSlug.value)}`.replace(/\/+/g, '/'),
   ),
   review: computed(() => {
     return {
       body: proyecto.value?.resena,
       author: proyecto.value?.cliente,
       rating: 5,
-    };
+    }
   }),
   // review: () => ({
   //   body: proyecto.value.resena,
   //   author: proyecto.value.cliente,
   //   rating: 5
   // })
-});
+})
 
 // --- LÓGICA DEL CARRUSEL ---
-const currentImgIndex = ref(0);
+const currentImgIndex = ref(0)
 
 // Reiniciar el índice si cambia el proyecto (al navegar entre proyectos)
 watch(proyecto, () => {
-  currentImgIndex.value = 0;
-});
+  currentImgIndex.value = 0
+})
 
 const prevImage = () => {
-  if (!proyecto.value?.imagenes) return;
-  const total = proyecto.value.imagenes.length;
-  currentImgIndex.value = (currentImgIndex.value - 1 + total) % total;
-};
+  if (!proyecto.value?.imagenes) return
+  const total = proyecto.value.imagenes.length
+  currentImgIndex.value = (currentImgIndex.value - 1 + total) % total
+}
 
 const nextImage = () => {
-  if (!proyecto.value?.imagenes) return;
-  const total = proyecto.value.imagenes.length;
-  currentImgIndex.value = (currentImgIndex.value + 1) % total;
-};
+  if (!proyecto.value?.imagenes) return
+  const total = proyecto.value.imagenes.length
+  currentImgIndex.value = (currentImgIndex.value + 1) % total
+}
 </script>
 
 <template>
@@ -224,7 +224,7 @@ const nextImage = () => {
   margin: 0 0 20px 0;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(243, 240, 233, 0.15);
-  font-family: "Instrument Serif", serif;
+  font-family: 'Instrument Serif', serif;
   font-weight: 400;
   font-size: clamp(28px, 4vw, 56px);
   line-height: 1;
@@ -291,7 +291,7 @@ const nextImage = () => {
     border-radius: 2rem;
     cursor: pointer;
     &::before {
-      content: "";
+      content: '';
       display: block;
       width: 0;
       height: 0;

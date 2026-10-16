@@ -1,10 +1,10 @@
 <script setup>
-import { computed } from "vue";
-import { t, IMG, currentServicios } from "@/composables/useInhabiStore";
+import { computed } from 'vue'
+import { t, IMG, currentServicios } from '@/composables/useInhabiStore'
 
 const serviciosList = computed(() => {
-  return currentServicios.value;
-});
+  return currentServicios.value
+})
 </script>
 
 <template>
@@ -42,8 +42,13 @@ const serviciosList = computed(() => {
                 {{ item }}
               </li>
             </ul>
-            <router-link v-if="s.link" :to="`/servicios/${s.id}`" class="btn btn__light btn__big" target="__blank"
-              > {{s.link}}</router-link
+            <router-link
+              v-if="s.link"
+              :to="`/servicios/${s.id}`"
+              class="btn btn__light btn__big"
+              target="__blank"
+            >
+              {{ s.link }}</router-link
             >
           </div>
         </article>
@@ -78,7 +83,7 @@ const serviciosList = computed(() => {
 }
 .eyebrow {
   font:
-    500 11px/1 "IBM Plex Mono",
+    500 11px/1 'IBM Plex Mono',
     monospace;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -87,7 +92,7 @@ const serviciosList = computed(() => {
 .title {
   margin: 0;
   font:
-    400 clamp(40px, 5.4vw, 88px)/0.95 "Instrument Serif",
+    400 clamp(40px, 5.4vw, 88px)/0.95 'Instrument Serif',
     serif;
   letter-spacing: -0.01em;
   max-width: 16ch;
@@ -104,7 +109,7 @@ const serviciosList = computed(() => {
   padding: 12px 20px;
   border-radius: 999px;
   font:
-    500 11px/1 "IBM Plex Mono",
+    500 11px/1 'IBM Plex Mono',
     monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -205,7 +210,7 @@ const serviciosList = computed(() => {
 /* Cuerpo */
 .servicio-card__body {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   gap: 14px;
   padding: 24px;
   border-top: 1px solid var(--border-dark-1);

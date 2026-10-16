@@ -15,7 +15,7 @@ defineProps({
     type: Boolean,
     default: false,
   },
-});
+})
 </script>
 
 <style scoped lang="scss">
@@ -77,7 +77,7 @@ defineProps({
   overflow: hidden;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     transform: translateX(-100%);

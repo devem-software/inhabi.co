@@ -1,173 +1,173 @@
 // src/composables/usePageSeo.js
-import { unref } from "vue";
-import { useHead } from "@unhead/vue";
-import { useRoute } from "vue-router";
-import { siteUrl, IMG, ASSET } from "@/composables/useInhabiStore.js";
+import { unref } from 'vue'
+import { useHead } from '@unhead/vue'
+import { useRoute } from 'vue-router'
+import { siteUrl, IMG, ASSET } from '@/composables/useInhabiStore.js'
 
 export function usePageSeo({
   title,
   description,
   image,
   url,
-  type = "website",
-  locale = "es_CO",
+  type = 'website',
+  locale = 'es_CO',
   review = null,
 } = {}) {
-  const route = useRoute();
+  const route = useRoute()
 
   // Función auxiliar para extraer el valor de un computed, una función o un valor plano
-  const getValue = (val, fallback = "") => {
-    if (typeof val === "function") return val();
-    return unref(val) ?? fallback;
-  };
+  const getValue = (val, fallback = '') => {
+    if (typeof val === 'function') return val()
+    return unref(val) ?? fallback
+  }
 
   useHead({
     // ✅ Título reactivo
     title: () =>
-      getValue(title, route.meta.title) || "Inhabi | Arquitectura, interiorismo y remodelación",
+      getValue(title, route.meta.title) || 'Inhabi | Arquitectura, interiorismo y remodelación',
 
     link: [
       {
-        rel: "canonical",
+        rel: 'canonical',
         href: () => {
-          const finalPath = getValue(url, route.fullPath) || "/";
-          const cleanBase = (siteUrl() || "").replace(/\/$/, "");
-          const cleanPath = finalPath.startsWith("/") ? finalPath : `/${finalPath}`;
-          return `${cleanBase}${cleanPath}`;
+          const finalPath = getValue(url, route.fullPath) || '/'
+          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
+          const cleanPath = finalPath.startsWith('/') ? finalPath : `/${finalPath}`
+          return `${cleanBase}${cleanPath}`
         },
       },
     ],
 
     meta: [
       {
-        name: "description",
+        name: 'description',
         content: () =>
           getValue(description, route.meta.description) ||
-          "Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.",
+          'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.',
       },
 
       // Open Graph Estáticos
-      { property: "og:type", content: type },
-      { property: "og:site_name", content: "Inhabi" },
-      { property: "og:locale", content: locale },
+      { property: 'og:type', content: type },
+      { property: 'og:site_name', content: 'Inhabi' },
+      { property: 'og:locale', content: locale },
 
       // Open Graph Reactivos
       {
-        property: "og:title",
+        property: 'og:title',
         content: () =>
-          getValue(title, route.meta.title) || "Inhabi | Arquitectura, interiorismo y remodelación",
+          getValue(title, route.meta.title) || 'Inhabi | Arquitectura, interiorismo y remodelación',
       },
       {
-        property: "og:description",
+        property: 'og:description',
         content: () =>
           getValue(description, route.meta.description) ||
-          "Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.",
+          'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.',
       },
       {
-        property: "og:url",
+        property: 'og:url',
         content: () => {
-          const finalPath = getValue(url, route.fullPath) || "/";
-          const cleanBase = (siteUrl() || "").replace(/\/$/, "");
-          const cleanPath = finalPath.startsWith("/") ? finalPath : `/${finalPath}`;
-          return `${cleanBase}${cleanPath}`;
+          const finalPath = getValue(url, route.fullPath) || '/'
+          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
+          const cleanPath = finalPath.startsWith('/') ? finalPath : `/${finalPath}`
+          return `${cleanBase}${cleanPath}`
         },
       },
       {
-        property: "og:image",
+        property: 'og:image',
         content: () => {
-          const rawImage = getValue(image, route.meta.image);
-          if (!rawImage) return "";
+          const rawImage = getValue(image, route.meta.image)
+          if (!rawImage) return ''
 
-          const resolved = IMG(rawImage) || ASSET(rawImage);
+          const resolved = IMG(rawImage) || ASSET(rawImage)
           if (resolved) {
-            const cleanBase = (siteUrl() || "").replace(/\/$/, "");
+            const cleanBase = (siteUrl() || '').replace(/\/$/, '')
             return /^https?:\/\//.test(resolved)
               ? resolved
-              : `${cleanBase}${resolved.startsWith("/") ? "" : "/"}${resolved}`;
+              : `${cleanBase}${resolved.startsWith('/') ? '' : '/'}${resolved}`
           }
           // Fallback
-          const cleanBase = (siteUrl() || "").replace(/\/$/, "");
-          return `${cleanBase}/${String(rawImage).replace(/^\//, "")}`;
+          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
+          return `${cleanBase}/${String(rawImage).replace(/^\//, '')}`
         },
       },
       {
-        property: "og:image:secure_url",
+        property: 'og:image:secure_url',
         content: () => {
           // Reutilizamos la misma lógica de og:image para mantener consistencia
-          const rawImage = getValue(image, route.meta.image);
-          if (!rawImage) return "";
-          const resolved = IMG(rawImage) || ASSET(rawImage);
+          const rawImage = getValue(image, route.meta.image)
+          if (!rawImage) return ''
+          const resolved = IMG(rawImage) || ASSET(rawImage)
           if (resolved) {
-            const cleanBase = (siteUrl() || "").replace(/\/$/, "");
+            const cleanBase = (siteUrl() || '').replace(/\/$/, '')
             return /^https?:\/\//.test(resolved)
               ? resolved
-              : `${cleanBase}${resolved.startsWith("/") ? "" : "/"}${resolved}`;
+              : `${cleanBase}${resolved.startsWith('/') ? '' : '/'}${resolved}`
           }
-          const cleanBase = (siteUrl() || "").replace(/\/$/, "");
-          return `${cleanBase}/${String(rawImage).replace(/^\//, "")}`;
+          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
+          return `${cleanBase}/${String(rawImage).replace(/^\//, '')}`
         },
       },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
 
       // Twitter
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: 'twitter:card', content: 'summary_large_image' },
       {
-        name: "twitter:title",
+        name: 'twitter:title',
         content: () =>
-          getValue(title, route.meta.title) || "Inhabi | Arquitectura, interiorismo y remodelación",
+          getValue(title, route.meta.title) || 'Inhabi | Arquitectura, interiorismo y remodelación',
       },
       {
-        name: "twitter:description",
+        name: 'twitter:description',
         content: () =>
           getValue(description, route.meta.description) ||
-          "Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.",
+          'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá.',
       },
       {
-        name: "twitter:image",
+        name: 'twitter:image',
         content: () => {
-          const rawImage = getValue(image, route.meta.image);
-          if (!rawImage) return "";
-          const resolved = IMG(rawImage) || ASSET(rawImage);
+          const rawImage = getValue(image, route.meta.image)
+          if (!rawImage) return ''
+          const resolved = IMG(rawImage) || ASSET(rawImage)
           if (resolved) {
-            const cleanBase = (siteUrl() || "").replace(/\/$/, "");
+            const cleanBase = (siteUrl() || '').replace(/\/$/, '')
             return /^https?:\/\//.test(resolved)
               ? resolved
-              : `${cleanBase}${resolved.startsWith("/") ? "" : "/"}${resolved}`;
+              : `${cleanBase}${resolved.startsWith('/') ? '' : '/'}${resolved}`
           }
-          const cleanBase = (siteUrl() || "").replace(/\/$/, "");
-          return `${cleanBase}/${String(rawImage).replace(/^\//, "")}`;
+          const cleanBase = (siteUrl() || '').replace(/\/$/, '')
+          return `${cleanBase}/${String(rawImage).replace(/^\//, '')}`
         },
       },
     ],
     script: () => {
-      const activeReview = getValue(review, null);
-      if (!activeReview) return [];
+      const activeReview = getValue(review, null)
+      if (!activeReview) return []
 
       return [
         {
-          type: "application/ld+json",
+          type: 'application/ld+json',
           innerHTML: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: getValue(title, route.meta.title) || "Proyecto Inhabi",
-            description: getValue(description, route.meta.description) || "",
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: getValue(title, route.meta.title) || 'Proyecto Inhabi',
+            description: getValue(description, route.meta.description) || '',
             review: {
-              "@type": "Review",
+              '@type': 'Review',
               reviewRating: {
-                "@type": "Rating",
-                ratingValue: activeReview.rating || "5",
-                bestRating: "5",
+                '@type': 'Rating',
+                ratingValue: activeReview.rating || '5',
+                bestRating: '5',
               },
               author: {
-                "@type": "Person",
-                name: activeReview.author || "Cliente Inhabi",
+                '@type': 'Person',
+                name: activeReview.author || 'Cliente Inhabi',
               },
-              reviewBody: activeReview.body || "",
+              reviewBody: activeReview.body || '',
             },
           }),
         },
-      ];
+      ]
     },
-  });
+  })
 }

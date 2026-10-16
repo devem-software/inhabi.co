@@ -1168,13 +1168,13 @@ function copyColor(hex, token) {
   }
 }
 
-import { usePageSeo } from '@/composables/usePageSeo.js';
+import { usePageSeo } from '@/composables/usePageSeo.js'
 
 usePageSeo({
-  title: "Inhabi - Guia de diseño",
-  description: "Guia de diseño de Inhabi, los detalles uno de los pilares de nuestro trabajo",
-  image:"/seo/inhabi-social.jpg"
-}); // ← toma title/description/image de route.meta
+  title: 'Inhabi - Guia de diseño',
+  description: 'Guia de diseño de Inhabi, los detalles uno de los pilares de nuestro trabajo',
+  image: '/seo/inhabi-social.jpg',
+}) // ← toma title/description/image de route.meta
 </script>
 
 <style scoped>

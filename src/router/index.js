@@ -1,9 +1,9 @@
-import HomeView from '@/views/HomeView.vue';
-import CotizadorView from '@/views/CotizadorView.vue';
-import SystemDesignView from '@/views/SystemDesignView.vue';
-import ProyectosView from '@/views/ProyectosView.vue';
-import ProyectosDetailView from '@/views/ProyectosDetailView.vue';
-import ServiciosView from '@/views/ServiciosView.vue';
+import HomeView from '@/views/HomeView.vue'
+import CotizadorView from '@/views/CotizadorView.vue'
+import SystemDesignView from '@/views/SystemDesignView.vue'
+import ProyectosView from '@/views/ProyectosView.vue'
+import ProyectosDetailView from '@/views/ProyectosDetailView.vue'
+import ServiciosView from '@/views/ServiciosView.vue'
 import ServiciosDisenoView from '@/views/servicios/DisenoView.vue'
 
 export const routes = [
@@ -13,7 +13,8 @@ export const routes = [
     component: HomeView,
     meta: {
       title: 'Inhabi | Arquitectura, interiorismo y remodelación en Bogotá',
-      description: 'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá. Espacios que se habitan con emoción, en menos de 60 días.',
+      description:
+        'Diseñamos y ejecutamos proyectos de arquitectura, interiorismo y remodelación en Bogotá. Espacios que se habitan con emoción, en menos de 60 días.',
       image: 'inhabi-home.jpg',
     },
   },
@@ -23,7 +24,8 @@ export const routes = [
     component: CotizadorView,
     meta: {
       title: 'Cotiza tu remodelación | Inhabi',
-      description: 'Solicita una cotización personalizada para tu proyecto de remodelación en Bogotá. Respuesta en menos de 24 horas hábiles.',
+      description:
+        'Solicita una cotización personalizada para tu proyecto de remodelación en Bogotá. Respuesta en menos de 24 horas hábiles.',
       image: 'inhabi-cotiza.jpg',
     },
   },
@@ -33,7 +35,8 @@ export const routes = [
     component: SystemDesignView,
     meta: {
       title: 'System Design | Inhabi',
-      description: 'Diseño de sistemas arquitectónicos y de interiorismo a medida con altos estándares de calidad.',
+      description:
+        'Diseño de sistemas arquitectónicos y de interiorismo a medida con altos estándares de calidad.',
       image: 'inhabi-system-design.jpg',
     },
   },
@@ -43,7 +46,8 @@ export const routes = [
     component: ServiciosView,
     meta: {
       title: 'Servicios de arquitectura y remodelación | Inhabi',
-      description: 'Consulta nuestros servicios de arquitectura, interiorismo y remodelación en Bogotá. Un equipo de profesionales te atenderá.',
+      description:
+        'Consulta nuestros servicios de arquitectura, interiorismo y remodelación en Bogotá. Un equipo de profesionales te atenderá.',
       image: 'inhabi-servicios.jpg',
     },
   },
@@ -53,7 +57,8 @@ export const routes = [
     component: ServiciosDisenoView,
     meta: {
       title: 'Servicios de arquitectura y remodelación | Inhabi',
-      description: 'Consulta nuestros servicios de arquitectura, interiorismo y remodelación en Bogotá. Un equipo de profesionales te atenderá.',
+      description:
+        'Consulta nuestros servicios de arquitectura, interiorismo y remodelación en Bogotá. Un equipo de profesionales te atenderá.',
       image: 'inhabi-servicios.jpg',
     },
   },
@@ -63,7 +68,8 @@ export const routes = [
     component: ProyectosView,
     meta: {
       title: 'Proyectos | Inhabi',
-      description: 'Explora nuestro portafolio de proyectos de arquitectura, diseño de interiores y remodelación en Bogotá.',
+      description:
+        'Explora nuestro portafolio de proyectos de arquitectura, diseño de interiores y remodelación en Bogotá.',
       image: 'inhabi-proyectos.jpg',
     },
   },
@@ -73,9 +79,10 @@ export const routes = [
     component: ProyectosDetailView,
     meta: {
       title: 'Detalle del proyecto | Inhabi',
-      description: 'Conoce los detalles, materiales y acabados de este proyecto de remodelación y diseño.',
+      description:
+        'Conoce los detalles, materiales y acabados de este proyecto de remodelación y diseño.',
       image: 'inhabi-proyecto-detalle.jpg', // se sobrescribe en la vista
     },
   },
   { path: '/:pathMatch(.*)*', redirect: '/' },
-];
+]

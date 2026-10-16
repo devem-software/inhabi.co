@@ -35,11 +35,11 @@ console.log()
 const waHello = computed(() => `https://wa.me/${WA}?text=${encodeURIComponent(t.value.hola)}`)
 
 // SEO para HOME
-import { usePageSeo } from '@/composables/usePageSeo.js';
+import { usePageSeo } from '@/composables/usePageSeo.js'
 
 usePageSeo({
-  title:"Inhabi.co"
-}); // ← toma title/description/image de route.meta
+  title: 'Inhabi.co',
+}) // ← toma title/description/image de route.meta
 </script>
 
 <template>
@@ -57,6 +57,6 @@ usePageSeo({
     <EstudioSection />
     <AppFooter />
 
-    <ContactButton :message="waHello"/>
+    <ContactButton :message="waHello" />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
-import { computed } from "vue";
-import { IMG } from "@/composables/useInhabiStore";
+import { computed } from 'vue'
+import { IMG } from '@/composables/useInhabiStore'
 
 const props = defineProps({
   /* Requeridos */
@@ -8,16 +8,14 @@ const props = defineProps({
   title: { type: String, required: true },
 
   /* Opcionales */
-  description: { type: String, default: "" },
-  tag: { type: String, default: "" },
-  link: { type: String, default: "" },
-  labelLink: { type: String, default: "" },
-});
-
-
+  description: { type: String, default: '' },
+  tag: { type: String, default: '' },
+  link: { type: String, default: '' },
+  labelLink: { type: String, default: '' },
+})
 
 /* Solo renderiza el CTA si hay link Y label */
-const hasCta = computed(() => Boolean(props.link && props.labelLink));
+const hasCta = computed(() => Boolean(props.link && props.labelLink))
 </script>
 
 <template>
@@ -38,11 +36,7 @@ const hasCta = computed(() => Boolean(props.link && props.labelLink));
         {{ description }}
       </p>
 
-      <router-link
-        v-if="hasCta"
-        :to="link"
-        class="inhabi-card__link btn btn__outline"
-      >
+      <router-link v-if="hasCta" :to="link" class="inhabi-card__link btn btn__outline">
         {{ labelLink }}
       </router-link>
     </div>
@@ -135,7 +129,7 @@ const hasCta = computed(() => Boolean(props.link && props.labelLink));
     line-height: 1.5;
     color: var(--ink-soft-accent);
     overflow: hidden;
-    font-family:var(--font-classic);
+    font-family: var(--font-classic);
   }
 
   &__link {

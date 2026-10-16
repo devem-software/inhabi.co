@@ -1,38 +1,36 @@
 <script setup>
-import { computed } from "vue";
-import { useRoute } from "vue-router";
-import { t, currentProyectos } from "@/composables/useInhabiStore.js";
-import { useInhabiMetrics } from "@/composables/useInhabiMetrics";
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { t, currentProyectos } from '@/composables/useInhabiStore.js'
+import { useInhabiMetrics } from '@/composables/useInhabiMetrics'
 
-import AppNavClean from "@/components/AppNavClean.vue";
-import AppBreadcrumbs from "@/components/AppBreadcrumbs.vue";
-import HeroCard from "@/components/HeroCard.vue";
-import ContactButton from "@/components/atoms/ContactButton.vue";
-import AppMetrics from "@/components/AppMetrics.vue";
-import { useUtilSlug } from "@/composables/useInhabiUtils";
+import AppNavClean from '@/components/AppNavClean.vue'
+import AppBreadcrumbs from '@/components/AppBreadcrumbs.vue'
+import HeroCard from '@/components/HeroCard.vue'
+import ContactButton from '@/components/atoms/ContactButton.vue'
+import AppMetrics from '@/components/AppMetrics.vue'
+import { useUtilSlug } from '@/composables/useInhabiUtils'
 
-const route = useRoute();
+const route = useRoute()
 // Si la ruta es solo /proyectos, categoriaActual será una cadena vacía ""
-const categoriaActual = computed(() => route.params.categoria || "");
+const categoriaActual = computed(() => route.params.categoria || '')
 
-const showBreadcrumbs = computed(() => route.name !== "home");
+const showBreadcrumbs = computed(() => route.name !== 'home')
 
-
-const data = currentProyectos();
-
+const data = currentProyectos()
 
 // Extraer categorías únicas de forma dinámica desde los datos
-const categoriasDisponibles = computed(() => [...new Set(data.value.proyectos.map(p => p.tipo))]);
+const categoriasDisponibles = computed(() => [...new Set(data.value.proyectos.map((p) => p.tipo))])
 
 // Filtrar proyectos según si hay una categoría seleccionada en la URL o no
 const proyectosFiltrados = computed(() => {
   if (!categoriaActual.value) {
-    return data.value.proyectos; // Si estamos en /proyectos, muestra todos
+    return data.value.proyectos // Si estamos en /proyectos, muestra todos
   }
   return data.value.proyectos.filter(
     (p) => p.tipo.toLowerCase() === categoriaActual.value.toLowerCase(),
-  );
-});
+  )
+})
 
 const {
   experiencia,
@@ -42,28 +40,26 @@ const {
   ciudades,
   cantidadCiudades,
   stats,
-} = useInhabiMetrics(data);
-
+} = useInhabiMetrics(data)
 
 const values = computed(() => [
   `+${experiencia.value} años`,
   `${metrosTotales.value.toLocaleString()} <span style="color:var(--ink-soft-accent); font-size:.75em">m<sup>2</sup></span>`,
   cantidadProyectos.value,
   cantidadCiudades.value,
-]);
+])
 
-const labels = ["Cumpliendo", "Intervenidos", "Proyectos", "Ciudades"];
-
+const labels = ['Cumpliendo', 'Intervenidos', 'Proyectos', 'Ciudades']
 
 // SEO para HOME
-import { usePageSeo } from "@/composables/usePageSeo.js";
+import { usePageSeo } from '@/composables/usePageSeo.js'
 
 usePageSeo({
-  title: "Inhabi - Proyectos",
+  title: 'Inhabi - Proyectos',
   description:
-    "Nuestros clientes confirman nuestra calidad, revisa cada uno de nuestrso trabajos para que veas con tus ojos los sueños cumplidos de los que confiaron en nosotros",
-  image: "inhabi-proyectos.jpg",
-}); // ← toma title/description/image de route.meta
+    'Nuestros clientes confirman nuestra calidad, revisa cada uno de nuestrso trabajos para que veas con tus ojos los sueños cumplidos de los que confiaron en nosotros',
+  image: 'inhabi-proyectos.jpg',
+}) // ← toma title/description/image de route.meta
 </script>
 
 <template>
@@ -81,7 +77,7 @@ usePageSeo({
         <h1 class="title">Arquitectura que genera valor.</h1>
       </div>
 
-      <AppMetrics class="section__metrics" :values="values" :labels="labels"/>
+      <AppMetrics class="section__metrics" :values="values" :labels="labels" />
       <!-- Barra de botones de filtro dinámicos -->
       <div class="filter-bar">
         <router-link to="/proyectos" class="btn btn__small" :class="{ active: !categoriaActual }">
@@ -137,13 +133,13 @@ usePageSeo({
   width: 100%;
 }
 
-.section__metrics{
+.section__metrics {
   margin: 2rem 0 0 0;
 }
 
 .eyebrow {
   font:
-    500 11px/1 "IBM Plex Mono",
+    500 11px/1 'IBM Plex Mono',
     monospace;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -217,13 +213,13 @@ usePageSeo({
 }
 .card-title {
   font:
-    400 32px/1 "Instrument Serif",
+    400 32px/1 'Instrument Serif',
     serif;
   margin: 0;
 }
 .card-arrow {
   font:
-    500 10px/1 "IBM Plex Mono",
+    500 10px/1 'IBM Plex Mono',
     monospace;
   letter-spacing: 0.16em;
   color: var(--sage);

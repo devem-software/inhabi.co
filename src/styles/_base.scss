@@ -16,9 +16,9 @@
   --bg-whatsapp: #25d366;
   --bg-accent-whatsapp: color-mix(in srgb, var(--light) 80%, var(--bg-whatsapp));
 
-  --font-classic: "Quicksand", serif;
-  --font-cursive: "Instrument Serif";
-  --font-mono: "IBM Plex Mono";
+  --font-classic: 'Quicksand', serif;
+  --font-cursive: 'Instrument Serif';
+  --font-mono: 'IBM Plex Mono';
 }
 
 html,
@@ -40,4 +40,3 @@ body {
     height: 1.5rem;
   }
 }
-

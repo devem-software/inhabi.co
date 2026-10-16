@@ -27,26 +27,25 @@
 </template>
 
 <script setup>
-import { computed, onServerPrefetch, defineAsyncComponent } from "vue";
-import AppNavClean from "@/components/AppNavClean.vue";
+import { computed, onServerPrefetch, defineAsyncComponent } from 'vue'
+import AppNavClean from '@/components/AppNavClean.vue'
 
 const HeroCard = defineAsyncComponent({
-  loader: () => import("@/components/HeroCard.vue"),
-  loadingComponent: () => import("@/components/SkeletonCard.vue"),
+  loader: () => import('@/components/HeroCard.vue'),
+  loadingComponent: () => import('@/components/SkeletonCard.vue'),
   delay: 1,
-});
+})
 
-import { t, currentProyectos } from "@/composables/useInhabiStore";
-import { useInhabiMetrics } from "@/composables/useInhabiMetrics";
+import { t, currentProyectos } from '@/composables/useInhabiStore'
+import { useInhabiMetrics } from '@/composables/useInhabiMetrics'
 
-const data = currentProyectos();
+const data = currentProyectos()
 
 onServerPrefetch(async () => {
-  await data.value?.load?.(); // o la función que cargue el portafolio
-});
+  await data.value?.load?.() // o la función que cargue el portafolio
+})
 
-
-import AppMetrics from "@/components/AppMetrics.vue";
+import AppMetrics from '@/components/AppMetrics.vue'
 const {
   experiencia,
   cantidadProyectos,
@@ -55,17 +54,16 @@ const {
   ciudades,
   cantidadCiudades,
   stats,
-} = useInhabiMetrics(data);
-
+} = useInhabiMetrics(data)
 
 const values = computed(() => [
   `+${experiencia.value} años`,
   `${metrosTotales.value.toLocaleString()} <span style="color:var(--ink-soft-accent)">m<sup>2</sup></span>`,
   cantidadProyectos.value,
   cantidadCiudades.value,
-]);
+])
 
-const labels = ["Cumpliendo", "Intervenidos", "Proyectos", "Ciudades"];
+const labels = ['Cumpliendo', 'Intervenidos', 'Proyectos', 'Ciudades']
 </script>
 
 <style scoped lang="scss">

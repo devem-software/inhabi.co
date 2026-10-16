@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.2s linear;
-  font-family: "IBM Plex Mono";
+  font-family: 'IBM Plex Mono';
   cursor: pointer;
   min-width: 7rem;
   text-transform: uppercase;
@@ -44,7 +44,7 @@
       &:hover {
         color: var(--ink-muted);
         border-color: var(--light);
-        background: color-mix(in srgb, transparent 20%, var(--light));;
+        background: color-mix(in srgb, transparent 20%, var(--light));
       }
     }
 

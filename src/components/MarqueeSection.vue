@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { t,IMG } from '@/composables/useInhabiStore'
-
+import { t, IMG } from '@/composables/useInhabiStore'
 
 const props = defineProps({
   images: { type: Array, default: () => [] },
@@ -53,7 +52,7 @@ const rootStyle = computed(() => ({
 
 <template>
   <div v-if="items.length" class="marquee-section" :style="rootStyle">
-    <div class="marquee-title">{{t.ag.trustLine}}</div>
+    <div class="marquee-title">{{ t.ag.trustLine }}</div>
     <div
       class="marquee"
       :class="{ 'is-accessible': '' }"

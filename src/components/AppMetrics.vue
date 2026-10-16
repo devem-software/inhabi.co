@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed } from 'vue'
 
 const props = defineProps({
   /**
@@ -18,7 +18,7 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-});
+})
 
 /**
  * Combina values + labels en un solo arreglo de tarjetas.
@@ -27,23 +27,18 @@ const props = defineProps({
  */
 const items = computed(() =>
   props.values.map((value, i) => ({
-    value: value ?? "—",
-    label: props.labels[i] ?? "",
+    value: value ?? '—',
+    label: props.labels[i] ?? '',
     // Permite alternar estilos si quieres (ver más abajo)
-    variant: i % 2 === 0 ? "light" : "dark",
-  }))
-);
+    variant: i % 2 === 0 ? 'light' : 'dark',
+  })),
+)
 </script>
 
 <template>
   <section class="metrics">
     <div class="metrics__grid">
-      <div
-        v-for="(item, i) in items"
-        :key="i"
-        class="metric"
-        :class="`metric--${item.variant}`"
-      >
+      <div v-for="(item, i) in items" :key="i" class="metric" :class="`metric--${item.variant}`">
         <div class="metric__value" v-html="item.value"></div>
         <div class="metric__label">{{ item.label }}</div>
       </div>
@@ -52,7 +47,7 @@ const items = computed(() =>
 </template>
 
 <style scoped lang="scss">
-@use "../styles/_mixins.scss" as mx;
+@use '../styles/_mixins.scss' as mx;
 
 .metrics {
   &__grid {
@@ -103,7 +98,7 @@ const items = computed(() =>
     &__value {
       font-family: var(--font-cursive);
       font-size: 1.25rem;
-      line-height:1;
+      line-height: 1;
       font-weight: 700;
 
       @include mx.movil {

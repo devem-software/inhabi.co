@@ -1,17 +1,17 @@
 <script setup>
-import { t } from "@/composables/useInhabiStore";
-import AppNavClean from "@/components/AppNavClean.vue";
-import CotizadorSection from "@/components/CotizadorSection.vue";
-import ContactButton from "@/components/atoms/ContactButton.vue";
+import { t } from '@/composables/useInhabiStore'
+import AppNavClean from '@/components/AppNavClean.vue'
+import CotizadorSection from '@/components/CotizadorSection.vue'
+import ContactButton from '@/components/atoms/ContactButton.vue'
 
 // SEO para HOME
-import { usePageSeo } from "@/composables/usePageSeo.js";
+import { usePageSeo } from '@/composables/usePageSeo.js'
 
 usePageSeo({
-  title: "Inhabi - Cotizaciones",
-  description: "Ven y cotiza con Inhabi el apartamento de dus sueños",
-  image: "inahabi-cotizaciones.jpg",
-});
+  title: 'Inhabi - Cotizaciones',
+  description: 'Ven y cotiza con Inhabi el apartamento de dus sueños',
+  image: 'inahabi-cotizaciones.jpg',
+})
 </script>
 
 <template>
@@ -40,7 +40,7 @@ usePageSeo({
   align-items: center;
   gap: clamp(14px, 2.2vw, 32px);
   font:
-    500 11px/1 "IBM Plex Mono",
+    500 11px/1 'IBM Plex Mono',
     monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;

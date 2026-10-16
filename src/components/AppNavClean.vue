@@ -5,7 +5,9 @@
     </router-link>
 
     <div class="nav__actions">
-      <router-link to="/" class="nav__actions_action btn btn__outline btn__small">{{t.nav.return}}</router-link>
+      <router-link to="/" class="nav__actions_action btn btn__outline btn__small">{{
+        t.nav.return
+      }}</router-link>
       <router-link v-if="props.cotizar" to="/cotiza" class="nav__actions_action btn btn__small">
         {{ t.nav.cotizar }}
       </router-link>
@@ -18,13 +20,12 @@ import { t } from '@/composables/useInhabiStore'
 const props = defineProps({
   cotizar: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 </script>
 <style scoped lang="scss">
-
-.nav{
+.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,24 +34,23 @@ const props = defineProps({
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(243, 240, 233, 0.1);
   z-index: 60;
-  &__brand{
-    &_logo{
+  &__brand {
+    &_logo {
       height: 1.25rem;
       width: auto;
       display: block;
-      @media (min-width:42rem){
-        height:1.5rem;
+      @media (min-width: 42rem) {
+        height: 1.5rem;
       }
     }
   }
-  &__actions{
+  &__actions {
     display: flex;
     align-items: center;
     gap: 1rem;
-    &_action{
+    &_action {
       margin: initial;
     }
   }
 }
-
 </style>

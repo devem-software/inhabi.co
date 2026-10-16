@@ -10,11 +10,7 @@
         "construida": 460,
         "privada": 2318
       },
-      "imagenes": [
-        "casa-cuatro-vientos-1",
-        "casa-cuatro-vientos-2",
-        "casa-cuatro-vientos-3"
-      ],
+      "imagenes": ["casa-cuatro-vientos-1", "casa-cuatro-vientos-2", "casa-cuatro-vientos-3"],
       "intervencion": "Design & Construction",
       "resena": "Located on the outskirts of Paipa, this house was designed as a modern building whose geometric composition stands out at first glance. Its large windows create expansive views to appreciate the surrounding landscape and make the most of the local climate conditions.",
       "cliente": "Casa Cuatro Vientos"
@@ -28,11 +24,7 @@
       "area": {
         "construida": 380
       },
-      "imagenes": [
-        "casa-fajardo-1",
-        "casa-fajardo-2",
-        "casa-fajardo-3"
-      ],
+      "imagenes": ["casa-fajardo-1", "casa-fajardo-2", "casa-fajardo-3"],
       "intervencion": "Architectural Design",
       "resena": "A project where architecture becomes an experience: open spaces, natural materials, carefully integrated lighting, and a continuous connection with the landscape. A contemporary proposal that combines elegance, comfort, and nature to create an exclusive and timeless environment.",
       "cliente": "Casa Fajardo"
@@ -47,11 +39,7 @@
         "construida": 520,
         "privada": 2000
       },
-      "imagenes": [
-        "casa-cerritos-1",
-        "casa-cerritos-2",
-        "casa-cerritos-3"
-      ],
+      "imagenes": ["casa-cerritos-1", "casa-cerritos-2", "casa-cerritos-3"],
       "intervencion": "Architectural Design",
       "resena": "A design proposal that combines sophisticated materiality, spaciousness, and outdoor living. The integration of stone, wood, and glass creates a warm, modern aesthetic, while the terraces, outdoor BBQ area, and pool turn every space into a natural extension of the home.",
       "cliente": "Casa Cerritos"
@@ -65,11 +53,7 @@
       "area": {
         "construida": 25
       },
-      "imagenes": [
-        "casa-cristal-1",
-        "casa-cristal-2",
-        "casa-cristal-3"
-      ],
+      "imagenes": ["casa-cristal-1", "casa-cristal-2", "casa-cristal-3"],
       "intervencion": "Architectural Design",
       "resena": "A place to disconnect, create, and enjoy. A workspace designed to feel like an extension of the garden, where natural light, wood, and glass foster a private, inspiring, and peaceful atmosphere.",
       "cliente": "Casa Cristal"
@@ -84,11 +68,7 @@
         "construida": 160,
         "privada": 1200
       },
-      "imagenes": [
-        "casa-movar-1",
-        "casa-movar-2",
-        "casa-movar-3"
-      ],
+      "imagenes": ["casa-movar-1", "casa-movar-2", "casa-movar-3"],
       "intervencion": "Design & Construction",
       "resena": "A home designed to enjoy the peace of the city outskirts, where space, natural light, and greenery create a sense of openness and calm. Warm, modern architecture that seamlessly connects the interior with the surrounding landscape.",
       "cliente": "Casa Movar"
@@ -102,10 +82,7 @@
       "area": {
         "construida": 150
       },
-      "imagenes": [
-        "apto-bari-116-1",
-        "apto-bari-116-2"
-      ],
+      "imagenes": ["apto-bari-116-1", "apto-bari-116-2"],
       "intervencion": "Interior Design",
       "resena": "The spatial layout promotes fluidity and visual integration. The kitchen, as the heart of the home, opens toward the social area and dining room, creating a perfect atmosphere for gathering with family and friends.",
       "cliente": "Apto Bari 116"
@@ -119,11 +96,7 @@
       "area": {
         "privada": 46
       },
-      "imagenes": [
-        "apto-country-paradise-1",
-        "apto-country-paradise-2",
-        "apto-country-paradise-3"
-      ],
+      "imagenes": ["apto-country-paradise-1", "apto-country-paradise-2", "apto-country-paradise-3"],
       "intervencion": "Design & Construction",
       "resena": "The design concept is built around a neutral color palette and natural textures. Wood brings warmth and continuity to the space, while light tones enhance the feeling of spaciousness, allowing natural light to take center stage.",
       "cliente": "Apto Country Paradise"
@@ -137,11 +110,7 @@
       "area": {
         "construida": 40
       },
-      "imagenes": [
-        "terraza-nodo-1",
-        "terraza-nodo-2",
-        "terraza-nodo-3"
-      ],
+      "imagenes": ["terraza-nodo-1", "terraza-nodo-2", "terraza-nodo-3"],
       "intervencion": "Architectural Design & Construction",
       "resena": "A rooftop where architecture transforms the outdoors into a gathering space. The warmth of wood, light-toned brick, and steel achieves a balance between industrial and natural elements, while greenery and filtered light create a serene atmosphere.",
       "cliente": "Terraza Nodo"
@@ -155,11 +124,7 @@
       "area": {
         "construida": 500
       },
-      "imagenes": [
-        "oficina-platzi-1",
-        "oficina-platzi-2",
-        "oficina-platzi-3"
-      ],
+      "imagenes": ["oficina-platzi-1", "oficina-platzi-2", "oficina-platzi-3"],
       "intervencion": "Architectural Competition / Interior Design",
       "resena": "A space designed to connect people, ideas, and ways of working. The proposal merges deep-focus areas, gathering spots, and collaborative zones within a single setting, creating a flexible workspace where community and work coexist naturally.",
       "cliente": "Oficina Platzi"
@@ -191,11 +156,7 @@
       "area": {
         "construida": 120
       },
-      "imagenes": [
-        "oficina-cafam-1",
-        "oficina-cafam-2",
-        "oficina-cafam-3"
-      ],
+      "imagenes": ["oficina-cafam-1", "oficina-cafam-2", "oficina-cafam-3"],
       "intervencion": "Interior Design",
       "resena": "A space tailored to balance focus, collaboration, and well-being. Open sightlines, natural lighting, and connected work areas create a dynamic, flexible atmosphere designed for ideas to flow.",
       "cliente": "Oficina CAFAM"
@@ -227,11 +188,7 @@
       "area": {
         "construida": 380
       },
-      "imagenes": [
-        "liftit-1",
-        "liftit-2",
-        "liftit-3"
-      ],
+      "imagenes": ["liftit-1", "liftit-2", "liftit-3"],
       "intervencion": "Interior Design",
       "resena": "Growing with identity. This project stems from a new phase for Liftit: team expansion and the need to endow their workspace with a distinct identity. An office crafted to support that growth and strengthen team identity.",
       "cliente": "Oficina Liftit"
@@ -245,9 +202,7 @@
       "area": {
         "construida": 280
       },
-      "imagenes": [
-        "restaurante-piamontesa-1"
-      ],
+      "imagenes": ["restaurante-piamontesa-1"],
       "intervencion": "Design & Construction",
       "resena": "A space created around gathering, fine dining, and the ritual of sharing meals. The proposal conveys the essence of a steakhouse through an immersive atmosphere where nature and interior design blend into an intimate yet sophisticated experience.",
       "cliente": "Restaurante Piamontesa"
@@ -261,11 +216,7 @@
       "area": {
         "construida": 255
       },
-      "imagenes": [
-        "local-piamontesa-1",
-        "local-piamontesa-2",
-        "local-piamontesa-3"
-      ],
+      "imagenes": ["local-piamontesa-1", "local-piamontesa-2", "local-piamontesa-3"],
       "intervencion": "Architectural Design & Construction",
       "resena": "The project combines an industrial aesthetic with design cues from steakhouse tradition, combining wood, ceramics, steel, and greenery in a sophisticated layout. Open display windows and targeted lighting keep products right in the spotlight.",
       "cliente": "Local Piamontesa"
@@ -279,11 +230,7 @@
       "area": {
         "construida": 200
       },
-      "imagenes": [
-        "local-la-vaca-lola-1",
-        "local-la-vaca-lola-2",
-        "local-la-vaca-lola-3"
-      ],
+      "imagenes": ["local-la-vaca-lola-1", "local-la-vaca-lola-2", "local-la-vaca-lola-3"],
       "intervencion": "Design & Construction",
       "resena": "A retail space combining brand identity, rich textures, and functionality. Wood, deep greens, and metal accents foster a warm atmosphere, while accent lighting highlights products and turns merchandising into a core part of the customer experience.",
       "cliente": "Local LaVaca Lola"
@@ -297,11 +244,7 @@
       "area": {
         "construida": 150
       },
-      "imagenes": [
-        "navitas-food-1",
-        "navitas-food-2",
-        "navitas-food-3"
-      ],
+      "imagenes": ["navitas-food-1", "navitas-food-2", "navitas-food-3"],
       "intervencion": "Architectural Design & Construction",
       "resena": "An experience that paves its own path. The project turns the physical journey through the venue into an integral part of the dining experience. An immersive urban atmosphere guides guests into the heart of the restaurant, where brand identity meets contemporary architectural design.",
       "cliente": "Restaurante Navitas Food"
@@ -315,9 +258,7 @@
       "area": {
         "construida": 50
       },
-      "imagenes": [
-        "lala-cookies-1"
-      ],
+      "imagenes": ["lala-cookies-1"],
       "intervencion": "Design & Construction",
       "resena": "The design concept stems directly from the lalacookies brand identity and its iconic box packaging, whose vibrant colors and fine details make a statement. Architecture and interior design brought the core concept of the box into the retail space while preserving its distinct visual language.",
       "cliente": "Local Lala Cookies"
@@ -331,11 +272,7 @@
       "area": {
         "construida": 225
       },
-      "imagenes": [
-        "mascoagro-1",
-        "mascoagro-2",
-        "mascoagro-3"
-      ],
+      "imagenes": ["mascoagro-1", "mascoagro-2", "mascoagro-3"],
       "intervencion": "Architectural Design",
       "resena": "A space designed to convey calm, trust, and well-being from the moment you step inside. A welcoming environment structured to relieve anxiety, offer peace of mind, and ensure pets and families feel fully supported, safe, and at ease.",
       "cliente": "Veterinaria Mascoagro"
