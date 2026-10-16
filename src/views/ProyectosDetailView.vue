@@ -24,17 +24,27 @@ const archivosProyectos = import.meta.glob("@/data/proyectos/*.json", {
 const proyecto = computed(() => {
   const idioma = store.lang || "es";
 
-  // Intentar con diferentes formatos de clave
+  // Intentar encontrar el archivo JSON del idioma activo
   const archivo =
     archivosProyectos[`/src/data/proyectos/${idioma}.json`] ||
     archivosProyectos[`./src/data/proyectos/${idioma}.json`] ||
     archivosProyectos[`@/data/proyectos/${idioma}.json`] ||
-    Object.values(archivosProyectos).find((v) => v?.proyectos); // Fallback: buscar cualquier archivo válido
+    Object.values(archivosProyectos).find((v) => v?.proyectos);
 
   if (!archivo?.proyectos) {
     console.error("[ProyectosDetailView] No se encontró el archivo JSON o no tiene proyectos");
     return null;
   }
+
+  // ✅ Buscar el proyecto cuyo slug coincida con la URL
+  const slugBuscado = proyectoSlug.value ? proyectoSlug.value.toLowerCase() : "";
+
+  return (
+    archivo.proyectos.find((p) => {
+      const slugProyecto = useUtilSlug(p.titulo).toLowerCase();
+      return slugProyecto === slugBuscado;
+    }) || null
+  );
 });
 
 // 3. SEO Reactivo y Seguro (Sin acceder a .value prematuramente)
@@ -57,13 +67,17 @@ usePageSeo({
     `/proyectos/${categoria.value || ""}/${useUtilSlug(proyectoSlug.value)}`.replace(/\/+/g, "/"),
   ),
   review: computed(() => {
-    if (!proyecto.value) return null;
     return {
-      body: proyecto.value.resena,
-      author: proyecto.value.cliente,
+      body: proyecto.value?.resena,
+      author: proyecto.value?.cliente,
       rating: 5,
     };
   }),
+  // review: () => ({
+  //   body: proyecto.value.resena,
+  //   author: proyecto.value.cliente,
+  //   rating: 5
+  // })
 });
 
 // --- LÓGICA DEL CARRUSEL ---
