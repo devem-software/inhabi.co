@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Bloquear rutas internas del frontend que no aportan valor a SEO
+Disallow: /admin/
+Disallow: /login/
+Disallow: /api/
+Disallow: /checkout/
+Disallow: /*?* # Opcional: evita indexar URLs con parámetros de filtrado duplicados
+
+# Permitir explícitamente el rastreo de imágenes (clave para portafolios de arquitectura)
+User-agent: Googlebot-Image
+Allow: /
+
+# Ubicación del Sitemap oficial
+Sitemap: https://inhabi.co/sitemap.xml

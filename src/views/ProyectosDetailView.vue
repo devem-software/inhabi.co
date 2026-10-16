@@ -21,23 +21,60 @@ const archivosProyectos = import.meta.glob("@/data/proyectos/*.json", {
 });
 
 // 2. Computed robusto para encontrar el proyecto
+// 2. Computed robusto para encontrar el proyecto
 const proyecto = computed(() => {
   const idioma = store.lang || "es";
-  // Nota: Verifique en consola si la clave es "/src/..." o "@/..."
-  const archivo =
+  
+  // Debug: Ver todas las claves disponibles
+  console.log('[ProyectosDetailView] Claves disponibles:', Object.keys(archivosProyectos));
+  console.log('[ProyectosDetailView] Buscando archivo:', `/src/data/proyectos/${idioma}.json`);
+  
+  // Intentar con diferentes formatos de clave
+  const archivo = 
     archivosProyectos[`/src/data/proyectos/${idioma}.json`] ||
-    archivosProyectos[`@/data/proyectos/${idioma}.json`];
+    archivosProyectos[`./src/data/proyectos/${idioma}.json`] ||
+    archivosProyectos[`@/data/proyectos/${idioma}.json`] ||
+    Object.values(archivosProyectos).find((v) => v?.proyectos); // Fallback: buscar cualquier archivo válido
 
-  if (!archivo?.proyectos) return null;
+  console.log('[ProyectosDetailView] Archivo cargado:', archivo);
+  console.log('[ProyectosDetailView] Categoría URL:', categoria.value);
+  console.log('[ProyectosDetailView] Slug URL:', proyectoSlug.value);
 
-  // Búsqueda insensible a mayúsculas/minúsculas y espacios
-  return (
-    archivo.proyectos.find(
-      (p) =>
-        useUtilSlug(p.titulo) === proyectoSlug.value?.toLowerCase() &&
-        p.tipo?.toLowerCase() === categoria.value?.toLowerCase(),
-    ) || null
-  );
+  if (!archivo?.proyectos) {
+    console.error('[ProyectosDetailView] No se encontró el archivo JSON o no tiene proyectos');
+    return null;
+  }
+
+  // Debug: Ver todos los proyectos disponibles
+  console.log('[ProyectosDetailView] Proyectos disponibles:', archivo.proyectos.map(p => ({
+    titulo: p.titulo,
+    slug: useUtilSlug(p.titulo),
+    tipo: p.tipo,
+    tipoLower: p.tipo?.toLowerCase()
+  })));
+
+  // Búsqueda mejorada
+  const encontrado = archivo.proyectos.find((p) => {
+    const slugCalculado = useUtilSlug(p.titulo);
+    const tipoCalculado = p.tipo?.toLowerCase();
+    const slugBuscado = proyectoSlug.value;
+    const categoriaBuscada = categoria.value?.toLowerCase();
+    
+    console.log(`[ProyectosDetailView] Comparando:`, {
+      titulo: p.titulo,
+      slugCalculado,
+      slugBuscado,
+      matchSlug: slugCalculado === slugBuscado,
+      tipoCalculado,
+      categoriaBuscada,
+      matchTipo: tipoCalculado === categoriaBuscada
+    });
+    
+    return slugCalculado === slugBuscado && tipoCalculado === categoriaBuscada;
+  });
+
+  console.log('[ProyectosDetailView] Proyecto encontrado:', encontrado);
+  return encontrado || null;
 });
 
 // 3. SEO Reactivo y Seguro (Sin acceder a .value prematuramente)
